@@ -10,13 +10,6 @@ namespace AblilityStoneLoger
     internal class ImageAnalysis
     {
         private DisplayCapture displayCapture;
-        private string[] engravingName = new string[3];
-        private int[] engravingSuccessData1 = new int[10];
-        private int[] engravingSuccessData2 = new int[10];
-        private int[] engravingSuccessData3 = new int[10];
-
-        private int percentage = 0;
-
 
         public Form1 Form1 { get; }
 
@@ -40,52 +33,44 @@ namespace AblilityStoneLoger
 
         private void ImageAnalysisThread()
         {
+            string[] engravingName = new string[3];
+            int[][] engravingSuccessData = new int[3][];
+            engravingSuccessData[0] = new int[10];
+            engravingSuccessData[1] = new int[10];
+            engravingSuccessData[2] = new int[10];
+            int percentage = 0;
+
             while (true /*Form1.GetLostArkState()*/)
             {
                 Mat display = displayCapture.GetMatCapture();
                 SerchAbilityStoneText(display);
                 if (abilityWindowState)
                 {
-                    PercentageCheck(display);
+                    percentage = PercentageCheck(display);
 
-                    EngravingImageCheck(display, 0);
-                    EngravingImageCheck(display, 1);
-                    EngravingImageCheck(display, 2);
+                    for (int i = 0; i < 3; i++)
+                    {
+                        engravingName[i] = EngravingImageCheck(display, i);
+                        engravingSuccessData[i] = EngravingSuccessCheck(display, i);
+                    }
 
-                    EngravingSuccessCheck(display, 0);
-                    EngravingSuccessCheck(display, 1);
-                    EngravingSuccessCheck(display, 2);
+                    //ComparisonData();
 
-                    EngravingSuccessCheck(display, 0);
-                    EngravingSuccessCheck(display, 1);
-                    EngravingSuccessCheck(display, 2);
-                
 
-                    Form1.SetEngravingData(engravingName, engravingSuccessData1, engravingSuccessData2, engravingSuccessData3, percentage);
+                    Form1.SetEngravingData(engravingName, engravingSuccessData, percentage);
                 }
                 else
                 {
-                    ClearData();
-                    Form1.SetEngravingData(engravingName, engravingSuccessData1, engravingSuccessData2, engravingSuccessData3, percentage);
+                    for (int i = 0; i < 3; i++)
+                    {
+                        engravingName[i] = "인식실패";
+                        engravingSuccessData[i] = new int[10] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
+                    }
+                    Form1.SetEngravingData(engravingName, engravingSuccessData, percentage);
                 }
             }
         }
-        private void ClearData()
-        {
-            for(int i = 0; i < engravingName.Length; i++)
-            {
-                engravingName[i] = "인식실패";
-            }
 
-            for (int i = 0; i < 10; i++)
-            {
-                engravingSuccessData1[i] = 0;
-                engravingSuccessData2[i] = 0;
-                engravingSuccessData3[i] = 0;
-            }
-
-            percentage = 0;
-        }
         private void SerchAbilityStoneText(Mat display)
         {
 
@@ -93,12 +78,12 @@ namespace AblilityStoneLoger
 
             OpenCvSharp.Point minloc, maxloc;
             double minval, maxval;
+            
             Cv2.MinMaxLoc(result, out minval, out maxval, out minloc, out maxloc);
-            //어빌리티 강화 텍스트 좌표 834,85 / 1030, 115
+            
             if (maxval > 0.8 && maxloc.X > 800 && maxloc.X < 1050 && maxloc.Y > 80 && maxloc.Y < 130)
             {
                 abilityWindowState = true;
-                //Form1.SetImage(new Bitmap(OpenCvSharp.Extensions.BitmapConverter.ToBitmap(display), new System.Drawing.Size(960, 540)));
             }
             else
             {
@@ -111,7 +96,7 @@ namespace AblilityStoneLoger
         int[] posY = { 388, 481, 607 };
         int[] percentageList = { 75, 65, 55, 45, 35, 25 };
 
-        private void PercentageCheck(Mat display)
+        private int PercentageCheck(Mat display)
         {
             Mat percentageSerchResult = new Mat();
             Mat percentageArea = display.SubMat(new OpenCvSharp.Rect(1100, 200, 200, 200));
@@ -126,57 +111,36 @@ namespace AblilityStoneLoger
                 if (maxval > 0.95)
                 {
                     Form1.SetPercentage(percentageList[i].ToString());
-                    percentage = percentageList[i];
-                    break;
+                    return percentageList[i];
                 }
-                else
-                {
-                    percentage = 0;
-                }
-}
+            }
+            return 0;
         }
 
-        private void EngravingSuccessCheck(Mat display, int num)
+        private int[] EngravingSuccessCheck(Mat display, int num)
         {
             /*
-             * 0 : 아직 안누름, 1 : 실패, 2 : 성공
+             * 0 : 아직 안누름, 1 : 실패, 2 : 성공, 3 : 인식오류
              */
-
-            if(num == 0)
+            int[] data = new int[10];
+            if (num != 2)
             {
                 for(int i = 0; i< 10; i++)
                 {
-                    var b = display.At<Vec3b>(posY[num], posX[i])[0];
-                    var g = display.At<Vec3b>(posY[num], posX[i])[1];
-                    var r = display.At<Vec3b>(posY[num], posX[i])[2];
+                    var b = display.At<Vec3b>(posY[num], posX[i] - num)[0];
+                    var g = display.At<Vec3b>(posY[num], posX[i] - num)[1];
+                    var r = display.At<Vec3b>(posY[num], posX[i] - num)[2];
                     if (r < 30 && g < 30 && b < 30)
-                        engravingSuccessData1[i] = 0;
+                        data[i] = 0;
                     else if (r < 150 && g < 150 && b < 150)
-                        engravingSuccessData1[i] = 1;
+                        data[i] = 1;
                     else if (b > 180)
-                        engravingSuccessData1[i] = 2;
+                        data[i] = 2;
                     else
-                        engravingSuccessData1[i] = 3;
+                        data[i] = 3;
                 }
             }
-            else if(num == 1)
-            {
-                for (int i = 0; i < 10; i++)
-                {
-                    var b = display.At<Vec3b>(posY[num], posX[i] - 1)[0];
-                    var g = display.At<Vec3b>(posY[num], posX[i] - 1)[1];
-                    var r = display.At<Vec3b>(posY[num], posX[i] - 1)[2];
-                    if (r < 30 && g < 30 && b < 30)
-                        engravingSuccessData2[i] = 0;
-                    else if (r < 150 && g < 150 && b < 150)
-                        engravingSuccessData2[i] = 1;
-                    else if( b > 180)
-                        engravingSuccessData2[i] = 2;
-                    else
-                        engravingSuccessData3[i] = 3;
-                }
-            }
-            else if(num == 2)
+            else
             {
                 for(int i = 0; i < 10; i++)
                 {
@@ -184,24 +148,20 @@ namespace AblilityStoneLoger
                     var g = display.At<Vec3b>(posY[num], posX_Reduction[i])[1];
                     var r = display.At<Vec3b>(posY[num], posX_Reduction[i])[2];
                     if (r < 30 && g < 30 && b < 30)
-                        engravingSuccessData3[i] = 0;
+                        data[i] = 0;
                     else if (r < 150 && g < 150 && b < 150)
-                        engravingSuccessData3[i] = 1;
+                        data[i] = 1;
                     else if( r > 200)
-                        engravingSuccessData3[i] = 2;
+                        data[i] = 2;
                     else
-                    {
-                        engravingSuccessData3[i] = 3;
-                    }
+                        data[i] = 3;
                 }
             }
-            else
-            {
-                MessageBox.Show("뭔상태냐");
-            }
+
+            return data;
         }
 
-        private void EngravingImageCheck(Mat image, int num)
+        private string EngravingImageCheck(Mat image, int num)
         {
             Mat engravingSerchResult = new Mat();
             Mat engravingArea = GetEngravingImageArea(image, num);
@@ -216,12 +176,7 @@ namespace AblilityStoneLoger
                     Cv2.MinMaxLoc(engravingSerchResult, out minval, out maxval, out minloc, out maxloc);
                     if (maxval > 0.95)
                     {
-                        engravingName[num] = resourceLoader.GetEnhanceName(i);
-                        break;
-                    }
-                    else
-                    {
-                        engravingName[num] = "인식실패";
+                        return resourceLoader.GetEnhanceName(i);
                     }
                 }
             }
@@ -234,15 +189,11 @@ namespace AblilityStoneLoger
                     Cv2.MinMaxLoc(engravingSerchResult, out minval, out maxval, out minloc, out maxloc);
                     if (maxval > 0.95)
                     {
-                        engravingName[num] = resourceLoader.GetReductionName(i);
-                        break;
-                    }
-                    else
-                    {
-                        engravingName[num] = "인식실패";
+                        return resourceLoader.GetEnhanceName(i);
                     }
                 }
             }
+            return "인식실패";
         }
 
         private Mat GetEngravingImageArea(Mat display, int num)
@@ -265,5 +216,6 @@ namespace AblilityStoneLoger
             }
 
         }
+
     }
 }

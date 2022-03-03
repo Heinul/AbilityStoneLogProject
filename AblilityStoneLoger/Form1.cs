@@ -66,14 +66,14 @@ namespace AblilityStoneLoger
             }
         }
 
-        public void SetEngravingData(string[] engravingName, int[] engravingSuccessData1, int[] engravingSuccessData2, int[] engravingSuccessData3, int percentage)
+        public void SetEngravingData(string[] engravingName, int[][] engravingSuccessData, int percentage)
         {
             this.Invoke(new Action(delegate ()
             {
                 label2.Text = percentage.ToString();
-                engraving1.Text = engravingName[0] + "\n" + ArrayToStr(engravingSuccessData1);
-                engraving2.Text = engravingName[1] + "\n" + ArrayToStr(engravingSuccessData2);
-                engraving3.Text = engravingName[2] + "\n" + ArrayToStr(engravingSuccessData3);
+                engraving1.Text = engravingName[0] + "\n" + ArrayToStr(engravingSuccessData[0]);
+                engraving2.Text = engravingName[1] + "\n" + ArrayToStr(engravingSuccessData[1]);
+                engraving3.Text = engravingName[2] + "\n" + ArrayToStr(engravingSuccessData[2]);
             }));
         }
 
@@ -111,7 +111,7 @@ namespace AblilityStoneLoger
         {
             this.Invoke(new Action(delegate ()
             {
-                pictureBox1.Image = bmp;
+                //pictureBox1.Image = bmp;
             }));
         }
 
