@@ -16,20 +16,21 @@ namespace AblilityStoneLoger
 
         public Form1 Form1 { get; }
 
-        public void ProcessDetection()
+        private void ProcessDetection()
         {
             while (true)
             {
                 Process[] processList = Process.GetProcessesByName("LostArk");
                 if(processList.Length > 0)
                 {
-                    Form1.SetProcess(processList[0]);
+                    Form1.SetLostArkState(true);
+                    break;
                 }
                 else
                 {
-                    Form1.SetProcess(null);
+                    Form1.SetLostArkState(false);
                 }
-                Thread.Sleep(100);
+                Thread.Sleep(1000);
             }
         }
 
