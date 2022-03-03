@@ -1,4 +1,4 @@
-# AblilityStoneLogProject
+# Ablility Stone Log Project
 어빌리티 스톤은 정말로 확률에 수렴하여 작동하는가? 라는 의문을 확인하기 위해 ASL 프로젝트를 구상하였습니다.
 
 # 기능
