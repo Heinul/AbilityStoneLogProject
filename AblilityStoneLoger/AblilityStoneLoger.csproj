@@ -9,14 +9,119 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\25p.png" />
+    <None Remove="Resources\35p.png" />
+    <None Remove="Resources\45p.png" />
+    <None Remove="Resources\55p.png" />
+    <None Remove="Resources\65p.png" />
+    <None Remove="Resources\75p.png" />
     <None Remove="Resources\Ability Stone Text.png" />
+    <None Remove="Resources\각성.png" />
+    <None Remove="Resources\강령술.png" />
+    <None Remove="Resources\강화방패.png" />
+    <None Remove="Resources\결투의대가.png" />
+    <None Remove="Resources\공격력감소.png" />
+    <None Remove="Resources\공격속도감소.png" />
+    <None Remove="Resources\구슬동자.png" />
+    <None Remove="Resources\굳은의지.png" />
+    <None Remove="Resources\급소타격.png" />
+    <None Remove="Resources\기습의대가.png" />
+    <None Remove="Resources\긴급구조.png" />
+    <None Remove="Resources\달인의저력.png" />
+    <None Remove="Resources\돌격대장.png" />
+    <None Remove="Resources\마나효율증가.png" />
+    <None Remove="Resources\바리케이드.png" />
+    <None Remove="Resources\방어력감소.png" />
+    <None Remove="Resources\번개의분노.png" />
+    <None Remove="Resources\부러진뼈.png" />
+    <None Remove="Resources\분쇄의주먹.png" />
+    <None Remove="Resources\불굴.png" />
+    <None Remove="Resources\선수필승.png" />
+    <None Remove="Resources\속전속결.png" />
+    <None Remove="Resources\슈퍼차지.png" />
+    <None Remove="Resources\승부사.png" />
+    <None Remove="Resources\시선집중.png" />
+    <None Remove="Resources\실드관통.png" />
+    <None Remove="Resources\아드레날린.png" />
+    <None Remove="Resources\안정된상태.png" />
+    <None Remove="Resources\약자무시.png" />
+    <None Remove="Resources\에테르포식자.png" />
+    <None Remove="Resources\여신의가호.png" />
+    <None Remove="Resources\예리한둔기.png" />
+    <None Remove="Resources\원한.png" />
+    <None Remove="Resources\위기모면.png" />
+    <None Remove="Resources\이동속도감소.png" />
+    <None Remove="Resources\저주받은인형.png" />
+    <None Remove="Resources\전문의.png" />
+    <None Remove="Resources\정기흡수.png" />
+    <None Remove="Resources\정밀단도.png" />
+    <None Remove="Resources\중갑착용.png" />
+    <None Remove="Resources\질량증가.png" />
+    <None Remove="Resources\최대마나증가.png" />
+    <None Remove="Resources\추진력.png" />
+    <None Remove="Resources\타격의대가.png" />
+    <None Remove="Resources\탈출의명수.png" />
+    <None Remove="Resources\폭팔물전문가.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\25p.png" />
+    <EmbeddedResource Include="Resources\35p.png" />
+    <EmbeddedResource Include="Resources\45p.png" />
+    <EmbeddedResource Include="Resources\55p.png" />
+    <EmbeddedResource Include="Resources\65p.png" />
+    <EmbeddedResource Include="Resources\75p.png" />
     <EmbeddedResource Include="Resources\Ability Stone Text.png" />
+    <EmbeddedResource Include="Resources\각성.png" />
+    <EmbeddedResource Include="Resources\강령술.png" />
+    <EmbeddedResource Include="Resources\강화방패.png" />
+    <EmbeddedResource Include="Resources\결투의대가.png" />
+    <EmbeddedResource Include="Resources\공격력감소.png" />
+    <EmbeddedResource Include="Resources\공격속도감소.png" />
+    <EmbeddedResource Include="Resources\구슬동자.png" />
+    <EmbeddedResource Include="Resources\굳은의지.png" />
+    <EmbeddedResource Include="Resources\급소타격.png" />
+    <EmbeddedResource Include="Resources\기습의대가.png" />
+    <EmbeddedResource Include="Resources\긴급구조.png" />
+    <EmbeddedResource Include="Resources\달인의저력.png" />
+    <EmbeddedResource Include="Resources\돌격대장.png" />
+    <EmbeddedResource Include="Resources\마나효율증가.png" />
+    <EmbeddedResource Include="Resources\바리케이드.png" />
+    <EmbeddedResource Include="Resources\방어력감소.png" />
+    <EmbeddedResource Include="Resources\번개의분노.png" />
+    <EmbeddedResource Include="Resources\부러진뼈.png" />
+    <EmbeddedResource Include="Resources\분쇄의주먹.png" />
+    <EmbeddedResource Include="Resources\불굴.png" />
+    <EmbeddedResource Include="Resources\선수필승.png" />
+    <EmbeddedResource Include="Resources\속전속결.png" />
+    <EmbeddedResource Include="Resources\슈퍼차지.png" />
+    <EmbeddedResource Include="Resources\승부사.png" />
+    <EmbeddedResource Include="Resources\시선집중.png" />
+    <EmbeddedResource Include="Resources\실드관통.png" />
+    <EmbeddedResource Include="Resources\아드레날린.png" />
+    <EmbeddedResource Include="Resources\안정된상태.png" />
+    <EmbeddedResource Include="Resources\약자무시.png" />
+    <EmbeddedResource Include="Resources\에테르포식자.png" />
+    <EmbeddedResource Include="Resources\여신의가호.png" />
+    <EmbeddedResource Include="Resources\예리한둔기.png" />
+    <EmbeddedResource Include="Resources\원한.png" />
+    <EmbeddedResource Include="Resources\위기모면.png" />
+    <EmbeddedResource Include="Resources\이동속도감소.png" />
+    <EmbeddedResource Include="Resources\저주받은인형.png" />
+    <EmbeddedResource Include="Resources\전문의.png" />
+    <EmbeddedResource Include="Resources\정기흡수.png" />
+    <EmbeddedResource Include="Resources\정밀단도.png" />
+    <EmbeddedResource Include="Resources\중갑착용.png" />
+    <EmbeddedResource Include="Resources\질량증가.png" />
+    <EmbeddedResource Include="Resources\최대마나증가.png" />
+    <EmbeddedResource Include="Resources\추진력.png" />
+    <EmbeddedResource Include="Resources\타격의대가.png" />
+    <EmbeddedResource Include="Resources\탈출의명수.png" />
+    <EmbeddedResource Include="Resources\폭팔물전문가.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MouseKeyHook" Version="5.6.0" />
     <PackageReference Include="OpenCvSharp3-AnyCPU" Version="4.0.0.20181129" />
   </ItemGroup>
 
@@ -33,6 +138,18 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ImageResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="C:\Users\HeNull\.nuget\packages\tesseract\4.1.1\build\\..\x64\tesseract41.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="C:\Users\HeNull\.nuget\packages\tesseract\4.1.1\build\\..\x86\tesseract41.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

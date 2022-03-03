@@ -15,52 +15,96 @@ namespace AblilityStoneLoger
         private void Form1_Load(object sender, EventArgs e)
         {
             StartLogger();
+            new Thread(MousePosition).Start();
         }
 
 
         private Process LostarkProess = null;
-        
+        private Mat display;
+        ImageAnalysis imageAnalysis;
+        private bool lostarkProcessState = false;
+
         private void StartLogger()
         {
             //해상도 확인
             if(Screen.PrimaryScreen.Bounds.Width / 16 != Screen.PrimaryScreen.Bounds.Height / 9 && Screen.PrimaryScreen.Bounds.Width / 21 != Screen.PrimaryScreen.Bounds.Height / 9)
             {
-                // 지원하지 않는 해상도 모니터
-                label2.Text = "지원하지 않는 해상도입니다.\n해당 프로그램은 21:9 혹은 16:9의 해상도만 지원합니다.";
-                label2.Visible = true;
+                not_supported_text.Visible = true;
             }
             else
             {
-                //로스트아크 프로세스 확인
                 ProcessDetector processDetector = new ProcessDetector(this);
-                DisplayCapture displayCapture = new DisplayCapture(this);
+                //DisplayCapture displayCapture = new DisplayCapture(this);
+                imageAnalysis = new ImageAnalysis(this);
 
                 processDetector.Run();
-                displayCapture.Run();
+                //displayCapture.Run();
+                imageAnalysis.Run();
             }
-            
 
+           
         }
 
-        public void SetProcess(Process process)
+
+
+        public void MousePosition()
         {
-            if(process == null)
+            try
             {
-                LostarkProess = null;
-                this.Invoke(new Action(delegate ()
+                while (true)
                 {
-                    label1.Text ="프로세스 탐지 중";
-                }));
+                    this.Invoke(new Action(delegate ()
+                    {
+                        MousePos.Text = Control.MousePosition.ToString();
+
+                    }));
+                }
             }
-            else
+            catch (Exception ex)
             {
-                LostarkProess = process;
-                this.Invoke(new Action(delegate ()
-                {
-                    label1.Text = LostarkProess.ProcessName;
-                }));
+                //MessageBox.Show(ex.Message);
             }
-            
+        }
+
+        public void SetEngravingData(string[] engravingName, int[] engravingSuccessData1, int[] engravingSuccessData2, int[] engravingSuccessData3, int percentage)
+        {
+            this.Invoke(new Action(delegate ()
+            {
+                label2.Text = percentage.ToString();
+                engraving1.Text = engravingName[0] + "\n" + ArrayToStr(engravingSuccessData1);
+                engraving2.Text = engravingName[1] + "\n" + ArrayToStr(engravingSuccessData2);
+                engraving3.Text = engravingName[2] + "\n" + ArrayToStr(engravingSuccessData3);
+            }));
+        }
+
+        private string ArrayToStr(int[] data)
+        {
+            string str = "";
+            for(int i = 0; i < data.Length; i++)
+            {
+                str += data[i].ToString();
+            }
+            return str;
+        }
+
+        public void SetLostArkState(bool check)
+        {
+            lostarkProcessState = check;
+        }
+
+        public bool GetLostArkState()
+        {
+            return lostarkProcessState;
+        }
+
+        public void SetDisplay(Mat display)
+        {
+            this.display = display;
+        }
+
+        public Mat GetDisplay()
+        {
+            return display;
         }
 
         public void SetImage(Bitmap bmp)
@@ -71,22 +115,17 @@ namespace AblilityStoneLoger
             }));
         }
 
-
+        public void SetPercentage(string str)
+        {
+            this.Invoke(new Action(delegate ()
+            {
+                label2.Text = str;
+            }));
+        }
 
         public Process GetProcess()
         {
             return LostarkProess;
-        }
-
-        private void Capt()
-        {
-            // 어빌리티 스톤창 확인
-            Bitmap bmp = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
-            Graphics gr = Graphics.FromImage(bmp);
-            gr.CopyFromScreen(0, 0, 0, 0, bmp.Size);
-            bmp = new Bitmap(bmp, new System.Drawing.Size(576, 324));
-            pictureBox1.Image = bmp;
-
         }
     }
 }
