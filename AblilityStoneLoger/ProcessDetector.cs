@@ -1,11 +1,12 @@
-﻿using System;
+﻿using AblilityStoneLoger;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AblilityStoneLoger
+namespace AbilityStoneLoger
 {
     internal class ProcessDetector
     {
@@ -21,7 +22,7 @@ namespace AblilityStoneLoger
             while (true)
             {
                 Process[] processList = Process.GetProcessesByName("LostArk");
-                if(processList.Length > 0)
+                if (processList.Length > 0)
                 {
                     Form1.SetLostArkState(true);
                     break;

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AblilityStoneLoger
+namespace AbilityStoneLoger
 {
     internal class DisplayCapture
     {
@@ -18,22 +18,22 @@ namespace AblilityStoneLoger
              * (Screen.PrimaryScreen.Bounds.Width - (Screen.PrimaryScreen.Bounds.Height / 9 * 16));
              */
             // 16:9로 크기 정규화
-            int normalization = (Screen.PrimaryScreen.Bounds.Width - (Screen.PrimaryScreen.Bounds.Height / 9 * 16)) / 2;
+            int normalization = (Screen.PrimaryScreen.Bounds.Width - Screen.PrimaryScreen.Bounds.Height / 9 * 16) / 2;
             Bitmap bmp = new Bitmap(Screen.PrimaryScreen.Bounds.Height / 9 * 16, Screen.PrimaryScreen.Bounds.Height);
             Graphics gr = Graphics.FromImage(bmp);
             gr.CopyFromScreen(normalization, 0, normalization, 0, bmp.Size);
-            Mat display = BitmapConverter.ToMat(bmp);
+            Mat display = bmp.ToMat();
             display.Resize(new OpenCvSharp.Size(1920, 1080));
 
             GC.Collect();
             GC.WaitForPendingFinalizers();
 
             return display;
-        }       
+        }
 
         public Bitmap GetBitmapCapture()
         {
-            int normalization = (Screen.PrimaryScreen.Bounds.Width - (Screen.PrimaryScreen.Bounds.Height / 9 * 16)) / 2;
+            int normalization = (Screen.PrimaryScreen.Bounds.Width - Screen.PrimaryScreen.Bounds.Height / 9 * 16) / 2;
             Bitmap bmp = new Bitmap(Screen.PrimaryScreen.Bounds.Height / 9 * 16, Screen.PrimaryScreen.Bounds.Height);
             Graphics gr = Graphics.FromImage(bmp);
             gr.CopyFromScreen(normalization, 0, normalization, 0, bmp.Size);
