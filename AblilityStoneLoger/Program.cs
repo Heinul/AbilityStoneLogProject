@@ -1,4 +1,6 @@
-namespace AblilityStoneLoger
+using AblilityStoneLoger;
+
+namespace AbilityStoneLoger
 {
     internal static class Program
     {

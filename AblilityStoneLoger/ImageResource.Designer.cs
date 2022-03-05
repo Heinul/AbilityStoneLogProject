@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AblilityStoneLoger {
+namespace AbilityStoneLoger {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace AblilityStoneLoger {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AblilityStoneLoger.ImageResource", typeof(ImageResource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AbilityStoneLoger.ImageResource", typeof(ImageResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
