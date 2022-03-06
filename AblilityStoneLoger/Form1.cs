@@ -19,11 +19,11 @@ namespace AblilityStoneLoger
             new Thread(MousePosition).Start();
         }
 
-
         private Process LostarkProess = null;
         private Mat display;
         ImageAnalysis imageAnalysis;
         private bool lostarkProcessState = false;
+
 
         private void StartLogger()
         {
@@ -34,13 +34,14 @@ namespace AblilityStoneLoger
             }
             else
             {
-                ProcessDetector processDetector = new ProcessDetector(this);
-                //DisplayCapture displayCapture = new DisplayCapture(this);
-                imageAnalysis = new ImageAnalysis(this);
+                AbilityItem a = new AbilityItem(0, "", false, false);
 
-                processDetector.Run();
-                //displayCapture.Run();
-                imageAnalysis.Run();
+
+                //ProcessDetector processDetector = new ProcessDetector(this);
+                //imageAnalysis = new ImageAnalysis(this);
+
+                //processDetector.Run();
+                //imageAnalysis.Run();
             }
 
            

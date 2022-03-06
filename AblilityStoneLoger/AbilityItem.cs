@@ -3,34 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Office.Interop.Excel;
 
 namespace AbilityStoneLoger
 {
     internal class AbilityItem
     {
         private int percentage = 0;
-        private string[] engravingName = new string[3];
-        private int[][] engravingSuccessData = new int[3][];
-        private string path = @"./Data.xlsx";
+        private string engravingName = "";
+        private bool success = false;
+        private bool adjustment = false; //true 강화, false 감소
+        SQLite database = null;
 
-        private Microsoft.Office.Interop.Excel.Application excel = null;
-        private Microsoft.Office.Interop.Excel.Workbook wb = null;
-        private Microsoft.Office.Interop.Excel.Worksheet ws = null;
-
-        public AbilityItem(int percentage, string[] engravingName, int[][] engravingSuccessData)
+        public AbilityItem(int percentage, string engravingName, bool success, bool adjustment)
         {
             this.percentage = percentage;
             this.engravingName = engravingName;
-            this.engravingSuccessData = engravingSuccessData;
-            //Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
-            //wb = excel.Workbooks.Open(path);
-
+            this.success = success;
+            this.adjustment = adjustment;
+            this.database = new SQLite();
         }
 
         public void SaveData()
         {
-
+            database.Insert(percentage, engravingName, success, adjustment);
         }
 
         public void SendData()
