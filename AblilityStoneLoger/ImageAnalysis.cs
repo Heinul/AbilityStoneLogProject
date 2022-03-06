@@ -36,6 +36,7 @@ namespace AbilityStoneLoger
         {
             Thread thread = new Thread(ImageAnalysisThread);
             thread.Start();
+            SaveData();
         }
 
         private void ImageAnalysisThread()
@@ -100,9 +101,9 @@ namespace AbilityStoneLoger
                 return;
             }
 
-            double distance1 = GetEngravingDistance(previousEngravingSuccessData, engravingSuccessData, 0);
-            double distance2 = GetEngravingDistance(previousEngravingSuccessData, engravingSuccessData, 1);
-            double distance3 = GetEngravingDistance(previousEngravingSuccessData, engravingSuccessData, 2);
+            int distance1 = GetEngravingDistance(previousEngravingSuccessData, engravingSuccessData, 0);
+            int distance2 = GetEngravingDistance(previousEngravingSuccessData, engravingSuccessData, 1);
+            int distance3 = GetEngravingDistance(previousEngravingSuccessData, engravingSuccessData, 2);
             // 어빌리티 스톤 변경 (인식실패 무시)
             if ((previousEngravingName[0] != engravingName[0] || previousEngravingName[1] != engravingName[1] || previousEngravingName[2] != engravingName[2])
                 && previousEngravingName[0] != "인식실패" && previousEngravingName[1] != "인식실패" && previousEngravingName[2] != "인식실패")
@@ -140,7 +141,30 @@ namespace AbilityStoneLoger
             else if( distance1 == 1 || distance1 == 2 || distance2 == 1 || distance2 == 2 || distance3 == 1 || distance3 == 2)
             {
                 //값이 범위 내로 증가하면 강화를 했다는거니까 저장하고 갱신하면됨
-                PushData(percentage, engravingName, engravingSuccessData);
+                if (distance1 == 1 )
+                {
+                    PushData(percentage, previousEngravingName[0], false, true);
+                }
+                else if(distance1 == 2)
+                {
+                    PushData(percentage, previousEngravingName[0], true, true);
+                }
+               else if(distance2 == 1)
+                {
+                    PushData(percentage, previousEngravingName[1], false, true);
+                }
+                else if (distance2 == 2)
+                {
+                    PushData(percentage, previousEngravingName[1], true, true);
+                }
+                else if (distance3 == 1)
+                {
+                    PushData(percentage, previousEngravingName[2], false, false);
+                }
+                else if (distance3 == 2)
+                {
+                    PushData(percentage, previousEngravingName[2], true, false);
+                }
 
                 previousPercentage = percentage;
                 for (int i = 0; i < 3; i++)
@@ -156,12 +180,11 @@ namespace AbilityStoneLoger
         }
 
         Queue<AbilityItem> queue = new Queue<AbilityItem>();
-        private void PushData(int percentage, string[] engravingName, int[][] engravingSuccessData)
+        private void PushData(int percentage, string engravingName, bool success, bool adjustment)
         {
             //큐에 데이터 올리고 다른 스레드로 저장 작업 처리
-            //AbilityItem data = new AbilityItem(percentage, (string[])engravingName.Clone(), (int[][])engravingSuccessData.Clone());
+            AbilityItem data = new AbilityItem(percentage, engravingName, success, adjustment);
             //queue.Enqueue(data);
-            Console.WriteLine("출력");
         }
 
         private void SaveData()
@@ -178,11 +201,11 @@ namespace AbilityStoneLoger
                         item.SaveData();
                     }
                 }
-            });
+            }).Start();
 
         }
 
-        private double GetEngravingDistance(int[][] previousData, int[][] engravingData, int num)
+        private int GetEngravingDistance(int[][] previousData, int[][] engravingData, int num)
         {
             var a = ArrayToLong(engravingData[num]);
             var b = ArrayToLong(previousData[num]);
@@ -190,7 +213,7 @@ namespace AbilityStoneLoger
             if (distance != 0)
                 distance = distance / Math.Pow(10, Math.Truncate(Math.Log10(Math.Abs(distance))));
             
-            return distance;
+            return (int)distance;
         }
 
         private long ArrayToLong(int[] data)
