@@ -19,9 +19,8 @@ namespace AblilityStoneLoger
             new Thread(MousePosition).Start();
         }
 
+        private ImageAnalysis imageAnalysis;
         private Process LostarkProess = null;
-        private Mat display;
-        ImageAnalysis imageAnalysis;
         private bool lostarkProcessState = false;
 
 
@@ -37,14 +36,12 @@ namespace AblilityStoneLoger
                 AbilityItem a = new AbilityItem(0, "", false, false);
 
 
-                //ProcessDetector processDetector = new ProcessDetector(this);
-                //imageAnalysis = new ImageAnalysis(this);
+                ProcessDetector processDetector = new ProcessDetector(this);
+                processDetector.Run();
 
-                //processDetector.Run();
-                //imageAnalysis.Run();
+                imageAnalysis = new ImageAnalysis(this);
+                imageAnalysis.Run();
             }
-
-           
         }
 
 
@@ -68,27 +65,6 @@ namespace AblilityStoneLoger
             }
         }
 
-        public void SetEngravingData(string[] engravingName, int[][] engravingSuccessData, int percentage)
-        {
-            this.Invoke(new Action(delegate ()
-            {
-                label2.Text = percentage.ToString();
-                engraving1.Text = engravingName[0] + "\n" + ArrayToStr(engravingSuccessData[0]);
-                engraving2.Text = engravingName[1] + "\n" + ArrayToStr(engravingSuccessData[1]);
-                engraving3.Text = engravingName[2] + "\n" + ArrayToStr(engravingSuccessData[2]);
-            }));
-        }
-
-        private string ArrayToStr(int[] data)
-        {
-            string str = "";
-            for(int i = 0; i < data.Length; i++)
-            {
-                str += data[i].ToString();
-            }
-            return str;
-        }
-
         public void SetLostArkState(bool check)
         {
             lostarkProcessState = check;
@@ -99,35 +75,22 @@ namespace AblilityStoneLoger
             return lostarkProcessState;
         }
 
-        public void SetDisplay(Mat display)
-        {
-            this.display = display;
-        }
-
-        public Mat GetDisplay()
-        {
-            return display;
-        }
-
-        public void SetImage(Bitmap bmp)
-        {
-            this.Invoke(new Action(delegate ()
-            {
-                //pictureBox1.Image = bmp;
-            }));
-        }
-
-        public void SetPercentage(string str)
-        {
-            this.Invoke(new Action(delegate ()
-            {
-                label2.Text = str;
-            }));
-        }
-
         public Process GetProcess()
         {
             return LostarkProess;
+        }
+
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        private void Form_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
         }
     }
 }

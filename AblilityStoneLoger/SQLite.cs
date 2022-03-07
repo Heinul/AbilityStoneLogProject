@@ -34,7 +34,7 @@ namespace AbilityStoneLoger
                     sql.AppendLine(@" ""PERCENTAGE"" INTAGER, ");
                     sql.AppendLine(@" ""ENGRAVINGNAME"" TEXT,");
                     sql.AppendLine(@" ""SUCCESS"" BOOLEAN,");
-                    sql.AppendLine(@" ""ADJUSTMENT"" BOOLEAN,");
+                    sql.AppendLine(@" ""ADJUSTMENT"" BOOLEAN,"); //true 강화효과 / false 감소효과
                     sql.AppendLine(@" ""TIMESTAMP"" DATETIME DEFAULT (datetime('now', 'localtime')) NOT NULL");
                     sql.AppendLine(@" ); ");
 
