@@ -62,9 +62,6 @@ namespace AbilityStoneLoger
                     }
 
                     ComparisonData(percentage, engravingName, engravingSuccessData);
-
-
-                    Form1.SetEngravingData(engravingName, engravingSuccessData, percentage);
                 }
                 else
                 {
@@ -74,18 +71,12 @@ namespace AbilityStoneLoger
                         engravingName[i] = "인식실패";
                         engravingSuccessData[i] = new int[10] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
                     }
-                    Form1.SetEngravingData(engravingName, engravingSuccessData, percentage);
                 }
             }
         }
 
         private void ComparisonData(int percentage, string[] engravingName, int[][] engravingSuccessData)
         {
-            // 우선 perviousdata가 없다면 집어넣고
-            // 다음 데이터가 비교했을때 3이 아닌값으로 다르다면 저장
-            // 3이 존재하면 저장하거나 갱신 안함
-            // 이름이 달라지거나 각인 성공실패 값이 늘어나는 방향이 아니거나 사이값이 달라지면 갱신
-
             // 첫입력
             if (previousEngravingName[0] == "")
             {
@@ -101,12 +92,16 @@ namespace AbilityStoneLoger
                 return;
             }
 
+            if (previousEngravingName[0] != "인식실패" && previousEngravingName[1] != "인식실패" && previousEngravingName[2] != "인식실패")
+            {
+                return;
+            }
+
             int distance1 = GetEngravingDistance(previousEngravingSuccessData, engravingSuccessData, 0);
             int distance2 = GetEngravingDistance(previousEngravingSuccessData, engravingSuccessData, 1);
             int distance3 = GetEngravingDistance(previousEngravingSuccessData, engravingSuccessData, 2);
-            // 어빌리티 스톤 변경 (인식실패 무시)
-            if ((previousEngravingName[0] != engravingName[0] || previousEngravingName[1] != engravingName[1] || previousEngravingName[2] != engravingName[2])
-                && previousEngravingName[0] != "인식실패" && previousEngravingName[1] != "인식실패" && previousEngravingName[2] != "인식실패")
+            // 어빌리티 스톤 변경
+            if (previousEngravingName[0] != engravingName[0] || previousEngravingName[1] != engravingName[1] || previousEngravingName[2] != engravingName[2])
             {
                 //각인이름이 달라진 경우 갱신
                 previousPercentage = percentage;
@@ -118,6 +113,10 @@ namespace AbilityStoneLoger
                         previousEngravingSuccessData[i][j] = engravingSuccessData[i][j];
                     }
                 }
+                return;
+            }
+            else if (distance1 == 0 && distance2 == 0 && distance3 == 0)
+            {
                 return;
             }
             else if (distance1 < 0 || distance1 > 2 || distance2 < 0 || distance2 > 2 || distance3 < 0 || distance3 > 2)
@@ -132,10 +131,6 @@ namespace AbilityStoneLoger
                         previousEngravingSuccessData[i][j] = engravingSuccessData[i][j];
                     }
                 }
-                return;
-            }
-            else if (distance1 == 0 && distance2 == 0 && distance3 == 0)
-            {
                 return;
             }
             else if( distance1 == 1 || distance1 == 2 || distance2 == 1 || distance2 == 2 || distance3 == 1 || distance3 == 2)
@@ -273,12 +268,10 @@ namespace AbilityStoneLoger
 
             if (maxVal < 0.5)
             {
-                Form1.SetPercentage("0");
                 return 0;
             }
             else
             {
-                Form1.SetPercentage(percentageList[maxIndex].ToString());
                 return percentageList[maxIndex];
             }
         }
