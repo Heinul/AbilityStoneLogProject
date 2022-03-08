@@ -53,7 +53,7 @@ namespace AbilityStoneLoger
                 SerchAbilityStoneText(display);
                 if (abilityWindowState)
                 {
-                    percentage = PercentageCheck(display);
+                    percentage = PercentageCheck(display, percentage);
 
                     for (int i = 0; i < 3; i++)
                     {
@@ -92,14 +92,21 @@ namespace AbilityStoneLoger
                 return;
             }
 
-            if (previousEngravingName[0] != "인식실패" && previousEngravingName[1] != "인식실패" && previousEngravingName[2] != "인식실패")
+            if (engravingName[0] == "인식실패" || engravingName[1] == "인식실패" || engravingName[2] == "인식실패")
             {
+                return;
+            }
+
+            if (previousPercentage == 0)
+            {
+                previousPercentage = percentage;
                 return;
             }
 
             int distance1 = GetEngravingDistance(previousEngravingSuccessData, engravingSuccessData, 0);
             int distance2 = GetEngravingDistance(previousEngravingSuccessData, engravingSuccessData, 1);
             int distance3 = GetEngravingDistance(previousEngravingSuccessData, engravingSuccessData, 2);
+            int percentageDistace = previousPercentage - percentage;
             // 어빌리티 스톤 변경
             if (previousEngravingName[0] != engravingName[0] || previousEngravingName[1] != engravingName[1] || previousEngravingName[2] != engravingName[2])
             {
@@ -133,32 +140,36 @@ namespace AbilityStoneLoger
                 }
                 return;
             }
+            else if (Math.Abs(percentageDistace) > 10)
+            {
+                return;
+            }
             else if( distance1 == 1 || distance1 == 2 || distance2 == 1 || distance2 == 2 || distance3 == 1 || distance3 == 2)
             {
                 //값이 범위 내로 증가하면 강화를 했다는거니까 저장하고 갱신하면됨
                 if (distance1 == 1 )
                 {
-                    PushData(percentage, previousEngravingName[0], false, true);
+                    PushData(previousPercentage, previousEngravingName[0], false, true);
                 }
                 else if(distance1 == 2)
                 {
-                    PushData(percentage, previousEngravingName[0], true, true);
+                    PushData(previousPercentage, previousEngravingName[0], true, true);
                 }
                else if(distance2 == 1)
                 {
-                    PushData(percentage, previousEngravingName[1], false, true);
+                    PushData(previousPercentage, previousEngravingName[1], false, true);
                 }
                 else if (distance2 == 2)
                 {
-                    PushData(percentage, previousEngravingName[1], true, true);
+                    PushData(previousPercentage, previousEngravingName[1], true, true);
                 }
                 else if (distance3 == 1)
                 {
-                    PushData(percentage, previousEngravingName[2], false, false);
+                    PushData(previousPercentage, previousEngravingName[2], false, false);
                 }
                 else if (distance3 == 2)
                 {
-                    PushData(percentage, previousEngravingName[2], true, false);
+                    PushData(previousPercentage, previousEngravingName[2], true, false);
                 }
 
                 previousPercentage = percentage;
@@ -179,7 +190,7 @@ namespace AbilityStoneLoger
         {
             //큐에 데이터 올리고 다른 스레드로 저장 작업 처리
             AbilityItem data = new AbilityItem(percentage, engravingName, success, adjustment);
-            //queue.Enqueue(data);
+            queue.Enqueue(data);
         }
 
         private void SaveData()
@@ -247,7 +258,7 @@ namespace AbilityStoneLoger
         int[] posY = { 388, 481, 607 };
         int[] percentageList = { 75, 65, 55, 45, 35, 25 };
 
-        private int PercentageCheck(Mat display)
+        private int PercentageCheck(Mat display, int percentage)
         {
             Mat percentageSerchResult = new Mat();
             Mat percentageArea = display.SubMat(new Rect(1100, 200, 200, 200));
@@ -256,12 +267,17 @@ namespace AbilityStoneLoger
 
             double[] val = new double[6];
             // 퍼센트 확인
+
             for (int i = 0; i < 6; i++)
             {
-                Cv2.MatchTemplate(percentageArea, resourceLoader.GetPersentageImage(i), percentageSerchResult, TemplateMatchModes.CCoeffNormed);
+                Mat gray = new Mat();
+                Cv2.CvtColor(percentageArea, gray, ColorConversionCodes.BGR2GRAY);
+
+                Cv2.MatchTemplate(gray, resourceLoader.GetPercentageGrayImage(i), percentageSerchResult, TemplateMatchModes.CCoeffNormed);
                 Cv2.MinMaxLoc(percentageSerchResult, out minval, out maxval, out minloc, out maxloc);
                 val[i] = maxval;
             }
+
 
             var maxVal = val.Max();
             var maxIndex = val.ToList().IndexOf(maxVal);
