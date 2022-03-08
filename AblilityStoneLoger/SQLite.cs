@@ -71,18 +71,20 @@ namespace AbilityStoneLoger
             }
         }
 
-        public DataSet SelectAll(string table)
+        public DataRowCollection SelectAll()
         {
             try
             {
                 DataSet ds = new DataSet();
 
-                string sql = $"SELECT * FROM {table}";
+                string sql = $"SELECT * FROM ENGRAVINGDATA";
                 adapter = new SQLiteDataAdapter(sql, DBpath);
-                adapter.Fill(ds, table);
+                adapter.Fill(ds);
 
-                if (ds.Tables.Count > 0) return ds;
-                else return null;
+                if (ds.Tables.Count > 0) 
+                    return ds.Tables[0].Rows;
+                else 
+                    return null;
             }
             catch (Exception e)
             {
@@ -91,27 +93,7 @@ namespace AbilityStoneLoger
             }
         }
 
-        public DataSet SelectDetail(string table, string condition, string where = "")
-        {
-            try
-            {
-                DataSet ds = new DataSet();
-
-                string sql = $"SELECT {condition} FROM {table} {where}";
-                adapter = new SQLiteDataAdapter(sql, DBpath);
-                adapter.Fill(ds, table);
-
-                if (ds.Tables.Count > 0) return ds;
-                else return null;
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.ToString());
-                throw;
-            }
-        }
-
-        public DataSet Select(string engravingName)
+        public DataRowCollection Select(string engravingName)
         {
             try
             {
@@ -121,8 +103,10 @@ namespace AbilityStoneLoger
                 adapter = new SQLiteDataAdapter(sql, DBpath);
                 adapter.Fill(ds);
 
-                if (ds.Tables.Count > 0) return ds;
-                else return null;
+                if (ds.Tables.Count > 0) 
+                    return ds.Tables[0].Rows;
+                else 
+                    return null;
             }
             catch (Exception e)
             {
@@ -131,7 +115,7 @@ namespace AbilityStoneLoger
             }
         }
 
-        public DataSet Select(int percentage)
+        public DataRowCollection Select(int percentage)
         {
             try
             {
@@ -141,7 +125,27 @@ namespace AbilityStoneLoger
                 adapter = new SQLiteDataAdapter(sql, DBpath);
                 adapter.Fill(ds);
 
-                if (ds.Tables.Count > 0) return ds;
+                if (ds.Tables.Count > 0) return ds.Tables[0].Rows;
+                else return null;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                throw;
+            }
+        }
+
+        public DataRowCollection Select(bool success)
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+
+                string sql = $"SELECT * FROM ENGRAVINGDATA WHERE SUCCESS = {success}";
+                adapter = new SQLiteDataAdapter(sql, DBpath);
+                adapter.Fill(ds);
+
+                if (ds.Tables.Count > 0) return ds.Tables[0].Rows;
                 else return null;
             }
             catch (Exception e)
@@ -204,9 +208,8 @@ namespace AbilityStoneLoger
                     conn.Open();
                     string sql = $"INSERT INTO ENGRAVINGDATA('PERCENTAGE', 'ENGRAVINGNAME', 'SUCCESS', 'ADJUSTMENT') VALUES ({percentage}, '{engravingName}', {success}, {adjustment})";
                     SQLiteCommand cmd = new SQLiteCommand(sql, conn);
-                    cmd.ExecuteNonQuery();
-
                     Console.WriteLine(cmd.CommandText);
+                    cmd.ExecuteNonQuery();
                 }
             }
             catch(Exception e)

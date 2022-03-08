@@ -28,18 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.MousePos = new System.Windows.Forms.Label();
             this.SideMenu = new System.Windows.Forms.Panel();
             this.Option = new System.Windows.Forms.Button();
+            this.Tendency = new System.Windows.Forms.Button();
             this.LogDetail = new System.Windows.Forms.Button();
             this.Home = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.CoinLabel = new System.Windows.Forms.Label();
-            this.FailLabel = new System.Windows.Forms.Label();
-            this.SuccessLabel = new System.Windows.Forms.Label();
-            this.TryLabel = new System.Windows.Forms.Label();
             this.ReductionGraph25 = new System.Windows.Forms.PictureBox();
             this.EnhanceGraph25 = new System.Windows.Forms.PictureBox();
             this.ReductionGraph35 = new System.Windows.Forms.PictureBox();
@@ -52,6 +50,10 @@
             this.EnhanceGraph65 = new System.Windows.Forms.PictureBox();
             this.ReductionGraph75 = new System.Windows.Forms.PictureBox();
             this.EnhanceGraph75 = new System.Windows.Forms.PictureBox();
+            this.CoinLabel = new System.Windows.Forms.Label();
+            this.FailLabel = new System.Windows.Forms.Label();
+            this.SuccessLabel = new System.Windows.Forms.Label();
+            this.TryLabel = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -59,7 +61,7 @@
             this.FormBorderPanel = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.Exit = new System.Windows.Forms.Button();
-            this.Tendency = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SideMenu.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -116,6 +118,24 @@
             this.Option.Size = new System.Drawing.Size(160, 50);
             this.Option.TabIndex = 3;
             this.Option.UseVisualStyleBackColor = true;
+            this.Option.Click += new System.EventHandler(this.Option_Click);
+            // 
+            // Tendency
+            // 
+            this.Tendency.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Tendency.BackgroundImage")));
+            this.Tendency.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Tendency.FlatAppearance.BorderSize = 0;
+            this.Tendency.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.Tendency.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.Tendency.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Tendency.Font = new System.Drawing.Font("함초롬돋움", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Tendency.ForeColor = System.Drawing.Color.White;
+            this.Tendency.Location = new System.Drawing.Point(0, 100);
+            this.Tendency.Name = "Tendency";
+            this.Tendency.Size = new System.Drawing.Size(160, 50);
+            this.Tendency.TabIndex = 5;
+            this.Tendency.UseVisualStyleBackColor = true;
+            this.Tendency.Click += new System.EventHandler(this.Tendency_Click);
             // 
             // LogDetail
             // 
@@ -173,10 +193,6 @@
             // 
             this.tabPage1.BackColor = System.Drawing.Color.White;
             this.tabPage1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPage1.BackgroundImage")));
-            this.tabPage1.Controls.Add(this.CoinLabel);
-            this.tabPage1.Controls.Add(this.FailLabel);
-            this.tabPage1.Controls.Add(this.SuccessLabel);
-            this.tabPage1.Controls.Add(this.TryLabel);
             this.tabPage1.Controls.Add(this.ReductionGraph25);
             this.tabPage1.Controls.Add(this.EnhanceGraph25);
             this.tabPage1.Controls.Add(this.ReductionGraph35);
@@ -189,12 +205,149 @@
             this.tabPage1.Controls.Add(this.EnhanceGraph65);
             this.tabPage1.Controls.Add(this.ReductionGraph75);
             this.tabPage1.Controls.Add(this.EnhanceGraph75);
+            this.tabPage1.Controls.Add(this.CoinLabel);
+            this.tabPage1.Controls.Add(this.FailLabel);
+            this.tabPage1.Controls.Add(this.SuccessLabel);
+            this.tabPage1.Controls.Add(this.TryLabel);
             this.tabPage1.Location = new System.Drawing.Point(4, 5);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(772, 501);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "1";
+            // 
+            // ReductionGraph25
+            // 
+            this.ReductionGraph25.Image = ((System.Drawing.Image)(resources.GetObject("ReductionGraph25.Image")));
+            this.ReductionGraph25.Location = new System.Drawing.Point(474, 453);
+            this.ReductionGraph25.Name = "ReductionGraph25";
+            this.ReductionGraph25.Size = new System.Drawing.Size(26, 0);
+            this.ReductionGraph25.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ReductionGraph25.TabIndex = 0;
+            this.ReductionGraph25.TabStop = false;
+            this.ReductionGraph25.MouseHover += new System.EventHandler(this.GraphMouseMove);
+            // 
+            // EnhanceGraph25
+            // 
+            this.EnhanceGraph25.Image = ((System.Drawing.Image)(resources.GetObject("EnhanceGraph25.Image")));
+            this.EnhanceGraph25.Location = new System.Drawing.Point(442, 453);
+            this.EnhanceGraph25.Name = "EnhanceGraph25";
+            this.EnhanceGraph25.Size = new System.Drawing.Size(26, 0);
+            this.EnhanceGraph25.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.EnhanceGraph25.TabIndex = 0;
+            this.EnhanceGraph25.TabStop = false;
+            this.EnhanceGraph25.MouseHover += new System.EventHandler(this.GraphMouseMove);
+            // 
+            // ReductionGraph35
+            // 
+            this.ReductionGraph35.Image = ((System.Drawing.Image)(resources.GetObject("ReductionGraph35.Image")));
+            this.ReductionGraph35.Location = new System.Drawing.Point(397, 453);
+            this.ReductionGraph35.Name = "ReductionGraph35";
+            this.ReductionGraph35.Size = new System.Drawing.Size(26, 0);
+            this.ReductionGraph35.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ReductionGraph35.TabIndex = 0;
+            this.ReductionGraph35.TabStop = false;
+            this.ReductionGraph35.MouseHover += new System.EventHandler(this.GraphMouseMove);
+            // 
+            // EnhanceGraph35
+            // 
+            this.EnhanceGraph35.Image = ((System.Drawing.Image)(resources.GetObject("EnhanceGraph35.Image")));
+            this.EnhanceGraph35.Location = new System.Drawing.Point(365, 453);
+            this.EnhanceGraph35.Name = "EnhanceGraph35";
+            this.EnhanceGraph35.Size = new System.Drawing.Size(26, 0);
+            this.EnhanceGraph35.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.EnhanceGraph35.TabIndex = 0;
+            this.EnhanceGraph35.TabStop = false;
+            this.EnhanceGraph35.MouseHover += new System.EventHandler(this.GraphMouseMove);
+            // 
+            // ReductionGraph45
+            // 
+            this.ReductionGraph45.Image = ((System.Drawing.Image)(resources.GetObject("ReductionGraph45.Image")));
+            this.ReductionGraph45.Location = new System.Drawing.Point(325, 453);
+            this.ReductionGraph45.Name = "ReductionGraph45";
+            this.ReductionGraph45.Size = new System.Drawing.Size(26, 0);
+            this.ReductionGraph45.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ReductionGraph45.TabIndex = 0;
+            this.ReductionGraph45.TabStop = false;
+            this.ReductionGraph45.MouseHover += new System.EventHandler(this.GraphMouseMove);
+            // 
+            // EnhanceGraph45
+            // 
+            this.EnhanceGraph45.Image = ((System.Drawing.Image)(resources.GetObject("EnhanceGraph45.Image")));
+            this.EnhanceGraph45.Location = new System.Drawing.Point(293, 453);
+            this.EnhanceGraph45.Name = "EnhanceGraph45";
+            this.EnhanceGraph45.Size = new System.Drawing.Size(26, 0);
+            this.EnhanceGraph45.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.EnhanceGraph45.TabIndex = 0;
+            this.EnhanceGraph45.TabStop = false;
+            this.EnhanceGraph45.MouseHover += new System.EventHandler(this.GraphMouseMove);
+            // 
+            // ReductionGraph55
+            // 
+            this.ReductionGraph55.Image = ((System.Drawing.Image)(resources.GetObject("ReductionGraph55.Image")));
+            this.ReductionGraph55.Location = new System.Drawing.Point(248, 453);
+            this.ReductionGraph55.Name = "ReductionGraph55";
+            this.ReductionGraph55.Size = new System.Drawing.Size(26, 0);
+            this.ReductionGraph55.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ReductionGraph55.TabIndex = 0;
+            this.ReductionGraph55.TabStop = false;
+            this.ReductionGraph55.MouseHover += new System.EventHandler(this.GraphMouseMove);
+            // 
+            // EnhanceGraph55
+            // 
+            this.EnhanceGraph55.Image = ((System.Drawing.Image)(resources.GetObject("EnhanceGraph55.Image")));
+            this.EnhanceGraph55.Location = new System.Drawing.Point(216, 453);
+            this.EnhanceGraph55.Name = "EnhanceGraph55";
+            this.EnhanceGraph55.Size = new System.Drawing.Size(26, 0);
+            this.EnhanceGraph55.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.EnhanceGraph55.TabIndex = 0;
+            this.EnhanceGraph55.TabStop = false;
+            this.EnhanceGraph55.MouseHover += new System.EventHandler(this.GraphMouseMove);
+            // 
+            // ReductionGraph65
+            // 
+            this.ReductionGraph65.Image = ((System.Drawing.Image)(resources.GetObject("ReductionGraph65.Image")));
+            this.ReductionGraph65.Location = new System.Drawing.Point(173, 453);
+            this.ReductionGraph65.Name = "ReductionGraph65";
+            this.ReductionGraph65.Size = new System.Drawing.Size(26, 0);
+            this.ReductionGraph65.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ReductionGraph65.TabIndex = 0;
+            this.ReductionGraph65.TabStop = false;
+            this.ReductionGraph65.MouseHover += new System.EventHandler(this.GraphMouseMove);
+            // 
+            // EnhanceGraph65
+            // 
+            this.EnhanceGraph65.Image = ((System.Drawing.Image)(resources.GetObject("EnhanceGraph65.Image")));
+            this.EnhanceGraph65.Location = new System.Drawing.Point(141, 453);
+            this.EnhanceGraph65.Name = "EnhanceGraph65";
+            this.EnhanceGraph65.Size = new System.Drawing.Size(26, 0);
+            this.EnhanceGraph65.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.EnhanceGraph65.TabIndex = 0;
+            this.EnhanceGraph65.TabStop = false;
+            this.EnhanceGraph65.MouseHover += new System.EventHandler(this.GraphMouseMove);
+            // 
+            // ReductionGraph75
+            // 
+            this.ReductionGraph75.Image = ((System.Drawing.Image)(resources.GetObject("ReductionGraph75.Image")));
+            this.ReductionGraph75.Location = new System.Drawing.Point(100, 456);
+            this.ReductionGraph75.Name = "ReductionGraph75";
+            this.ReductionGraph75.Size = new System.Drawing.Size(26, 0);
+            this.ReductionGraph75.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ReductionGraph75.TabIndex = 0;
+            this.ReductionGraph75.TabStop = false;
+            this.ReductionGraph75.MouseHover += new System.EventHandler(this.GraphMouseMove);
+            // 
+            // EnhanceGraph75
+            // 
+            this.EnhanceGraph75.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.EnhanceGraph75.Image = ((System.Drawing.Image)(resources.GetObject("EnhanceGraph75.Image")));
+            this.EnhanceGraph75.Location = new System.Drawing.Point(68, 454);
+            this.EnhanceGraph75.Name = "EnhanceGraph75";
+            this.EnhanceGraph75.Size = new System.Drawing.Size(26, 0);
+            this.EnhanceGraph75.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.EnhanceGraph75.TabIndex = 0;
+            this.EnhanceGraph75.TabStop = false;
+            this.EnhanceGraph75.MouseHover += new System.EventHandler(this.GraphMouseMove);
             // 
             // CoinLabel
             // 
@@ -235,127 +388,6 @@
             this.TryLabel.TabIndex = 1;
             this.TryLabel.Text = "100,000K";
             this.TryLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // ReductionGraph25
-            // 
-            this.ReductionGraph25.Image = ((System.Drawing.Image)(resources.GetObject("ReductionGraph25.Image")));
-            this.ReductionGraph25.Location = new System.Drawing.Point(474, 445);
-            this.ReductionGraph25.Name = "ReductionGraph25";
-            this.ReductionGraph25.Size = new System.Drawing.Size(26, 10);
-            this.ReductionGraph25.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ReductionGraph25.TabIndex = 0;
-            this.ReductionGraph25.TabStop = false;
-            // 
-            // EnhanceGraph25
-            // 
-            this.EnhanceGraph25.Image = ((System.Drawing.Image)(resources.GetObject("EnhanceGraph25.Image")));
-            this.EnhanceGraph25.Location = new System.Drawing.Point(442, 445);
-            this.EnhanceGraph25.Name = "EnhanceGraph25";
-            this.EnhanceGraph25.Size = new System.Drawing.Size(26, 10);
-            this.EnhanceGraph25.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.EnhanceGraph25.TabIndex = 0;
-            this.EnhanceGraph25.TabStop = false;
-            // 
-            // ReductionGraph35
-            // 
-            this.ReductionGraph35.Image = ((System.Drawing.Image)(resources.GetObject("ReductionGraph35.Image")));
-            this.ReductionGraph35.Location = new System.Drawing.Point(397, 445);
-            this.ReductionGraph35.Name = "ReductionGraph35";
-            this.ReductionGraph35.Size = new System.Drawing.Size(26, 10);
-            this.ReductionGraph35.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ReductionGraph35.TabIndex = 0;
-            this.ReductionGraph35.TabStop = false;
-            // 
-            // EnhanceGraph35
-            // 
-            this.EnhanceGraph35.Image = ((System.Drawing.Image)(resources.GetObject("EnhanceGraph35.Image")));
-            this.EnhanceGraph35.Location = new System.Drawing.Point(365, 445);
-            this.EnhanceGraph35.Name = "EnhanceGraph35";
-            this.EnhanceGraph35.Size = new System.Drawing.Size(26, 10);
-            this.EnhanceGraph35.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.EnhanceGraph35.TabIndex = 0;
-            this.EnhanceGraph35.TabStop = false;
-            // 
-            // ReductionGraph45
-            // 
-            this.ReductionGraph45.Image = ((System.Drawing.Image)(resources.GetObject("ReductionGraph45.Image")));
-            this.ReductionGraph45.Location = new System.Drawing.Point(325, 445);
-            this.ReductionGraph45.Name = "ReductionGraph45";
-            this.ReductionGraph45.Size = new System.Drawing.Size(26, 10);
-            this.ReductionGraph45.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ReductionGraph45.TabIndex = 0;
-            this.ReductionGraph45.TabStop = false;
-            // 
-            // EnhanceGraph45
-            // 
-            this.EnhanceGraph45.Image = ((System.Drawing.Image)(resources.GetObject("EnhanceGraph45.Image")));
-            this.EnhanceGraph45.Location = new System.Drawing.Point(293, 445);
-            this.EnhanceGraph45.Name = "EnhanceGraph45";
-            this.EnhanceGraph45.Size = new System.Drawing.Size(26, 10);
-            this.EnhanceGraph45.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.EnhanceGraph45.TabIndex = 0;
-            this.EnhanceGraph45.TabStop = false;
-            // 
-            // ReductionGraph55
-            // 
-            this.ReductionGraph55.Image = ((System.Drawing.Image)(resources.GetObject("ReductionGraph55.Image")));
-            this.ReductionGraph55.Location = new System.Drawing.Point(248, 445);
-            this.ReductionGraph55.Name = "ReductionGraph55";
-            this.ReductionGraph55.Size = new System.Drawing.Size(26, 10);
-            this.ReductionGraph55.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ReductionGraph55.TabIndex = 0;
-            this.ReductionGraph55.TabStop = false;
-            // 
-            // EnhanceGraph55
-            // 
-            this.EnhanceGraph55.Image = ((System.Drawing.Image)(resources.GetObject("EnhanceGraph55.Image")));
-            this.EnhanceGraph55.Location = new System.Drawing.Point(216, 445);
-            this.EnhanceGraph55.Name = "EnhanceGraph55";
-            this.EnhanceGraph55.Size = new System.Drawing.Size(26, 10);
-            this.EnhanceGraph55.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.EnhanceGraph55.TabIndex = 0;
-            this.EnhanceGraph55.TabStop = false;
-            // 
-            // ReductionGraph65
-            // 
-            this.ReductionGraph65.Image = ((System.Drawing.Image)(resources.GetObject("ReductionGraph65.Image")));
-            this.ReductionGraph65.Location = new System.Drawing.Point(173, 445);
-            this.ReductionGraph65.Name = "ReductionGraph65";
-            this.ReductionGraph65.Size = new System.Drawing.Size(26, 10);
-            this.ReductionGraph65.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ReductionGraph65.TabIndex = 0;
-            this.ReductionGraph65.TabStop = false;
-            // 
-            // EnhanceGraph65
-            // 
-            this.EnhanceGraph65.Image = ((System.Drawing.Image)(resources.GetObject("EnhanceGraph65.Image")));
-            this.EnhanceGraph65.Location = new System.Drawing.Point(141, 445);
-            this.EnhanceGraph65.Name = "EnhanceGraph65";
-            this.EnhanceGraph65.Size = new System.Drawing.Size(26, 10);
-            this.EnhanceGraph65.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.EnhanceGraph65.TabIndex = 0;
-            this.EnhanceGraph65.TabStop = false;
-            // 
-            // ReductionGraph75
-            // 
-            this.ReductionGraph75.Image = ((System.Drawing.Image)(resources.GetObject("ReductionGraph75.Image")));
-            this.ReductionGraph75.Location = new System.Drawing.Point(100, 445);
-            this.ReductionGraph75.Name = "ReductionGraph75";
-            this.ReductionGraph75.Size = new System.Drawing.Size(26, 10);
-            this.ReductionGraph75.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ReductionGraph75.TabIndex = 0;
-            this.ReductionGraph75.TabStop = false;
-            // 
-            // EnhanceGraph75
-            // 
-            this.EnhanceGraph75.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.EnhanceGraph75.Image = ((System.Drawing.Image)(resources.GetObject("EnhanceGraph75.Image")));
-            this.EnhanceGraph75.Location = new System.Drawing.Point(68, 446);
-            this.EnhanceGraph75.Name = "EnhanceGraph75";
-            this.EnhanceGraph75.Size = new System.Drawing.Size(26, 10);
-            this.EnhanceGraph75.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.EnhanceGraph75.TabIndex = 0;
-            this.EnhanceGraph75.TabStop = false;
             // 
             // tabPage2
             // 
@@ -434,23 +466,6 @@
             this.Exit.TabIndex = 0;
             this.Exit.UseVisualStyleBackColor = false;
             // 
-            // Tendency
-            // 
-            this.Tendency.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Tendency.BackgroundImage")));
-            this.Tendency.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Tendency.FlatAppearance.BorderSize = 0;
-            this.Tendency.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.Tendency.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.Tendency.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Tendency.Font = new System.Drawing.Font("함초롬돋움", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Tendency.ForeColor = System.Drawing.Color.White;
-            this.Tendency.Location = new System.Drawing.Point(0, 100);
-            this.Tendency.Name = "Tendency";
-            this.Tendency.Size = new System.Drawing.Size(160, 50);
-            this.Tendency.TabIndex = 5;
-            this.Tendency.UseVisualStyleBackColor = true;
-            this.Tendency.Click += new System.EventHandler(this.Tendency_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -516,5 +531,6 @@
         private Label SuccessLabel;
         private Label TryLabel;
         private Button Tendency;
+        private ToolTip toolTip1;
     }
 }
