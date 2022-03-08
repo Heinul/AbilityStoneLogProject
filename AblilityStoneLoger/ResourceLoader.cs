@@ -137,9 +137,16 @@ namespace AbilityStoneLoger
         {
             return abilityStoneTextImage;
         }
-        public Mat GetPersentageImage(int num)
+        public Mat GetPercentageImage(int num)
         {
             return perImage[num];
+        }
+
+        public Mat GetPercentageGrayImage(int num)
+        {
+            Mat gray = new Mat();
+            Cv2.CvtColor(perImage[num], gray, ColorConversionCodes.BGR2GRAY);
+            return gray;
         }
 
         public string GetEnhanceName(int num)

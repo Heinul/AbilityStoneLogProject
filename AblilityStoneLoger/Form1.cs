@@ -1,6 +1,7 @@
 using AbilityStoneLoger;
 using OpenCvSharp;
 using System.ComponentModel;
+using System.Data;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
@@ -16,6 +17,7 @@ namespace AblilityStoneLoger
         private void Form1_Load(object sender, EventArgs e)
         {
             StartLogger();
+            UpdateGraph();
             new Thread(MousePosition).Start();
         }
 
@@ -29,7 +31,7 @@ namespace AblilityStoneLoger
             //해상도 확인
             if(Screen.PrimaryScreen.Bounds.Width / 16 != Screen.PrimaryScreen.Bounds.Height / 9 && Screen.PrimaryScreen.Bounds.Width / 21 != Screen.PrimaryScreen.Bounds.Height / 9)
             {
-                not_supported_text.Visible = true;
+                MessageBox.Show("1920x1080 이상의 21:9, 16:9 해상도만을 지원합니다.");
             }
             else
             {
@@ -91,6 +93,34 @@ namespace AblilityStoneLoger
         {
             ReleaseCapture();
             SendMessage(this.Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+        }
+
+        private void UpdateGraph()
+        {
+            new Thread(() => { 
+                SQLite db = new SQLite();
+                var a = db.Select(75, true); // 75퍼중 강화효과인애들
+                var b = db.Select(75, true, true);
+                while (true)
+                {
+                    
+                }
+            }).Start();
+        }
+
+        private void Home_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 0;
+        }
+
+        private void LogDetail_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 1;
+        }
+
+        private void Tendency_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 2;
         }
     }
 }

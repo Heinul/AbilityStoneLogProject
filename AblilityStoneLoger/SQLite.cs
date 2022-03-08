@@ -49,14 +49,25 @@ namespace AbilityStoneLoger
                     }
                 }
 
-                var a = Select(0);
-                var b = a.Tables[0].Rows;
-                var c = b[0];
-                Console.WriteLine(c[0]);
-                Console.WriteLine(c[1]);
-                Console.WriteLine(c[2]);
-                Console.WriteLine(c[3]);
-                Console.WriteLine(c[4]);
+                //Insert(75,"저주받은인형", true, true);
+                //Insert(65, "저주받은인형", true, true);
+                //Insert(55, "저주받은인형", false, true);
+                //Insert(65, "저주받은인형", true, true);
+                //Insert(55, "저주받은인형", true, true);
+                //Insert(45, "저주받은인형", false, true);
+                //Insert(55, "원한", true, true);
+                //Insert(45, "원한", true, true);
+                //Insert(35, "공격력감소", true, false);
+                //Insert(25, "공격력감소", false, false);
+
+                //var a = Select(75);
+                //var b = a.Tables[0].Rows;
+                //var c = b[0];
+                //Console.WriteLine(c[0]);
+                //Console.WriteLine(c[1]);
+                //Console.WriteLine(c[2]);
+                //Console.WriteLine(c[3]);
+                //Console.WriteLine(c[4]);
             }
         }
 
@@ -140,6 +151,50 @@ namespace AbilityStoneLoger
             }
         }
 
+        public DataRowCollection Select(int percentage, bool adjustment)
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+
+                string sql = $"SELECT * FROM ENGRAVINGDATA WHERE PERCENTAGE = {percentage} AND ADJUSTMENT = {adjustment}";
+                adapter = new SQLiteDataAdapter(sql, DBpath);
+                adapter.Fill(ds);
+
+                if (ds.Tables.Count > 0)
+                    return ds.Tables[0].Rows;
+                else 
+                    return null;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                throw;
+            }
+        }
+
+        public DataRowCollection Select(int percentage, bool adjustment, bool success)
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+
+                string sql = $"SELECT * FROM ENGRAVINGDATA WHERE PERCENTAGE = {percentage} AND ADJUSTMENT = {adjustment} AND SUCCESS = {success}";
+                adapter = new SQLiteDataAdapter(sql, DBpath);
+                adapter.Fill(ds);
+
+                if (ds.Tables.Count > 0)
+                    return ds.Tables[0].Rows;
+                else
+                    return null;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                throw;
+            }
+        }
+
         public void Insert(int percentage, string engravingName, bool success, bool adjustment)
         {
             try
@@ -150,28 +205,11 @@ namespace AbilityStoneLoger
                     string sql = $"INSERT INTO ENGRAVINGDATA('PERCENTAGE', 'ENGRAVINGNAME', 'SUCCESS', 'ADJUSTMENT') VALUES ({percentage}, '{engravingName}', {success}, {adjustment})";
                     SQLiteCommand cmd = new SQLiteCommand(sql, conn);
                     cmd.ExecuteNonQuery();
+
+                    Console.WriteLine(cmd.CommandText);
                 }
             }
             catch(Exception e)
-            {
-                MessageBox.Show(e.ToString());
-                throw;
-            }
-        }
-
-        public void Update(string table, string setvalue, string wherevalue = "")
-        {
-            try
-            {
-                using (SQLiteConnection conn = new SQLiteConnection(DBpath))
-                {
-                    conn.Open();
-                    string sql = $"UPDATE {table} SET {setvalue} WHERE {wherevalue}";
-                    SQLiteCommand cmd = new SQLiteCommand(sql, conn);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-            catch (Exception e)
             {
                 MessageBox.Show(e.ToString());
                 throw;
