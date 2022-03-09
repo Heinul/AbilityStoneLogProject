@@ -21,7 +21,6 @@ namespace AbilityStoneLoger
         {
             using (SQLiteConnection conn = new SQLiteConnection(DBpath))
             {
-                
                 string tablecheckQuery = @"SELECT COUNT(*) FROM sqlite_master WHERE Name = 'ENGRAVINGDATA'";
                 conn.Open();
 
@@ -35,6 +34,7 @@ namespace AbilityStoneLoger
                     sql.AppendLine(@" ""ENGRAVINGNAME"" TEXT,");
                     sql.AppendLine(@" ""SUCCESS"" BOOLEAN,");
                     sql.AppendLine(@" ""ADJUSTMENT"" BOOLEAN,"); //true 강화효과 / false 감소효과
+                    sql.AppendLine(@" ""DIGIT"" INTAGER,");
                     sql.AppendLine(@" ""TIMESTAMP"" DATETIME DEFAULT (datetime('now', 'localtime')) NOT NULL");
                     sql.AppendLine(@" ); ");
 
@@ -48,26 +48,6 @@ namespace AbilityStoneLoger
                         Console.WriteLine(ex.Message);
                     }
                 }
-
-                //Insert(75,"저주받은인형", true, true);
-                //Insert(65, "저주받은인형", true, true);
-                //Insert(55, "저주받은인형", false, true);
-                //Insert(65, "저주받은인형", true, true);
-                //Insert(55, "저주받은인형", true, true);
-                //Insert(45, "저주받은인형", false, true);
-                //Insert(55, "원한", true, true);
-                //Insert(45, "원한", true, true);
-                //Insert(35, "공격력감소", true, false);
-                //Insert(25, "공격력감소", false, false);
-
-                //var a = Select(75);
-                //var b = a.Tables[0].Rows;
-                //var c = b[0];
-                //Console.WriteLine(c[0]);
-                //Console.WriteLine(c[1]);
-                //Console.WriteLine(c[2]);
-                //Console.WriteLine(c[3]);
-                //Console.WriteLine(c[4]);
             }
         }
 
@@ -199,14 +179,14 @@ namespace AbilityStoneLoger
             }
         }
 
-        public void Insert(int percentage, string engravingName, bool success, bool adjustment)
+        public void Insert(int percentage, string engravingName, bool success, bool adjustment, int digit)
         {
             try
             {
                 using (SQLiteConnection conn = new SQLiteConnection(DBpath))
                 {
                     conn.Open();
-                    string sql = $"INSERT INTO ENGRAVINGDATA('PERCENTAGE', 'ENGRAVINGNAME', 'SUCCESS', 'ADJUSTMENT') VALUES ({percentage}, '{engravingName}', {success}, {adjustment})";
+                    string sql = $"INSERT INTO ENGRAVINGDATA('PERCENTAGE', 'ENGRAVINGNAME', 'SUCCESS', 'ADJUSTMENT', 'DIGIT') VALUES ({percentage}, '{engravingName}', {success}, {adjustment}, {digit})";
                     SQLiteCommand cmd = new SQLiteCommand(sql, conn);
                     Console.WriteLine(cmd.CommandText);
                     cmd.ExecuteNonQuery();

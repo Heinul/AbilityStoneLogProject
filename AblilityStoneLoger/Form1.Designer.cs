@@ -62,6 +62,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.Exit = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.label1 = new System.Windows.Forms.Label();
             this.SideMenu.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -92,6 +93,7 @@
             // SideMenu
             // 
             this.SideMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.SideMenu.Controls.Add(this.label1);
             this.SideMenu.Controls.Add(this.MousePos);
             this.SideMenu.Controls.Add(this.Option);
             this.SideMenu.Controls.Add(this.Tendency);
@@ -356,7 +358,7 @@
             this.CoinLabel.Name = "CoinLabel";
             this.CoinLabel.Size = new System.Drawing.Size(90, 40);
             this.CoinLabel.TabIndex = 1;
-            this.CoinLabel.Text = "100,000K";
+            this.CoinLabel.Text = "0";
             this.CoinLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FailLabel
@@ -366,7 +368,7 @@
             this.FailLabel.Name = "FailLabel";
             this.FailLabel.Size = new System.Drawing.Size(90, 40);
             this.FailLabel.TabIndex = 1;
-            this.FailLabel.Text = "100,000K";
+            this.FailLabel.Text = "0";
             this.FailLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // SuccessLabel
@@ -376,7 +378,7 @@
             this.SuccessLabel.Name = "SuccessLabel";
             this.SuccessLabel.Size = new System.Drawing.Size(90, 40);
             this.SuccessLabel.TabIndex = 1;
-            this.SuccessLabel.Text = "100,000K";
+            this.SuccessLabel.Text = "0";
             this.SuccessLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // TryLabel
@@ -386,7 +388,7 @@
             this.TryLabel.Name = "TryLabel";
             this.TryLabel.Size = new System.Drawing.Size(90, 40);
             this.TryLabel.TabIndex = 1;
-            this.TryLabel.Text = "100,000K";
+            this.TryLabel.Text = "0";
             this.TryLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tabPage2
@@ -465,6 +467,16 @@
             this.Exit.Size = new System.Drawing.Size(20, 20);
             this.Exit.TabIndex = 0;
             this.Exit.UseVisualStyleBackColor = false;
+            this.Exit.Click += new System.EventHandler(this.Exit_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 461);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(39, 15);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "label1";
             // 
             // Form1
             // 
@@ -532,5 +544,6 @@
         private Label TryLabel;
         private Button Tendency;
         private ToolTip toolTip1;
+        private Label label1;
     }
 }

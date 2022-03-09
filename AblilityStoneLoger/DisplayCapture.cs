@@ -21,7 +21,7 @@ namespace AbilityStoneLoger
             int normalization = (Screen.PrimaryScreen.Bounds.Width - Screen.PrimaryScreen.Bounds.Height / 9 * 16) / 2;
             Bitmap bmp = new Bitmap(Screen.PrimaryScreen.Bounds.Height / 9 * 16, Screen.PrimaryScreen.Bounds.Height);
             Graphics gr = Graphics.FromImage(bmp);
-            gr.CopyFromScreen(normalization, 0, normalization, 0, bmp.Size);
+            gr.CopyFromScreen(normalization, 0, 0, 0, bmp.Size);
             Mat display = bmp.ToMat();
             display.Resize(new OpenCvSharp.Size(1920, 1080));
 
