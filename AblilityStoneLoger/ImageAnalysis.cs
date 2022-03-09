@@ -47,9 +47,11 @@ namespace AbilityStoneLoger
             for (int i = 0; i < 3; i++)
                 engravingSuccessData[i] = new int[10] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
 
+            
             while (true /*Form1.GetLostArkState()*/)
             {
                 Mat display = displayCapture.GetMatCapture();
+
                 SerchAbilityStoneText(display);
                 if (abilityWindowState)
                 {
@@ -103,9 +105,10 @@ namespace AbilityStoneLoger
                 return;
             }
 
-            int distance1 = GetEngravingDistance(previousEngravingSuccessData, engravingSuccessData, 0);
-            int distance2 = GetEngravingDistance(previousEngravingSuccessData, engravingSuccessData, 1);
-            int distance3 = GetEngravingDistance(previousEngravingSuccessData, engravingSuccessData, 2);
+            
+            var distance1 = GetEngravingDistance(previousEngravingSuccessData, engravingSuccessData, 0);
+            var distance2 = GetEngravingDistance(previousEngravingSuccessData, engravingSuccessData, 1);
+            var distance3 = GetEngravingDistance(previousEngravingSuccessData, engravingSuccessData, 2);
             int percentageDistace = previousPercentage - percentage;
             // 어빌리티 스톤 변경
             if (previousEngravingName[0] != engravingName[0] || previousEngravingName[1] != engravingName[1] || previousEngravingName[2] != engravingName[2])
@@ -122,11 +125,11 @@ namespace AbilityStoneLoger
                 }
                 return;
             }
-            else if (distance1 == 0 && distance2 == 0 && distance3 == 0)
+            else if (distance1[0] == 0 && distance2[0] == 0 && distance3[0] == 0)
             {
                 return;
             }
-            else if (distance1 < 0 || distance1 > 2 || distance2 < 0 || distance2 > 2 || distance3 < 0 || distance3 > 2)
+            else if (distance1[0] < 0 || distance1[0] > 2 || distance2[0] < 0 || distance2[0] > 2 || distance3[0] < 0 || distance3[0] > 2)
             {
                 // 각인은 같으나 돌을 바꾼경우 (값의 차가 +1~+2가 아닌경우) 갱신
                 previousPercentage = percentage;
@@ -144,32 +147,32 @@ namespace AbilityStoneLoger
             {
                 return;
             }
-            else if( distance1 == 1 || distance1 == 2 || distance2 == 1 || distance2 == 2 || distance3 == 1 || distance3 == 2)
+            else if( distance1[0] == 1 || distance1[0] == 2 || distance2[0] == 1 || distance2[0] == 2 || distance3[0] == 1 || distance3[0] == 2)
             {
                 //값이 범위 내로 증가하면 강화를 했다는거니까 저장하고 갱신하면됨
-                if (distance1 == 1 )
+                if (distance1[0] == 1 )
                 {
-                    PushData(previousPercentage, previousEngravingName[0], false, true);
+                    PushData(previousPercentage, previousEngravingName[0], false, true, distance1[1]);
                 }
-                else if(distance1 == 2)
+                else if(distance1[0] == 2)
                 {
-                    PushData(previousPercentage, previousEngravingName[0], true, true);
+                    PushData(previousPercentage, previousEngravingName[0], true, true, distance1[1]);
                 }
-               else if(distance2 == 1)
+               else if(distance2[0] == 1)
                 {
-                    PushData(previousPercentage, previousEngravingName[1], false, true);
+                    PushData(previousPercentage, previousEngravingName[1], false, true, distance2[1]);
                 }
-                else if (distance2 == 2)
+                else if (distance2[0] == 2)
                 {
-                    PushData(previousPercentage, previousEngravingName[1], true, true);
+                    PushData(previousPercentage, previousEngravingName[1], true, true, distance2[1]);
                 }
-                else if (distance3 == 1)
+                else if (distance3[0] == 1)
                 {
-                    PushData(previousPercentage, previousEngravingName[2], false, false);
+                    PushData(previousPercentage, previousEngravingName[2], false, false, distance3[1]);
                 }
-                else if (distance3 == 2)
+                else if (distance3[0] == 2)
                 {
-                    PushData(previousPercentage, previousEngravingName[2], true, false);
+                    PushData(previousPercentage, previousEngravingName[2], true, false, distance3[1]);
                 }
 
                 previousPercentage = percentage;
@@ -186,10 +189,10 @@ namespace AbilityStoneLoger
         }
 
         Queue<AbilityItem> queue = new Queue<AbilityItem>();
-        private void PushData(int percentage, string engravingName, bool success, bool adjustment)
+        private void PushData(int percentage, string engravingName, bool success, bool adjustment, int digit)
         {
             //큐에 데이터 올리고 다른 스레드로 저장 작업 처리
-            AbilityItem data = new AbilityItem(percentage, engravingName, success, adjustment);
+            AbilityItem data = new AbilityItem(percentage, engravingName, success, adjustment, digit);
             queue.Enqueue(data);
         }
 
@@ -211,15 +214,23 @@ namespace AbilityStoneLoger
 
         }
 
-        private int GetEngravingDistance(int[][] previousData, int[][] engravingData, int num)
+        private int[] GetEngravingDistance(int[][] previousData, int[][] engravingData, int num)
         {
+            int[] result = new int[2];
             var a = ArrayToLong(engravingData[num]);
             var b = ArrayToLong(previousData[num]);
             double distance = a - b;
+            double digits = 0;
+
             if (distance != 0)
-                distance = distance / Math.Pow(10, Math.Truncate(Math.Log10(Math.Abs(distance))));
-            
-            return (int)distance;
+            {
+                digits = Math.Truncate(Math.Log10(Math.Abs(distance)));
+                distance = distance / Math.Pow(10, digits);
+            }
+
+            result[0] = (int) distance;
+            result[1] = (int) (10 - digits);
+            return (int[])result.Clone();
         }
 
         private long ArrayToLong(int[] data)
@@ -253,9 +264,10 @@ namespace AbilityStoneLoger
             }
         }
 
-        int[] posX = { 745, 783, 822, 862, 900, 939, 978, 1018, 1057, 1096 };
-        int[] posX_Reduction = { 742, 781, 820, 859, 898, 937, 976, 1015, 1054, 1093 };
-        int[] posY = { 388, 481, 607 };
+        int[] posX1 = { 745, 783, 822, 862, 900, 939, 978, 1018, 1056, 1096 };
+        int[] posX2 = { 744, 782, 822, 862, 900, 939, 978, 1017, 1054, 1094 };
+        int[] posX_Reduction = { 742, 781, 819, 859, 898, 937, 976, 1015, 1054, 1093 };
+        int[] posY = { 388, 481, 609 };
         int[] percentageList = { 75, 65, 55, 45, 35, 25 };
 
         private int PercentageCheck(Mat display, int percentage)
@@ -292,22 +304,34 @@ namespace AbilityStoneLoger
             }
         }
 
+
+        private int GetAveragePixel(Mat display, int y, int x, int bgr)
+        {
+            int result = (display.At<Vec3b>(y, x)[bgr] +
+                        display.At<Vec3b>(y, x)[bgr] +
+                        display.At<Vec3b>(y, x)[bgr] +
+                        display.At<Vec3b>(y, x)[bgr] +
+                        display.At<Vec3b>(y, x)[bgr]) / 5;
+            return result;
+        }
+
         private int[] EngravingSuccessCheck(Mat display, int num)
         {
             /*
              * 0 : 아직 안누름, 1 : 실패, 2 : 성공, 3 : 인식오류
              */
             int[] data = new int[10];
-            if (num != 2)
+            int r = 0, g = 0, b = 0;
+            if (num == 0)
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    var b = display.At<Vec3b>(posY[num], posX[i] - num)[0];
-                    var g = display.At<Vec3b>(posY[num], posX[i] - num)[1];
-                    var r = display.At<Vec3b>(posY[num], posX[i] - num)[2];
+                    b = GetAveragePixel(display, posY[num], posX1[i], 0);
+                    g = GetAveragePixel(display, posY[num], posX1[i], 1);
+                    r = GetAveragePixel(display, posY[num], posX1[i], 2);
                     if (r < 30 && g < 30 && b < 30)
                         data[i] = 0;
-                    else if (r < 150 && g < 150 && b < 150)
+                    else if (r < 130 && g < 130 && b < 130)
                         data[i] = 1;
                     else if (b > 180)
                         data[i] = 2;
@@ -315,16 +339,34 @@ namespace AbilityStoneLoger
                         data[i] = 3;
                 }
             }
-            else
+            else if (num == 1)
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    var b = display.Get<Vec3b>(posY[num], posX_Reduction[i])[0];
-                    var g = display.At<Vec3b>(posY[num], posX_Reduction[i])[1];
-                    var r = display.At<Vec3b>(posY[num], posX_Reduction[i])[2];
+                    b = GetAveragePixel(display, posY[num], posX2[i], 0);
+                    g = GetAveragePixel(display, posY[num], posX2[i], 1);
+                    r = GetAveragePixel(display, posY[num], posX2[i], 2);
                     if (r < 30 && g < 30 && b < 30)
                         data[i] = 0;
-                    else if (r < 150 && g < 150 && b < 150)
+                    else if (r < 130 && g < 130 && b < 130)
+                        data[i] = 1;
+                    else if (b > 180)
+                        data[i] = 2;
+                    else
+                        data[i] = 3;
+                }
+            }
+            else if (num == 2)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    b = GetAveragePixel(display, posY[num], posX_Reduction[i], 0);
+                    g = GetAveragePixel(display, posY[num], posX_Reduction[i], 1);
+                    r = GetAveragePixel(display, posY[num], posX_Reduction[i], 2);
+
+                    if (r < 30 && g < 30 && b < 30)
+                        data[i] = 0;
+                    else if (r < 130 && g < 130 && b < 130)
                         data[i] = 1;
                     else if (r > 200)
                         data[i] = 2;

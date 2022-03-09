@@ -29,20 +29,24 @@ namespace AblilityStoneLoger
         private void StartLogger()
         {
             //해상도 확인
-            if(Screen.PrimaryScreen.Bounds.Width / 16 != Screen.PrimaryScreen.Bounds.Height / 9 && Screen.PrimaryScreen.Bounds.Width / 21 != Screen.PrimaryScreen.Bounds.Height / 9)
+            if (Screen.PrimaryScreen.Bounds.Width != 1920 && Screen.PrimaryScreen.Bounds.Width != 2560 && Screen.PrimaryScreen.Bounds.Width != 3840 && Screen.PrimaryScreen.Bounds.Width != 3440)
             {
-                MessageBox.Show("1920x1080 이상의 21:9, 16:9 해상도만을 지원합니다.");
+                MessageBox.Show("FHD 이상의 해상도만을 지원합니다.");
             }
             else
             {
-                AbilityItem a = new AbilityItem(0, "", false, false);
+                try
+                {
+                    ProcessDetector processDetector = new ProcessDetector(this);
+                    processDetector.Run();
 
-
-                ProcessDetector processDetector = new ProcessDetector(this);
-                processDetector.Run();
-
-                imageAnalysis = new ImageAnalysis(this);
-                imageAnalysis.Run();
+                    imageAnalysis = new ImageAnalysis(this);
+                    imageAnalysis.Run();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
             }
         }
 
@@ -56,8 +60,8 @@ namespace AblilityStoneLoger
                 {
                     this.Invoke(new Action(delegate ()
                     {
+                        label1.Text = Screen.PrimaryScreen.Bounds.Width.ToString();
                         MousePos.Text = Control.MousePosition.ToString();
-
                     }));
                 }
             }
@@ -107,10 +111,10 @@ namespace AblilityStoneLoger
                     var successCount = db.Select(true).Count;
                     this.Invoke(new Action(delegate ()
                     {
-                        TryLabel.Text = (tryCount > 1000) ? ((double)tryCount / 1000).ToString() + "K" : tryCount.ToString();
-                        SuccessLabel.Text = (successCount > 1000) ? ((double)successCount / 1000).ToString() + "K" : successCount.ToString();
-                        FailLabel.Text = (tryCount - successCount > 1000) ? ((double)tryCount - successCount / 1000).ToString() : (tryCount - successCount).ToString();
-                        CoinLabel.Text = (tryCount * 1.68).ToString() + "K";
+                        TryLabel.Text = (tryCount > 1000) ? String.Format("{0:#,0}", ((double)tryCount / 1000)) + "K" : String.Format("{0:#,0}", tryCount);
+                        SuccessLabel.Text = (successCount > 1000) ? String.Format("{0:#,0}", ((double)successCount / 1000)) + "K" : String.Format("{0:#,0}", successCount);
+                        FailLabel.Text = (tryCount - successCount > 1000) ? String.Format("{0:#,0}", ((double)tryCount - successCount / 1000)) : String.Format("{0:#,0}", (tryCount - successCount));
+                        CoinLabel.Text = String.Format("{0:0.#,0}", (tryCount * 1.68)) + "K";
                     }));
 
                     for (int i = 0; i < 6; i++)
@@ -209,5 +213,9 @@ namespace AblilityStoneLoger
                 toolTip1.SetToolTip((PictureBox)sender, $"{tooltipRText[num]}");
         }
 
+        private void Exit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
