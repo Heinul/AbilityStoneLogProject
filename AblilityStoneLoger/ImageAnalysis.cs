@@ -52,16 +52,6 @@ namespace AbilityStoneLoger
             {
                 Mat display = displayCapture.GetMatCapture();
 
-                //for(int i = 0; i < 3; i++)
-                //{
-                //    for (int j = 0; j < 10; j++)
-                //    {
-                //        Cv2.Rectangle(display, new Rect(posX[j], posY[i], 1, 1) , Scalar.Green, 3);
-                //    }
-                //}
-
-                //display.SaveImage("image.png");
-
                 SerchAbilityStoneText(display);
                 if (abilityWindowState)
                 {
@@ -170,19 +160,19 @@ namespace AbilityStoneLoger
                 }
                else if(distance2[0] == 1)
                 {
-                    PushData(previousPercentage, previousEngravingName[1], false, true, distance1[1]);
+                    PushData(previousPercentage, previousEngravingName[1], false, true, distance2[1]);
                 }
                 else if (distance2[0] == 2)
                 {
-                    PushData(previousPercentage, previousEngravingName[1], true, true, distance1[1]);
+                    PushData(previousPercentage, previousEngravingName[1], true, true, distance2[1]);
                 }
                 else if (distance3[0] == 1)
                 {
-                    PushData(previousPercentage, previousEngravingName[2], false, false, distance1[1]);
+                    PushData(previousPercentage, previousEngravingName[2], false, false, distance3[1]);
                 }
                 else if (distance3[0] == 2)
                 {
-                    PushData(previousPercentage, previousEngravingName[2], true, false, distance1[1]);
+                    PushData(previousPercentage, previousEngravingName[2], true, false, distance3[1]);
                 }
 
                 previousPercentage = percentage;
@@ -230,13 +220,16 @@ namespace AbilityStoneLoger
             var a = ArrayToLong(engravingData[num]);
             var b = ArrayToLong(previousData[num]);
             double distance = a - b;
-            double digits = Math.Truncate(Math.Log10(Math.Abs(distance)));
+            double digits = 0;
 
             if (distance != 0)
-                 distance = distance / Math.Pow(10,digits);
+            {
+                digits = Math.Truncate(Math.Log10(Math.Abs(distance)));
+                distance = distance / Math.Pow(10, digits);
+            }
 
             result[0] = (int) distance;
-            result[1] = (int) (11 - digits);
+            result[1] = (int) (10 - digits);
             return (int[])result.Clone();
         }
 
@@ -271,9 +264,10 @@ namespace AbilityStoneLoger
             }
         }
 
-        int[] posX = { 745, 783, 822, 862, 900, 939, 978, 1018, 1057, 1096 };
-        int[] posX_Reduction = { 742, 781, 820, 859, 898, 937, 976, 1015, 1054, 1093 };
-        int[] posY = { 388, 481, 607 };
+        int[] posX1 = { 745, 783, 822, 862, 900, 939, 978, 1018, 1056, 1096 };
+        int[] posX2 = { 744, 782, 822, 862, 900, 939, 978, 1017, 1054, 1094 };
+        int[] posX_Reduction = { 742, 781, 819, 859, 898, 937, 976, 1015, 1054, 1093 };
+        int[] posY = { 388, 481, 609 };
         int[] percentageList = { 75, 65, 55, 45, 35, 25 };
 
         private int PercentageCheck(Mat display, int percentage)
@@ -310,22 +304,34 @@ namespace AbilityStoneLoger
             }
         }
 
+
+        private int GetAveragePixel(Mat display, int y, int x, int bgr)
+        {
+            int result = (display.At<Vec3b>(y, x)[bgr] +
+                        display.At<Vec3b>(y, x)[bgr] +
+                        display.At<Vec3b>(y, x)[bgr] +
+                        display.At<Vec3b>(y, x)[bgr] +
+                        display.At<Vec3b>(y, x)[bgr]) / 5;
+            return result;
+        }
+
         private int[] EngravingSuccessCheck(Mat display, int num)
         {
             /*
              * 0 : 아직 안누름, 1 : 실패, 2 : 성공, 3 : 인식오류
              */
             int[] data = new int[10];
-            if (num != 2)
+            int r = 0, g = 0, b = 0;
+            if (num == 0)
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    var b = display.At<Vec3b>(posY[num], posX[i] - num)[0];
-                    var g = display.At<Vec3b>(posY[num], posX[i] - num)[1];
-                    var r = display.At<Vec3b>(posY[num], posX[i] - num)[2];
+                    b = GetAveragePixel(display, posY[num], posX1[i], 0);
+                    g = GetAveragePixel(display, posY[num], posX1[i], 1);
+                    r = GetAveragePixel(display, posY[num], posX1[i], 2);
                     if (r < 30 && g < 30 && b < 30)
                         data[i] = 0;
-                    else if (r < 150 && g < 150 && b < 150)
+                    else if (r < 130 && g < 130 && b < 130)
                         data[i] = 1;
                     else if (b > 180)
                         data[i] = 2;
@@ -333,16 +339,34 @@ namespace AbilityStoneLoger
                         data[i] = 3;
                 }
             }
-            else
+            else if (num == 1)
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    var b = display.Get<Vec3b>(posY[num], posX_Reduction[i])[0];
-                    var g = display.At<Vec3b>(posY[num], posX_Reduction[i])[1];
-                    var r = display.At<Vec3b>(posY[num], posX_Reduction[i])[2];
+                    b = GetAveragePixel(display, posY[num], posX2[i], 0);
+                    g = GetAveragePixel(display, posY[num], posX2[i], 1);
+                    r = GetAveragePixel(display, posY[num], posX2[i], 2);
                     if (r < 30 && g < 30 && b < 30)
                         data[i] = 0;
-                    else if (r < 150 && g < 150 && b < 150)
+                    else if (r < 130 && g < 130 && b < 130)
+                        data[i] = 1;
+                    else if (b > 180)
+                        data[i] = 2;
+                    else
+                        data[i] = 3;
+                }
+            }
+            else if (num == 2)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    b = GetAveragePixel(display, posY[num], posX_Reduction[i], 0);
+                    g = GetAveragePixel(display, posY[num], posX_Reduction[i], 1);
+                    r = GetAveragePixel(display, posY[num], posX_Reduction[i], 2);
+
+                    if (r < 30 && g < 30 && b < 30)
+                        data[i] = 0;
+                    else if (r < 130 && g < 130 && b < 130)
                         data[i] = 1;
                     else if (r > 200)
                         data[i] = 2;
