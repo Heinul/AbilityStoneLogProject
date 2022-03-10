@@ -14,7 +14,7 @@ namespace AbilityStoneLoger
 
         public Form1 Form1 { get; }
 
-        private ResourceLoader resourceLoader = new ResourceLoader();
+        private ResourceLoader resourceLoader;
         private bool abilityWindowState = false;
 
         private Mat result = new Mat();
@@ -23,20 +23,49 @@ namespace AbilityStoneLoger
         private string[] previousEngravingName = new string[3] { "", "", "" };
         private int[][] previousEngravingSuccessData = new int[3][];
 
-        public ImageAnalysis(Form1 form1)
+        public ImageAnalysis(Form1 form1, ResourceLoader resourceLoader)
         {
             Form1 = form1;
-
+            this.resourceLoader = resourceLoader; 
             displayCapture = new DisplayCapture();
             for (int i = 0; i < 3; i++)
                 previousEngravingSuccessData[i] = new int[10];
+
+            
         }
 
+        bool threadState = false;
         public void Run()
         {
-            Thread thread = new Thread(ImageAnalysisThread);
-            thread.Start();
-            SaveData();
+            if (!threadState) {
+                threadState = true;
+
+                new Thread(CaptureDisplay).Start();
+                new Thread(ImageAnalysisThread).Start();
+                new Thread(SaveData).Start();
+            }
+        }
+
+        public void StopTread()
+        {
+            threadState = false;
+            displayQueue.Clear();
+        }
+
+        Queue<Mat> displayQueue = new Queue<Mat>();
+        private void CaptureDisplay()
+        {
+            while (threadState)
+            {
+                Mat display = displayCapture.GetMatCapture();
+                SerchAbilityStoneText(display);
+
+                if (abilityWindowState)
+                {
+                    displayQueue.Enqueue(display);
+                }
+                Thread.Sleep(1);
+            }
         }
 
         private void ImageAnalysisThread()
@@ -48,19 +77,23 @@ namespace AbilityStoneLoger
                 engravingSuccessData[i] = new int[10] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
 
             
-            while (true /*Form1.GetLostArkState()*/)
+            while (true)
             {
-                Mat display = displayCapture.GetMatCapture();
-
-                SerchAbilityStoneText(display);
-                if (abilityWindowState)
+                if (displayQueue.Count > 0)
                 {
+                    Mat display = displayQueue.Dequeue();
                     percentage = PercentageCheck(display, percentage);
 
                     for (int i = 0; i < 3; i++)
                     {
                         engravingName[i] = EngravingImageCheck(display, i);
                         engravingSuccessData[i] = EngravingSuccessCheck(display, i);
+                    }
+
+                    for(int i = 0; i < 10; i++)
+                    {
+                        if (engravingSuccessData[0][i] == 3 || engravingSuccessData[1][i] == 3 || engravingSuccessData[2][i] == 3)
+                            continue;
                     }
 
                     ComparisonData(percentage, engravingName, engravingSuccessData);
@@ -74,6 +107,7 @@ namespace AbilityStoneLoger
                         engravingSuccessData[i] = new int[10] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
                     }
                 }
+                Thread.Sleep(1);
             }
         }
 
@@ -111,8 +145,9 @@ namespace AbilityStoneLoger
             var distance3 = GetEngravingDistance(previousEngravingSuccessData, engravingSuccessData, 2);
             int percentageDistace = previousPercentage - percentage;
             // 어빌리티 스톤 변경
-            if (previousEngravingName[0] != engravingName[0] || previousEngravingName[1] != engravingName[1] || previousEngravingName[2] != engravingName[2])
+            if (!previousEngravingName[0].Equals(engravingName[0]) || !previousEngravingName[1].Equals(engravingName[1]) || !previousEngravingName[2].Equals(engravingName[2]))
             {
+                Console.WriteLine("돌변경1");
                 //각인이름이 달라진 경우 갱신
                 previousPercentage = percentage;
                 for (int i = 0; i < 3; i++)
@@ -132,6 +167,7 @@ namespace AbilityStoneLoger
             else if (distance1[0] < 0 || distance1[0] > 2 || distance2[0] < 0 || distance2[0] > 2 || distance3[0] < 0 || distance3[0] > 2)
             {
                 // 각인은 같으나 돌을 바꾼경우 (값의 차가 +1~+2가 아닌경우) 갱신
+                Console.WriteLine("돌변경2");
                 previousPercentage = percentage;
                 for (int i = 0; i < 3; i++)
                 {
@@ -143,7 +179,7 @@ namespace AbilityStoneLoger
                 }
                 return;
             }
-            else if (Math.Abs(percentageDistace) > 10)
+            else if ((Math.Abs(percentageDistace) > 10 || previousPercentage == percentage) && !(distance1[1] == 10 || distance2[1] == 10 || distance3[1] == 10))
             {
                 return;
             }
@@ -199,19 +235,17 @@ namespace AbilityStoneLoger
         private void SaveData()
         {
             //데이터 저장할 때 서버로 데이터 전송
-            new Thread(() =>
+            while (true)
             {
-                while (true)
+                if (queue.Count != 0)
                 {
-                    if (queue.Count != 0)
-                    {
-                        var item = queue.Dequeue();
-                        item.SendData();
-                        item.SaveData();
-                    }
+                    var item = queue.Dequeue();
+                    //item.SendData();
+                    item.SaveData();
+                    Form1.AddItemToListBox(item.GetEngravingName(), item.GetPercentage(), item.GetSuccess());
                 }
-            }).Start();
-
+                Thread.Sleep(10);
+            }
         }
 
         private int[] GetEngravingDistance(int[][] previousData, int[][] engravingData, int num)
@@ -228,7 +262,7 @@ namespace AbilityStoneLoger
                 distance = distance / Math.Pow(10, digits);
             }
 
-            result[0] = (int) distance;
+            result[0] = (int)Math.Ceiling(distance);
             result[1] = (int) (10 - digits);
             return (int[])result.Clone();
         }
@@ -247,14 +281,14 @@ namespace AbilityStoneLoger
         private void SerchAbilityStoneText(Mat display)
         {
 
-            Cv2.MatchTemplate(display, resourceLoader.GetAbilityStoneText(), result, TemplateMatchModes.CCoeffNormed);
+            Cv2.MatchTemplate(display, resourceLoader.GetSuccessTextImage(), result, TemplateMatchModes.CCoeffNormed);
 
             OpenCvSharp.Point minloc, maxloc;
             double minval, maxval;
 
             Cv2.MinMaxLoc(result, out minval, out maxval, out minloc, out maxloc);
 
-            if (maxval > 0.8 && maxloc.X > 800 && maxloc.X < 1050 && maxloc.Y > 80 && maxloc.Y < 130)
+            if (maxval > 0.8)
             {
                 abilityWindowState = true;
             }
@@ -266,8 +300,8 @@ namespace AbilityStoneLoger
 
         int[] posX1 = { 745, 783, 822, 862, 900, 939, 978, 1018, 1056, 1096 };
         int[] posX2 = { 744, 782, 822, 862, 900, 939, 978, 1017, 1054, 1094 };
-        int[] posX_Reduction = { 742, 781, 819, 859, 898, 937, 976, 1015, 1054, 1093 };
-        int[] posY = { 388, 481, 609 };
+        int[] posX_Reduction = { 742, 781, 820, 859, 898, 937, 976, 1015, 1054, 1093 };
+        int[] posY = { 388, 481, 608 };
         int[] percentageList = { 75, 65, 55, 45, 35, 25 };
 
         private int PercentageCheck(Mat display, int percentage)
@@ -329,11 +363,11 @@ namespace AbilityStoneLoger
                     b = GetAveragePixel(display, posY[num], posX1[i], 0);
                     g = GetAveragePixel(display, posY[num], posX1[i], 1);
                     r = GetAveragePixel(display, posY[num], posX1[i], 2);
-                    if (r < 30 && g < 30 && b < 30)
+                    if (r < 50 && g < 50 && b < 50)
                         data[i] = 0;
                     else if (r < 130 && g < 130 && b < 130)
                         data[i] = 1;
-                    else if (b > 180)
+                    else if (b > 150)
                         data[i] = 2;
                     else
                         data[i] = 3;
@@ -346,11 +380,12 @@ namespace AbilityStoneLoger
                     b = GetAveragePixel(display, posY[num], posX2[i], 0);
                     g = GetAveragePixel(display, posY[num], posX2[i], 1);
                     r = GetAveragePixel(display, posY[num], posX2[i], 2);
-                    if (r < 30 && g < 30 && b < 30)
+
+                    if (r < 50 && g < 50 && b < 50)
                         data[i] = 0;
                     else if (r < 130 && g < 130 && b < 130)
                         data[i] = 1;
-                    else if (b > 180)
+                    else if (b > 150)
                         data[i] = 2;
                     else
                         data[i] = 3;
@@ -364,11 +399,11 @@ namespace AbilityStoneLoger
                     g = GetAveragePixel(display, posY[num], posX_Reduction[i], 1);
                     r = GetAveragePixel(display, posY[num], posX_Reduction[i], 2);
 
-                    if (r < 30 && g < 30 && b < 30)
+                    if (r < 50 && g < 50 && b < 50)
                         data[i] = 0;
                     else if (r < 130 && g < 130 && b < 130)
                         data[i] = 1;
-                    else if (r > 200)
+                    else if (r > 130)
                         data[i] = 2;
                     else
                         data[i] = 3;

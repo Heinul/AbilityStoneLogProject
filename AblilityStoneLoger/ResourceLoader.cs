@@ -61,10 +61,12 @@ namespace AbilityStoneLoger
         private Mat[] enhance = new Mat[43];
         private Mat[] reduction = new Mat[4];
         private Mat abilityStoneTextImage = new Mat();
+        private Mat SuccessTextImage = new Mat();
 
         public ResourceLoader()
         {
             abilityStoneTextImage = OpenCvSharp.Extensions.BitmapConverter.ToMat(ImageResource.Ability_Stone_Text);
+            SuccessTextImage = OpenCvSharp.Extensions.BitmapConverter.ToMat(ImageResource.SuccessText);
 
             perImage[0] = OpenCvSharp.Extensions.BitmapConverter.ToMat(ImageResource._75p);
             perImage[1] = OpenCvSharp.Extensions.BitmapConverter.ToMat(ImageResource._65p);
@@ -123,6 +125,42 @@ namespace AbilityStoneLoger
             reduction[3] = OpenCvSharp.Extensions.BitmapConverter.ToMat(ImageResource.이동속도감소);
         }
 
+        public Mat GetImageToName(string name)
+        {
+            int num = GetReductionImageCode(name);
+            if (num == -1)
+            {
+                num = GetEnhanceImageCode(name);
+                return GetEnhanceImage(num);
+            }
+            return GetReductionImage(num);
+            
+        }
+
+        public int GetReductionImageCode(string name)
+        {
+            for (int i = 0; i < reductionList.Length; i++)
+            {
+                if (name == reductionList[i])
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        public int GetEnhanceImageCode(string name)
+        {
+            for(int i = 0; i < enhanceList.Length; i++)
+            {
+                if (name == enhanceList[i])
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
         public Mat GetEnhanceImage(int num)
         {
             return enhance[num];
@@ -136,6 +174,11 @@ namespace AbilityStoneLoger
         public Mat GetAbilityStoneText()
         {
             return abilityStoneTextImage;
+        }
+
+        public Mat GetSuccessTextImage()
+        {
+            return SuccessTextImage;
         }
         public Mat GetPercentageImage(int num)
         {
