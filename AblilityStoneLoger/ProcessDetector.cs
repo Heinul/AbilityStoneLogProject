@@ -10,9 +10,11 @@ namespace AbilityStoneLoger
 {
     internal class ProcessDetector
     {
+        Thread thread;
         public ProcessDetector(Form1 form1)
         {
             Form1 = form1;
+            thread = new Thread(ProcessDetection);
         }
 
         public Form1 Form1 { get; }
@@ -24,13 +26,14 @@ namespace AbilityStoneLoger
                 Process[] processList = Process.GetProcessesByName("LostArk");
                 if (processList.Length > 0)
                 {
-                    Form1.SetLostArkState(true);
-                    break;
+                    Form1.StartImageAnalysis();
                 }
                 else
                 {
-                    Form1.SetLostArkState(false);
+                    Form1.StopImageAnalysis();
                 }
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
                 Thread.Sleep(1000);
             }
         }
