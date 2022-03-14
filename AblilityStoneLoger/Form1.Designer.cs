@@ -32,11 +32,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.MousePos = new System.Windows.Forms.Label();
             this.SideMenu = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.Option = new System.Windows.Forms.Button();
+            this.Exit = new System.Windows.Forms.Button();
             this.Tendency = new System.Windows.Forms.Button();
             this.LogDetail = new System.Windows.Forms.Button();
             this.Home = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.AddedItem7 = new System.Windows.Forms.Panel();
@@ -84,18 +86,37 @@
             this.SuccessLabel = new System.Windows.Forms.Label();
             this.TryLabel = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.DotGraphPanel = new AbilityStoneLoger.TransparentPanel();
+            this.ReductionGraph25_Detail = new System.Windows.Forms.PictureBox();
+            this.EnhanceGraph25_Detail = new System.Windows.Forms.PictureBox();
+            this.ReductionGraph35_Detail = new System.Windows.Forms.PictureBox();
+            this.EnhanceGraph35_Detail = new System.Windows.Forms.PictureBox();
+            this.ReductionGraph45_Detail = new System.Windows.Forms.PictureBox();
+            this.EnhanceGraph45_Detail = new System.Windows.Forms.PictureBox();
+            this.ReductionGraph55_Detail = new System.Windows.Forms.PictureBox();
+            this.EnhanceGraph55_Detail = new System.Windows.Forms.PictureBox();
+            this.ReductionGraph65_Detail = new System.Windows.Forms.PictureBox();
+            this.EnhanceGraph65_Detail = new System.Windows.Forms.PictureBox();
+            this.ReductionGraph75_Detail = new System.Windows.Forms.PictureBox();
+            this.EnhanceGraph75_Detail = new System.Windows.Forms.PictureBox();
+            this.TimeBetweenLabel = new System.Windows.Forms.Label();
+            this.EndDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.StartDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.FormBorderPanel = new System.Windows.Forms.Panel();
-            this.Tray = new System.Windows.Forms.Button();
-            this.Exit = new System.Windows.Forms.Button();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.DashboardGraphToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.TrayIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.TrayMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Detail75 = new System.Windows.Forms.Label();
+            this.Detail65 = new System.Windows.Forms.Label();
+            this.Detail55 = new System.Windows.Forms.Label();
+            this.Detail45 = new System.Windows.Forms.Label();
+            this.Detail35 = new System.Windows.Forms.Label();
+            this.Detail25 = new System.Windows.Forms.Label();
             this.SideMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.AddedItem7.SuspendLayout();
@@ -124,14 +145,26 @@
             ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph65)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReductionGraph75)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph75)).BeginInit();
-            this.FormBorderPanel.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ReductionGraph25_Detail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph25_Detail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReductionGraph35_Detail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph35_Detail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReductionGraph45_Detail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph45_Detail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReductionGraph55_Detail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph55_Detail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReductionGraph65_Detail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph65_Detail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReductionGraph75_Detail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph75_Detail)).BeginInit();
             this.TrayMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // MousePos
             // 
             this.MousePos.AutoSize = true;
-            this.MousePos.Location = new System.Drawing.Point(3, 491);
+            this.MousePos.Location = new System.Drawing.Point(22, 24);
             this.MousePos.Name = "MousePos";
             this.MousePos.Size = new System.Drawing.Size(71, 15);
             this.MousePos.TabIndex = 4;
@@ -140,47 +173,56 @@
             // SideMenu
             // 
             this.SideMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.SideMenu.Controls.Add(this.label1);
-            this.SideMenu.Controls.Add(this.MousePos);
             this.SideMenu.Controls.Add(this.Option);
+            this.SideMenu.Controls.Add(this.Exit);
             this.SideMenu.Controls.Add(this.Tendency);
             this.SideMenu.Controls.Add(this.LogDetail);
             this.SideMenu.Controls.Add(this.Home);
+            this.SideMenu.Controls.Add(this.pictureBox1);
             this.SideMenu.Dock = System.Windows.Forms.DockStyle.Left;
-            this.SideMenu.Location = new System.Drawing.Point(0, 30);
+            this.SideMenu.Location = new System.Drawing.Point(0, 0);
             this.SideMenu.Name = "SideMenu";
-            this.SideMenu.Size = new System.Drawing.Size(160, 510);
+            this.SideMenu.Size = new System.Drawing.Size(55, 540);
             this.SideMenu.TabIndex = 7;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 461);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(39, 15);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "label1";
+            this.SideMenu.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form_MouseDown);
             // 
             // Option
             // 
-            this.Option.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Option.BackgroundImage")));
-            this.Option.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Option.BackColor = System.Drawing.Color.Transparent;
+            this.Option.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.Option.FlatAppearance.BorderSize = 0;
             this.Option.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.Option.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
             this.Option.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Option.Font = new System.Drawing.Font("함초롬돋움", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Option.ForeColor = System.Drawing.Color.White;
-            this.Option.Location = new System.Drawing.Point(0, 150);
+            this.Option.Image = ((System.Drawing.Image)(resources.GetObject("Option.Image")));
+            this.Option.Location = new System.Drawing.Point(0, 425);
             this.Option.Name = "Option";
-            this.Option.Size = new System.Drawing.Size(160, 50);
+            this.Option.Size = new System.Drawing.Size(55, 55);
             this.Option.TabIndex = 3;
-            this.Option.UseVisualStyleBackColor = true;
+            this.Option.UseVisualStyleBackColor = false;
             this.Option.Click += new System.EventHandler(this.Option_Click);
+            // 
+            // Exit
+            // 
+            this.Exit.BackColor = System.Drawing.Color.Transparent;
+            this.Exit.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Exit.FlatAppearance.BorderSize = 0;
+            this.Exit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.Exit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.Exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Exit.Image = ((System.Drawing.Image)(resources.GetObject("Exit.Image")));
+            this.Exit.Location = new System.Drawing.Point(0, 480);
+            this.Exit.Name = "Exit";
+            this.Exit.Size = new System.Drawing.Size(55, 60);
+            this.Exit.TabIndex = 7;
+            this.Exit.UseVisualStyleBackColor = false;
+            this.Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
             // Tendency
             // 
-            this.Tendency.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Tendency.BackgroundImage")));
+            this.Tendency.BackColor = System.Drawing.Color.Transparent;
             this.Tendency.Dock = System.Windows.Forms.DockStyle.Top;
             this.Tendency.FlatAppearance.BorderSize = 0;
             this.Tendency.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
@@ -188,16 +230,17 @@
             this.Tendency.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Tendency.Font = new System.Drawing.Font("함초롬돋움", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Tendency.ForeColor = System.Drawing.Color.White;
-            this.Tendency.Location = new System.Drawing.Point(0, 100);
+            this.Tendency.Image = ((System.Drawing.Image)(resources.GetObject("Tendency.Image")));
+            this.Tendency.Location = new System.Drawing.Point(0, 160);
             this.Tendency.Name = "Tendency";
-            this.Tendency.Size = new System.Drawing.Size(160, 50);
-            this.Tendency.TabIndex = 5;
-            this.Tendency.UseVisualStyleBackColor = true;
+            this.Tendency.Size = new System.Drawing.Size(55, 55);
+            this.Tendency.TabIndex = 2;
+            this.Tendency.UseVisualStyleBackColor = false;
             this.Tendency.Click += new System.EventHandler(this.Tendency_Click);
             // 
             // LogDetail
             // 
-            this.LogDetail.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("LogDetail.BackgroundImage")));
+            this.LogDetail.BackColor = System.Drawing.Color.Transparent;
             this.LogDetail.Dock = System.Windows.Forms.DockStyle.Top;
             this.LogDetail.FlatAppearance.BorderSize = 0;
             this.LogDetail.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
@@ -205,16 +248,17 @@
             this.LogDetail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LogDetail.Font = new System.Drawing.Font("함초롬돋움", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.LogDetail.ForeColor = System.Drawing.Color.White;
-            this.LogDetail.Location = new System.Drawing.Point(0, 50);
+            this.LogDetail.Image = ((System.Drawing.Image)(resources.GetObject("LogDetail.Image")));
+            this.LogDetail.Location = new System.Drawing.Point(0, 105);
             this.LogDetail.Name = "LogDetail";
-            this.LogDetail.Size = new System.Drawing.Size(160, 50);
-            this.LogDetail.TabIndex = 2;
-            this.LogDetail.UseVisualStyleBackColor = true;
+            this.LogDetail.Size = new System.Drawing.Size(55, 55);
+            this.LogDetail.TabIndex = 1;
+            this.LogDetail.UseVisualStyleBackColor = false;
             this.LogDetail.Click += new System.EventHandler(this.LogDetail_Click);
             // 
             // Home
             // 
-            this.Home.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.Home.BackColor = System.Drawing.Color.Transparent;
             this.Home.Dock = System.Windows.Forms.DockStyle.Top;
             this.Home.FlatAppearance.BorderSize = 0;
             this.Home.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
@@ -223,12 +267,31 @@
             this.Home.Font = new System.Drawing.Font("함초롬돋움", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Home.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.Home.Image = ((System.Drawing.Image)(resources.GetObject("Home.Image")));
-            this.Home.Location = new System.Drawing.Point(0, 0);
+            this.Home.Location = new System.Drawing.Point(0, 50);
             this.Home.Name = "Home";
-            this.Home.Size = new System.Drawing.Size(160, 50);
+            this.Home.Size = new System.Drawing.Size(55, 55);
             this.Home.TabIndex = 0;
             this.Home.UseVisualStyleBackColor = false;
             this.Home.Click += new System.EventHandler(this.Home_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(55, 50);
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form_MouseDown);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(173, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(39, 15);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "label1";
             // 
             // tabControl1
             // 
@@ -237,21 +300,22 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.ItemSize = new System.Drawing.Size(0, 1);
-            this.tabControl1.Location = new System.Drawing.Point(160, 30);
+            this.tabControl1.Location = new System.Drawing.Point(55, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(780, 510);
+            this.tabControl1.Size = new System.Drawing.Size(770, 540);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.tabControl1.TabIndex = 8;
+            this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
-            this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.BackColor = System.Drawing.Color.Transparent;
             this.tabPage1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPage1.BackgroundImage")));
+            this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.AddedItem7);
+            this.tabPage1.Controls.Add(this.MousePos);
             this.tabPage1.Controls.Add(this.AddedItem6);
             this.tabPage1.Controls.Add(this.AddedItem5);
             this.tabPage1.Controls.Add(this.AddedItem4);
@@ -277,16 +341,17 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 5);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(772, 501);
+            this.tabPage1.Size = new System.Drawing.Size(762, 531);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "1";
+            this.tabPage1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form_MouseDown);
             // 
             // AddedItem7
             // 
+            this.AddedItem7.BackColor = System.Drawing.Color.Transparent;
             this.AddedItem7.Controls.Add(this.SuccessText7);
             this.AddedItem7.Controls.Add(this.ImageName7);
             this.AddedItem7.Controls.Add(this.ItemImage7);
-            this.AddedItem7.Location = new System.Drawing.Point(550, 413);
+            this.AddedItem7.Location = new System.Drawing.Point(541, 446);
             this.AddedItem7.Name = "AddedItem7";
             this.AddedItem7.Size = new System.Drawing.Size(203, 50);
             this.AddedItem7.TabIndex = 7;
@@ -319,10 +384,11 @@
             // 
             // AddedItem6
             // 
+            this.AddedItem6.BackColor = System.Drawing.Color.Transparent;
             this.AddedItem6.Controls.Add(this.SuccessText6);
             this.AddedItem6.Controls.Add(this.ImageName6);
             this.AddedItem6.Controls.Add(this.ItemImage6);
-            this.AddedItem6.Location = new System.Drawing.Point(550, 357);
+            this.AddedItem6.Location = new System.Drawing.Point(541, 390);
             this.AddedItem6.Name = "AddedItem6";
             this.AddedItem6.Size = new System.Drawing.Size(203, 50);
             this.AddedItem6.TabIndex = 6;
@@ -355,10 +421,11 @@
             // 
             // AddedItem5
             // 
+            this.AddedItem5.BackColor = System.Drawing.Color.Transparent;
             this.AddedItem5.Controls.Add(this.SuccessText5);
             this.AddedItem5.Controls.Add(this.ImageName5);
             this.AddedItem5.Controls.Add(this.ItemImage5);
-            this.AddedItem5.Location = new System.Drawing.Point(550, 301);
+            this.AddedItem5.Location = new System.Drawing.Point(541, 334);
             this.AddedItem5.Name = "AddedItem5";
             this.AddedItem5.Size = new System.Drawing.Size(203, 50);
             this.AddedItem5.TabIndex = 5;
@@ -391,10 +458,11 @@
             // 
             // AddedItem4
             // 
+            this.AddedItem4.BackColor = System.Drawing.Color.Transparent;
             this.AddedItem4.Controls.Add(this.SuccessText4);
             this.AddedItem4.Controls.Add(this.ImageName4);
             this.AddedItem4.Controls.Add(this.ItemImage4);
-            this.AddedItem4.Location = new System.Drawing.Point(550, 245);
+            this.AddedItem4.Location = new System.Drawing.Point(541, 278);
             this.AddedItem4.Name = "AddedItem4";
             this.AddedItem4.Size = new System.Drawing.Size(203, 50);
             this.AddedItem4.TabIndex = 4;
@@ -427,10 +495,11 @@
             // 
             // AddedItem3
             // 
+            this.AddedItem3.BackColor = System.Drawing.Color.Transparent;
             this.AddedItem3.Controls.Add(this.SuccessText3);
             this.AddedItem3.Controls.Add(this.ImageName3);
             this.AddedItem3.Controls.Add(this.ItemImage3);
-            this.AddedItem3.Location = new System.Drawing.Point(550, 189);
+            this.AddedItem3.Location = new System.Drawing.Point(541, 222);
             this.AddedItem3.Name = "AddedItem3";
             this.AddedItem3.Size = new System.Drawing.Size(203, 50);
             this.AddedItem3.TabIndex = 3;
@@ -463,10 +532,11 @@
             // 
             // AddedItem2
             // 
+            this.AddedItem2.BackColor = System.Drawing.Color.Transparent;
             this.AddedItem2.Controls.Add(this.SuccessText2);
             this.AddedItem2.Controls.Add(this.ImageName2);
             this.AddedItem2.Controls.Add(this.ItemImage2);
-            this.AddedItem2.Location = new System.Drawing.Point(550, 133);
+            this.AddedItem2.Location = new System.Drawing.Point(541, 166);
             this.AddedItem2.Name = "AddedItem2";
             this.AddedItem2.Size = new System.Drawing.Size(203, 50);
             this.AddedItem2.TabIndex = 3;
@@ -499,10 +569,11 @@
             // 
             // AddedItem1
             // 
+            this.AddedItem1.BackColor = System.Drawing.Color.Transparent;
             this.AddedItem1.Controls.Add(this.SuccessText1);
             this.AddedItem1.Controls.Add(this.ImageName1);
             this.AddedItem1.Controls.Add(this.ItemImage1);
-            this.AddedItem1.Location = new System.Drawing.Point(550, 77);
+            this.AddedItem1.Location = new System.Drawing.Point(541, 110);
             this.AddedItem1.Name = "AddedItem1";
             this.AddedItem1.Size = new System.Drawing.Size(203, 50);
             this.AddedItem1.TabIndex = 2;
@@ -536,7 +607,7 @@
             // ReductionGraph25
             // 
             this.ReductionGraph25.Image = ((System.Drawing.Image)(resources.GetObject("ReductionGraph25.Image")));
-            this.ReductionGraph25.Location = new System.Drawing.Point(474, 453);
+            this.ReductionGraph25.Location = new System.Drawing.Point(465, 486);
             this.ReductionGraph25.Name = "ReductionGraph25";
             this.ReductionGraph25.Size = new System.Drawing.Size(26, 0);
             this.ReductionGraph25.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -547,7 +618,7 @@
             // EnhanceGraph25
             // 
             this.EnhanceGraph25.Image = ((System.Drawing.Image)(resources.GetObject("EnhanceGraph25.Image")));
-            this.EnhanceGraph25.Location = new System.Drawing.Point(442, 453);
+            this.EnhanceGraph25.Location = new System.Drawing.Point(433, 486);
             this.EnhanceGraph25.Name = "EnhanceGraph25";
             this.EnhanceGraph25.Size = new System.Drawing.Size(26, 0);
             this.EnhanceGraph25.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -558,7 +629,7 @@
             // ReductionGraph35
             // 
             this.ReductionGraph35.Image = ((System.Drawing.Image)(resources.GetObject("ReductionGraph35.Image")));
-            this.ReductionGraph35.Location = new System.Drawing.Point(397, 453);
+            this.ReductionGraph35.Location = new System.Drawing.Point(388, 486);
             this.ReductionGraph35.Name = "ReductionGraph35";
             this.ReductionGraph35.Size = new System.Drawing.Size(26, 0);
             this.ReductionGraph35.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -569,7 +640,7 @@
             // EnhanceGraph35
             // 
             this.EnhanceGraph35.Image = ((System.Drawing.Image)(resources.GetObject("EnhanceGraph35.Image")));
-            this.EnhanceGraph35.Location = new System.Drawing.Point(365, 453);
+            this.EnhanceGraph35.Location = new System.Drawing.Point(356, 486);
             this.EnhanceGraph35.Name = "EnhanceGraph35";
             this.EnhanceGraph35.Size = new System.Drawing.Size(26, 0);
             this.EnhanceGraph35.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -580,7 +651,7 @@
             // ReductionGraph45
             // 
             this.ReductionGraph45.Image = ((System.Drawing.Image)(resources.GetObject("ReductionGraph45.Image")));
-            this.ReductionGraph45.Location = new System.Drawing.Point(325, 453);
+            this.ReductionGraph45.Location = new System.Drawing.Point(316, 486);
             this.ReductionGraph45.Name = "ReductionGraph45";
             this.ReductionGraph45.Size = new System.Drawing.Size(26, 0);
             this.ReductionGraph45.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -591,7 +662,7 @@
             // EnhanceGraph45
             // 
             this.EnhanceGraph45.Image = ((System.Drawing.Image)(resources.GetObject("EnhanceGraph45.Image")));
-            this.EnhanceGraph45.Location = new System.Drawing.Point(293, 453);
+            this.EnhanceGraph45.Location = new System.Drawing.Point(284, 486);
             this.EnhanceGraph45.Name = "EnhanceGraph45";
             this.EnhanceGraph45.Size = new System.Drawing.Size(26, 0);
             this.EnhanceGraph45.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -602,7 +673,7 @@
             // ReductionGraph55
             // 
             this.ReductionGraph55.Image = ((System.Drawing.Image)(resources.GetObject("ReductionGraph55.Image")));
-            this.ReductionGraph55.Location = new System.Drawing.Point(248, 453);
+            this.ReductionGraph55.Location = new System.Drawing.Point(239, 486);
             this.ReductionGraph55.Name = "ReductionGraph55";
             this.ReductionGraph55.Size = new System.Drawing.Size(26, 0);
             this.ReductionGraph55.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -613,7 +684,7 @@
             // EnhanceGraph55
             // 
             this.EnhanceGraph55.Image = ((System.Drawing.Image)(resources.GetObject("EnhanceGraph55.Image")));
-            this.EnhanceGraph55.Location = new System.Drawing.Point(216, 453);
+            this.EnhanceGraph55.Location = new System.Drawing.Point(207, 486);
             this.EnhanceGraph55.Name = "EnhanceGraph55";
             this.EnhanceGraph55.Size = new System.Drawing.Size(26, 0);
             this.EnhanceGraph55.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -624,7 +695,7 @@
             // ReductionGraph65
             // 
             this.ReductionGraph65.Image = ((System.Drawing.Image)(resources.GetObject("ReductionGraph65.Image")));
-            this.ReductionGraph65.Location = new System.Drawing.Point(173, 453);
+            this.ReductionGraph65.Location = new System.Drawing.Point(164, 486);
             this.ReductionGraph65.Name = "ReductionGraph65";
             this.ReductionGraph65.Size = new System.Drawing.Size(26, 0);
             this.ReductionGraph65.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -635,7 +706,7 @@
             // EnhanceGraph65
             // 
             this.EnhanceGraph65.Image = ((System.Drawing.Image)(resources.GetObject("EnhanceGraph65.Image")));
-            this.EnhanceGraph65.Location = new System.Drawing.Point(141, 453);
+            this.EnhanceGraph65.Location = new System.Drawing.Point(132, 486);
             this.EnhanceGraph65.Name = "EnhanceGraph65";
             this.EnhanceGraph65.Size = new System.Drawing.Size(26, 0);
             this.EnhanceGraph65.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -646,7 +717,7 @@
             // ReductionGraph75
             // 
             this.ReductionGraph75.Image = ((System.Drawing.Image)(resources.GetObject("ReductionGraph75.Image")));
-            this.ReductionGraph75.Location = new System.Drawing.Point(100, 456);
+            this.ReductionGraph75.Location = new System.Drawing.Point(91, 486);
             this.ReductionGraph75.Name = "ReductionGraph75";
             this.ReductionGraph75.Size = new System.Drawing.Size(26, 0);
             this.ReductionGraph75.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -658,7 +729,7 @@
             // 
             this.EnhanceGraph75.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.EnhanceGraph75.Image = ((System.Drawing.Image)(resources.GetObject("EnhanceGraph75.Image")));
-            this.EnhanceGraph75.Location = new System.Drawing.Point(68, 454);
+            this.EnhanceGraph75.Location = new System.Drawing.Point(58, 486);
             this.EnhanceGraph75.Name = "EnhanceGraph75";
             this.EnhanceGraph75.Size = new System.Drawing.Size(26, 0);
             this.EnhanceGraph75.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -668,8 +739,9 @@
             // 
             // CoinLabel
             // 
+            this.CoinLabel.BackColor = System.Drawing.Color.Transparent;
             this.CoinLabel.Font = new System.Drawing.Font("한컴 말랑말랑 Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.CoinLabel.Location = new System.Drawing.Point(411, 115);
+            this.CoinLabel.Location = new System.Drawing.Point(402, 148);
             this.CoinLabel.Name = "CoinLabel";
             this.CoinLabel.Size = new System.Drawing.Size(90, 40);
             this.CoinLabel.TabIndex = 1;
@@ -678,8 +750,9 @@
             // 
             // FailLabel
             // 
+            this.FailLabel.BackColor = System.Drawing.Color.Transparent;
             this.FailLabel.Font = new System.Drawing.Font("한컴 말랑말랑 Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FailLabel.Location = new System.Drawing.Point(285, 115);
+            this.FailLabel.Location = new System.Drawing.Point(276, 148);
             this.FailLabel.Name = "FailLabel";
             this.FailLabel.Size = new System.Drawing.Size(90, 40);
             this.FailLabel.TabIndex = 1;
@@ -688,8 +761,9 @@
             // 
             // SuccessLabel
             // 
+            this.SuccessLabel.BackColor = System.Drawing.Color.Transparent;
             this.SuccessLabel.Font = new System.Drawing.Font("한컴 말랑말랑 Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SuccessLabel.Location = new System.Drawing.Point(163, 115);
+            this.SuccessLabel.Location = new System.Drawing.Point(154, 148);
             this.SuccessLabel.Name = "SuccessLabel";
             this.SuccessLabel.Size = new System.Drawing.Size(90, 40);
             this.SuccessLabel.TabIndex = 1;
@@ -698,8 +772,9 @@
             // 
             // TryLabel
             // 
+            this.TryLabel.BackColor = System.Drawing.Color.Transparent;
             this.TryLabel.Font = new System.Drawing.Font("한컴 말랑말랑 Bold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.TryLabel.Location = new System.Drawing.Point(38, 115);
+            this.TryLabel.Location = new System.Drawing.Point(29, 148);
             this.TryLabel.Name = "TryLabel";
             this.TryLabel.Size = new System.Drawing.Size(90, 40);
             this.TryLabel.TabIndex = 1;
@@ -708,82 +783,215 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPage2.BackgroundImage")));
+            this.tabPage2.Controls.Add(this.Detail25);
+            this.tabPage2.Controls.Add(this.Detail35);
+            this.tabPage2.Controls.Add(this.Detail45);
+            this.tabPage2.Controls.Add(this.Detail55);
+            this.tabPage2.Controls.Add(this.Detail65);
+            this.tabPage2.Controls.Add(this.Detail75);
+            this.tabPage2.Controls.Add(this.DotGraphPanel);
+            this.tabPage2.Controls.Add(this.ReductionGraph25_Detail);
+            this.tabPage2.Controls.Add(this.EnhanceGraph25_Detail);
+            this.tabPage2.Controls.Add(this.ReductionGraph35_Detail);
+            this.tabPage2.Controls.Add(this.EnhanceGraph35_Detail);
+            this.tabPage2.Controls.Add(this.ReductionGraph45_Detail);
+            this.tabPage2.Controls.Add(this.EnhanceGraph45_Detail);
+            this.tabPage2.Controls.Add(this.ReductionGraph55_Detail);
+            this.tabPage2.Controls.Add(this.EnhanceGraph55_Detail);
+            this.tabPage2.Controls.Add(this.ReductionGraph65_Detail);
+            this.tabPage2.Controls.Add(this.EnhanceGraph65_Detail);
+            this.tabPage2.Controls.Add(this.ReductionGraph75_Detail);
+            this.tabPage2.Controls.Add(this.EnhanceGraph75_Detail);
+            this.tabPage2.Controls.Add(this.TimeBetweenLabel);
+            this.tabPage2.Controls.Add(this.EndDateTimePicker);
+            this.tabPage2.Controls.Add(this.StartDateTimePicker);
             this.tabPage2.Location = new System.Drawing.Point(4, 5);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(772, 501);
+            this.tabPage2.Size = new System.Drawing.Size(762, 531);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "2";
             this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form_MouseDown);
+            // 
+            // DotGraphPanel
+            // 
+            this.DotGraphPanel.Location = new System.Drawing.Point(56, 64);
+            this.DotGraphPanel.Name = "DotGraphPanel";
+            this.DotGraphPanel.Size = new System.Drawing.Size(530, 415);
+            this.DotGraphPanel.TabIndex = 15;
+            // 
+            // ReductionGraph25_Detail
+            // 
+            this.ReductionGraph25_Detail.Image = ((System.Drawing.Image)(resources.GetObject("ReductionGraph25_Detail.Image")));
+            this.ReductionGraph25_Detail.Location = new System.Drawing.Point(537, 477);
+            this.ReductionGraph25_Detail.Name = "ReductionGraph25_Detail";
+            this.ReductionGraph25_Detail.Size = new System.Drawing.Size(26, 0);
+            this.ReductionGraph25_Detail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ReductionGraph25_Detail.TabIndex = 3;
+            this.ReductionGraph25_Detail.TabStop = false;
+            // 
+            // EnhanceGraph25_Detail
+            // 
+            this.EnhanceGraph25_Detail.Image = ((System.Drawing.Image)(resources.GetObject("EnhanceGraph25_Detail.Image")));
+            this.EnhanceGraph25_Detail.Location = new System.Drawing.Point(505, 477);
+            this.EnhanceGraph25_Detail.Name = "EnhanceGraph25_Detail";
+            this.EnhanceGraph25_Detail.Size = new System.Drawing.Size(26, 0);
+            this.EnhanceGraph25_Detail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.EnhanceGraph25_Detail.TabIndex = 4;
+            this.EnhanceGraph25_Detail.TabStop = false;
+            // 
+            // ReductionGraph35_Detail
+            // 
+            this.ReductionGraph35_Detail.Image = ((System.Drawing.Image)(resources.GetObject("ReductionGraph35_Detail.Image")));
+            this.ReductionGraph35_Detail.Location = new System.Drawing.Point(451, 477);
+            this.ReductionGraph35_Detail.Name = "ReductionGraph35_Detail";
+            this.ReductionGraph35_Detail.Size = new System.Drawing.Size(26, 0);
+            this.ReductionGraph35_Detail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ReductionGraph35_Detail.TabIndex = 5;
+            this.ReductionGraph35_Detail.TabStop = false;
+            // 
+            // EnhanceGraph35_Detail
+            // 
+            this.EnhanceGraph35_Detail.Image = ((System.Drawing.Image)(resources.GetObject("EnhanceGraph35_Detail.Image")));
+            this.EnhanceGraph35_Detail.Location = new System.Drawing.Point(419, 477);
+            this.EnhanceGraph35_Detail.Name = "EnhanceGraph35_Detail";
+            this.EnhanceGraph35_Detail.Size = new System.Drawing.Size(26, 0);
+            this.EnhanceGraph35_Detail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.EnhanceGraph35_Detail.TabIndex = 6;
+            this.EnhanceGraph35_Detail.TabStop = false;
+            // 
+            // ReductionGraph45_Detail
+            // 
+            this.ReductionGraph45_Detail.Image = ((System.Drawing.Image)(resources.GetObject("ReductionGraph45_Detail.Image")));
+            this.ReductionGraph45_Detail.Location = new System.Drawing.Point(367, 477);
+            this.ReductionGraph45_Detail.Name = "ReductionGraph45_Detail";
+            this.ReductionGraph45_Detail.Size = new System.Drawing.Size(26, 0);
+            this.ReductionGraph45_Detail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ReductionGraph45_Detail.TabIndex = 7;
+            this.ReductionGraph45_Detail.TabStop = false;
+            // 
+            // EnhanceGraph45_Detail
+            // 
+            this.EnhanceGraph45_Detail.Image = ((System.Drawing.Image)(resources.GetObject("EnhanceGraph45_Detail.Image")));
+            this.EnhanceGraph45_Detail.Location = new System.Drawing.Point(335, 477);
+            this.EnhanceGraph45_Detail.Name = "EnhanceGraph45_Detail";
+            this.EnhanceGraph45_Detail.Size = new System.Drawing.Size(26, 0);
+            this.EnhanceGraph45_Detail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.EnhanceGraph45_Detail.TabIndex = 8;
+            this.EnhanceGraph45_Detail.TabStop = false;
+            // 
+            // ReductionGraph55_Detail
+            // 
+            this.ReductionGraph55_Detail.Image = ((System.Drawing.Image)(resources.GetObject("ReductionGraph55_Detail.Image")));
+            this.ReductionGraph55_Detail.Location = new System.Drawing.Point(283, 477);
+            this.ReductionGraph55_Detail.Name = "ReductionGraph55_Detail";
+            this.ReductionGraph55_Detail.Size = new System.Drawing.Size(26, 0);
+            this.ReductionGraph55_Detail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ReductionGraph55_Detail.TabIndex = 9;
+            this.ReductionGraph55_Detail.TabStop = false;
+            // 
+            // EnhanceGraph55_Detail
+            // 
+            this.EnhanceGraph55_Detail.Image = ((System.Drawing.Image)(resources.GetObject("EnhanceGraph55_Detail.Image")));
+            this.EnhanceGraph55_Detail.Location = new System.Drawing.Point(251, 477);
+            this.EnhanceGraph55_Detail.Name = "EnhanceGraph55_Detail";
+            this.EnhanceGraph55_Detail.Size = new System.Drawing.Size(26, 0);
+            this.EnhanceGraph55_Detail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.EnhanceGraph55_Detail.TabIndex = 10;
+            this.EnhanceGraph55_Detail.TabStop = false;
+            // 
+            // ReductionGraph65_Detail
+            // 
+            this.ReductionGraph65_Detail.Image = ((System.Drawing.Image)(resources.GetObject("ReductionGraph65_Detail.Image")));
+            this.ReductionGraph65_Detail.Location = new System.Drawing.Point(199, 477);
+            this.ReductionGraph65_Detail.Name = "ReductionGraph65_Detail";
+            this.ReductionGraph65_Detail.Size = new System.Drawing.Size(26, 0);
+            this.ReductionGraph65_Detail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ReductionGraph65_Detail.TabIndex = 11;
+            this.ReductionGraph65_Detail.TabStop = false;
+            // 
+            // EnhanceGraph65_Detail
+            // 
+            this.EnhanceGraph65_Detail.Image = ((System.Drawing.Image)(resources.GetObject("EnhanceGraph65_Detail.Image")));
+            this.EnhanceGraph65_Detail.Location = new System.Drawing.Point(167, 477);
+            this.EnhanceGraph65_Detail.Name = "EnhanceGraph65_Detail";
+            this.EnhanceGraph65_Detail.Size = new System.Drawing.Size(26, 0);
+            this.EnhanceGraph65_Detail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.EnhanceGraph65_Detail.TabIndex = 12;
+            this.EnhanceGraph65_Detail.TabStop = false;
+            // 
+            // ReductionGraph75_Detail
+            // 
+            this.ReductionGraph75_Detail.Image = ((System.Drawing.Image)(resources.GetObject("ReductionGraph75_Detail.Image")));
+            this.ReductionGraph75_Detail.Location = new System.Drawing.Point(110, 477);
+            this.ReductionGraph75_Detail.Name = "ReductionGraph75_Detail";
+            this.ReductionGraph75_Detail.Size = new System.Drawing.Size(26, 0);
+            this.ReductionGraph75_Detail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ReductionGraph75_Detail.TabIndex = 13;
+            this.ReductionGraph75_Detail.TabStop = false;
+            // 
+            // EnhanceGraph75_Detail
+            // 
+            this.EnhanceGraph75_Detail.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.EnhanceGraph75_Detail.Image = ((System.Drawing.Image)(resources.GetObject("EnhanceGraph75_Detail.Image")));
+            this.EnhanceGraph75_Detail.Location = new System.Drawing.Point(77, 477);
+            this.EnhanceGraph75_Detail.Name = "EnhanceGraph75_Detail";
+            this.EnhanceGraph75_Detail.Size = new System.Drawing.Size(26, 0);
+            this.EnhanceGraph75_Detail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.EnhanceGraph75_Detail.TabIndex = 14;
+            this.EnhanceGraph75_Detail.TabStop = false;
+            // 
+            // TimeBetweenLabel
+            // 
+            this.TimeBetweenLabel.AutoSize = true;
+            this.TimeBetweenLabel.Location = new System.Drawing.Point(656, 16);
+            this.TimeBetweenLabel.Name = "TimeBetweenLabel";
+            this.TimeBetweenLabel.Size = new System.Drawing.Size(15, 15);
+            this.TimeBetweenLabel.TabIndex = 2;
+            this.TimeBetweenLabel.Text = "~";
+            // 
+            // EndDateTimePicker
+            // 
+            this.EndDateTimePicker.CustomFormat = "yy-MM-dd";
+            this.EndDateTimePicker.Font = new System.Drawing.Font("한컴 말랑말랑 Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.EndDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.EndDateTimePicker.Location = new System.Drawing.Point(675, 12);
+            this.EndDateTimePicker.Name = "EndDateTimePicker";
+            this.EndDateTimePicker.Size = new System.Drawing.Size(79, 23);
+            this.EndDateTimePicker.TabIndex = 1;
+            this.EndDateTimePicker.TabStop = false;
+            this.EndDateTimePicker.Value = new System.DateTime(2022, 3, 12, 0, 0, 0, 0);
+            // 
+            // StartDateTimePicker
+            // 
+            this.StartDateTimePicker.CustomFormat = "yy-MM-dd";
+            this.StartDateTimePicker.Font = new System.Drawing.Font("한컴 말랑말랑 Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.StartDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.StartDateTimePicker.Location = new System.Drawing.Point(573, 12);
+            this.StartDateTimePicker.Name = "StartDateTimePicker";
+            this.StartDateTimePicker.Size = new System.Drawing.Size(77, 23);
+            this.StartDateTimePicker.TabIndex = 0;
+            this.StartDateTimePicker.TabStop = false;
+            this.StartDateTimePicker.Value = new System.DateTime(2022, 3, 1, 0, 0, 0, 0);
             // 
             // tabPage3
             // 
             this.tabPage3.Location = new System.Drawing.Point(4, 5);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(772, 501);
+            this.tabPage3.Size = new System.Drawing.Size(762, 531);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "3";
             this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabPage3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form_MouseDown);
             // 
             // tabPage4
             // 
             this.tabPage4.Location = new System.Drawing.Point(4, 5);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(772, 501);
+            this.tabPage4.Size = new System.Drawing.Size(762, 531);
             this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "4";
             this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Location = new System.Drawing.Point(4, 5);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(772, 501);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "5";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // FormBorderPanel
-            // 
-            this.FormBorderPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(113)))), ((int)(((byte)(209)))));
-            this.FormBorderPanel.Controls.Add(this.Tray);
-            this.FormBorderPanel.Controls.Add(this.Exit);
-            this.FormBorderPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.FormBorderPanel.Location = new System.Drawing.Point(0, 0);
-            this.FormBorderPanel.Name = "FormBorderPanel";
-            this.FormBorderPanel.Size = new System.Drawing.Size(940, 30);
-            this.FormBorderPanel.TabIndex = 0;
-            this.FormBorderPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form_MouseDown);
-            // 
-            // Tray
-            // 
-            this.Tray.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Tray.BackColor = System.Drawing.Color.Transparent;
-            this.Tray.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Tray.BackgroundImage")));
-            this.Tray.FlatAppearance.BorderSize = 0;
-            this.Tray.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gainsboro;
-            this.Tray.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Tray.Location = new System.Drawing.Point(880, 5);
-            this.Tray.Name = "Tray";
-            this.Tray.Size = new System.Drawing.Size(20, 20);
-            this.Tray.TabIndex = 1;
-            this.Tray.UseVisualStyleBackColor = false;
-            this.Tray.Click += new System.EventHandler(this.TrayClick);
-            // 
-            // Exit
-            // 
-            this.Exit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Exit.BackColor = System.Drawing.Color.Transparent;
-            this.Exit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Exit.BackgroundImage")));
-            this.Exit.FlatAppearance.BorderSize = 0;
-            this.Exit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.Exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Exit.Location = new System.Drawing.Point(910, 5);
-            this.Exit.Name = "Exit";
-            this.Exit.Size = new System.Drawing.Size(20, 20);
-            this.Exit.TabIndex = 0;
-            this.Exit.UseVisualStyleBackColor = false;
-            this.Exit.Click += new System.EventHandler(this.Exit_Click);
+            this.tabPage4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form_MouseDown);
             // 
             // TrayIcon
             // 
@@ -813,22 +1021,88 @@
             this.exitToolStripMenuItem.Text = "종료";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
+            // Detail75
+            // 
+            this.Detail75.BackColor = System.Drawing.Color.Transparent;
+            this.Detail75.Font = new System.Drawing.Font("한컴 말랑말랑 Regular", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Detail75.Location = new System.Drawing.Point(636, 132);
+            this.Detail75.Name = "Detail75";
+            this.Detail75.Size = new System.Drawing.Size(111, 23);
+            this.Detail75.TabIndex = 16;
+            this.Detail75.Text = "0%";
+            this.Detail75.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Detail65
+            // 
+            this.Detail65.BackColor = System.Drawing.Color.Transparent;
+            this.Detail65.Font = new System.Drawing.Font("한컴 말랑말랑 Regular", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Detail65.Location = new System.Drawing.Point(636, 198);
+            this.Detail65.Name = "Detail65";
+            this.Detail65.Size = new System.Drawing.Size(111, 23);
+            this.Detail65.TabIndex = 17;
+            this.Detail65.Text = "0%";
+            this.Detail65.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Detail55
+            // 
+            this.Detail55.BackColor = System.Drawing.Color.Transparent;
+            this.Detail55.Font = new System.Drawing.Font("한컴 말랑말랑 Regular", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Detail55.Location = new System.Drawing.Point(636, 273);
+            this.Detail55.Name = "Detail55";
+            this.Detail55.Size = new System.Drawing.Size(111, 23);
+            this.Detail55.TabIndex = 17;
+            this.Detail55.Text = "0%";
+            this.Detail55.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Detail45
+            // 
+            this.Detail45.BackColor = System.Drawing.Color.Transparent;
+            this.Detail45.Font = new System.Drawing.Font("한컴 말랑말랑 Regular", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Detail45.Location = new System.Drawing.Point(636, 339);
+            this.Detail45.Name = "Detail45";
+            this.Detail45.Size = new System.Drawing.Size(111, 23);
+            this.Detail45.TabIndex = 17;
+            this.Detail45.Text = "0%";
+            this.Detail45.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Detail35
+            // 
+            this.Detail35.BackColor = System.Drawing.Color.Transparent;
+            this.Detail35.Font = new System.Drawing.Font("한컴 말랑말랑 Regular", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Detail35.Location = new System.Drawing.Point(636, 399);
+            this.Detail35.Name = "Detail35";
+            this.Detail35.Size = new System.Drawing.Size(111, 23);
+            this.Detail35.TabIndex = 17;
+            this.Detail35.Text = "0%";
+            this.Detail35.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Detail25
+            // 
+            this.Detail25.BackColor = System.Drawing.Color.Transparent;
+            this.Detail25.Font = new System.Drawing.Font("한컴 말랑말랑 Regular", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Detail25.Location = new System.Drawing.Point(636, 466);
+            this.Detail25.Name = "Detail25";
+            this.Detail25.Size = new System.Drawing.Size(111, 23);
+            this.Detail25.TabIndex = 17;
+            this.Detail25.Text = "0%";
+            this.Detail25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(940, 540);
+            this.BackColor = System.Drawing.Color.Silver;
+            this.ClientSize = new System.Drawing.Size(825, 540);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.SideMenu);
-            this.Controls.Add(this.FormBorderPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.SideMenu.ResumeLayout(false);
-            this.SideMenu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.AddedItem7.ResumeLayout(false);
             this.AddedItem7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ItemImage7)).EndInit();
@@ -862,7 +1136,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph65)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReductionGraph75)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph75)).EndInit();
-            this.FormBorderPanel.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ReductionGraph25_Detail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph25_Detail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReductionGraph35_Detail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph35_Detail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReductionGraph45_Detail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph45_Detail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReductionGraph55_Detail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph55_Detail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReductionGraph65_Detail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph65_Detail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReductionGraph75_Detail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph75_Detail)).EndInit();
             this.TrayMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -878,11 +1165,7 @@
         private TabPage tabPage2;
         private TabPage tabPage3;
         private TabPage tabPage4;
-        private TabPage tabPage5;
-        private Panel FormBorderPanel;
         private Button Home;
-        private Button Tray;
-        private Button Exit;
         private PictureBox EnhanceGraph75;
         private PictureBox ReductionGraph75;
         private PictureBox ReductionGraph25;
@@ -900,7 +1183,7 @@
         private Label SuccessLabel;
         private Label TryLabel;
         private Button Tendency;
-        private ToolTip toolTip1;
+        private ToolTip DashboardGraphToolTip;
         private Label label1;
         private NotifyIcon TrayIcon;
         private Panel AddedItem1;
@@ -934,5 +1217,29 @@
         private ContextMenuStrip TrayMenu;
         private ToolStripMenuItem showToolStripMenuItem;
         private ToolStripMenuItem exitToolStripMenuItem;
+        private PictureBox pictureBox1;
+        private Button Exit;
+        private DateTimePicker StartDateTimePicker;
+        private Label TimeBetweenLabel;
+        private DateTimePicker EndDateTimePicker;
+        private PictureBox ReductionGraph25_Detail;
+        private PictureBox EnhanceGraph25_Detail;
+        private PictureBox ReductionGraph35_Detail;
+        private PictureBox EnhanceGraph35_Detail;
+        private PictureBox ReductionGraph45_Detail;
+        private PictureBox EnhanceGraph45_Detail;
+        private PictureBox ReductionGraph55_Detail;
+        private PictureBox EnhanceGraph55_Detail;
+        private PictureBox ReductionGraph65_Detail;
+        private PictureBox EnhanceGraph65_Detail;
+        private PictureBox ReductionGraph75_Detail;
+        private PictureBox EnhanceGraph75_Detail;
+        private AbilityStoneLoger.TransparentPanel DotGraphPanel;
+        private Label Detail25;
+        private Label Detail35;
+        private Label Detail45;
+        private Label Detail55;
+        private Label Detail65;
+        private Label Detail75;
     }
 }

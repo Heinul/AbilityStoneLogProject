@@ -11,9 +11,7 @@ namespace AbilityStoneLoger
     internal class ImageAnalysis
     {
         private DisplayCapture displayCapture;
-
-        public Form1 Form1 { get; }
-
+        private Form1 Form1;
         private ResourceLoader resourceLoader;
         private bool abilityWindowState = false;
 
@@ -30,8 +28,6 @@ namespace AbilityStoneLoger
             displayCapture = new DisplayCapture();
             for (int i = 0; i < 3; i++)
                 previousEngravingSuccessData[i] = new int[10];
-
-            
         }
 
         bool threadState = false;
@@ -46,7 +42,7 @@ namespace AbilityStoneLoger
             }
         }
 
-        public void StopTread()
+        public void Stop()
         {
             threadState = false;
             displayQueue.Clear();
@@ -77,7 +73,7 @@ namespace AbilityStoneLoger
                 engravingSuccessData[i] = new int[10] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
 
             
-            while (true)
+            while (threadState)
             {
                 if (displayQueue.Count > 0)
                 {
@@ -235,12 +231,12 @@ namespace AbilityStoneLoger
         private void SaveData()
         {
             //데이터 저장할 때 서버로 데이터 전송
-            while (true)
+            while (threadState)
             {
                 if (queue.Count != 0)
                 {
                     var item = queue.Dequeue();
-                    //item.SendData();
+                    item.SendData();
                     item.SaveData();
                     Form1.AddItemToListBox(item.GetEngravingName(), item.GetPercentage(), item.GetSuccess());
                 }
