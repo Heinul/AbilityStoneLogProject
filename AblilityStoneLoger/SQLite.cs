@@ -35,7 +35,7 @@ namespace AbilityStoneLoger
                     sql.AppendLine(@" ""SUCCESS"" BOOLEAN,");
                     sql.AppendLine(@" ""ADJUSTMENT"" BOOLEAN,"); //true 강화효과 / false 감소효과
                     sql.AppendLine(@" ""DIGIT"" INTAGER,");
-                    sql.AppendLine(@" ""TIMESTAMP"" DATETIME DEFAULT (datetime('now', 'localtime')) NOT NULL");
+                    sql.AppendLine(@" ""TIMESTAMP"" INTAGER NOT NULL");
                     sql.AppendLine(@" ); ");
 
                     try
@@ -102,6 +102,67 @@ namespace AbilityStoneLoger
                 DataSet ds = new DataSet();
 
                 string sql = $"SELECT * FROM ENGRAVINGDATA WHERE PERCENTAGE = {percentage}";
+                adapter = new SQLiteDataAdapter(sql, DBpath);
+                adapter.Fill(ds);
+
+                if (ds.Tables.Count > 0) return ds.Tables[0].Rows;
+                else return null;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                throw;
+            }
+        }
+
+
+        public DataRowCollection Select(DateTime time1, DateTime time2 , int percentage)
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+
+                string sql = $"SELECT * FROM ENGRAVINGDATA WHERE TIMESTAMP BETWEEN {time1.Ticks} AND {time2.Ticks} AND PERCENTAGE = {percentage}";
+                adapter = new SQLiteDataAdapter(sql, DBpath);
+                adapter.Fill(ds);
+
+                if (ds.Tables.Count > 0) return ds.Tables[0].Rows;
+                else return null;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                throw;
+            }
+        }
+
+        public DataRowCollection Select(DateTime time1, DateTime time2, int percentage, bool adjustment)
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+
+                string sql = $"SELECT * FROM ENGRAVINGDATA WHERE TIMESTAMP BETWEEN {time1.Ticks} AND {time2.Ticks} AND PERCENTAGE = {percentage} AND ADJUSTMENT = {adjustment}";
+                adapter = new SQLiteDataAdapter(sql, DBpath);
+                adapter.Fill(ds);
+
+                if (ds.Tables.Count > 0) return ds.Tables[0].Rows;
+                else return null;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                throw;
+            }
+        }
+
+        public DataRowCollection Select(DateTime time1, DateTime time2, int percentage, bool adjustment, bool success)
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+
+                string sql = $"SELECT * FROM ENGRAVINGDATA WHERE TIMESTAMP BETWEEN {time1.Ticks} AND {time2.Ticks} AND PERCENTAGE = {percentage} AND ADJUSTMENT = {adjustment} AND SUCCESS = {success}";
                 adapter = new SQLiteDataAdapter(sql, DBpath);
                 adapter.Fill(ds);
 
@@ -186,7 +247,7 @@ namespace AbilityStoneLoger
                 using (SQLiteConnection conn = new SQLiteConnection(DBpath))
                 {
                     conn.Open();
-                    string sql = $"INSERT INTO ENGRAVINGDATA('PERCENTAGE', 'ENGRAVINGNAME', 'SUCCESS', 'ADJUSTMENT', 'DIGIT') VALUES ({percentage}, '{engravingName}', {success}, {adjustment}, {digit})";
+                    string sql = $"INSERT INTO ENGRAVINGDATA('PERCENTAGE', 'ENGRAVINGNAME', 'SUCCESS', 'ADJUSTMENT', 'DIGIT', 'TIMESTAMP') VALUES ({percentage}, '{engravingName}', {success}, {adjustment}, {digit}, {DateTime.Now.Ticks})";
                     SQLiteCommand cmd = new SQLiteCommand(sql, conn);
                     Console.WriteLine(cmd.CommandText);
                     cmd.ExecuteNonQuery();

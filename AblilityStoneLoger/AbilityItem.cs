@@ -19,13 +19,6 @@ namespace AbilityStoneLoger
         SQLite database = null;
         FirestoreDb firestoreDb = null;
 
-        public AbilityItem(int percentage, string engravingName, bool success)
-        {
-            this.percentage = percentage;
-            this.success = success;
-            this.engravingName = engravingName;
-        }
-
         public AbilityItem(int percentage, string engravingName, bool success, bool adjustment, int digit)
         {
             string path = AppDomain.CurrentDomain.BaseDirectory + @"asl-project-80aca-firebase-adminsdk-5wshs-63c1bb844a.json";

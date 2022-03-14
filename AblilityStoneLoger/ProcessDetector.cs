@@ -34,7 +34,7 @@ namespace AbilityStoneLoger
                 }
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
-                Thread.Sleep(1000);
+                Thread.Sleep(5000);
             }
         }
 
