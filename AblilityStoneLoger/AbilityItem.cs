@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using AblilityStoneLoger;
 using Google.Cloud.Firestore;
 
-
 namespace AbilityStoneLoger
 {
     internal class AbilityItem
@@ -19,11 +18,9 @@ namespace AbilityStoneLoger
         SQLite database = null;
         FirestoreDb firestoreDb = null;
 
-        public AbilityItem(int percentage, string engravingName, bool success, bool adjustment, int digit)
+        public AbilityItem(int percentage, string engravingName, bool success, bool adjustment, int digit, FirestoreDb firestoreDb)
         {
-            string path = AppDomain.CurrentDomain.BaseDirectory + @"asl-project-80aca-7ea4b7df82f1.json";
-            Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
-            firestoreDb = FirestoreDb.Create("asl-project-80aca");
+            this.firestoreDb = firestoreDb;
             this.database = new SQLite();
 
             this.percentage = percentage;
@@ -40,7 +37,6 @@ namespace AbilityStoneLoger
 
         public void SendData()
         {
-            
             CollectionReference coll = firestoreDb.Collection("EngravingDataBase");
             Dictionary<string, object> data = new Dictionary<string, object>()
             {

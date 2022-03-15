@@ -1,4 +1,5 @@
 ﻿using AblilityStoneLoger;
+using OpenCvSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +15,9 @@ namespace AbilityStoneLoger
         private DateTimePicker startDateTimePicker, endDateTimePicker;
 
         Label[] detailPercentage;
-        TransparentPanel dotGraph;
-        public DetailPage(Form1 form1, DateTimePicker startDateTimePicker, DateTimePicker endDateTimePicker, Label[] detailPercentage, TransparentPanel dotGraph)
+
+        PictureBox graph;
+        public DetailPage(Form1 form1, DateTimePicker startDateTimePicker, DateTimePicker endDateTimePicker, Label[] detailPercentage, PictureBox graph)
         {
             this.form1 = form1;
             
@@ -24,8 +26,7 @@ namespace AbilityStoneLoger
             this.endDateTimePicker = endDateTimePicker;
 
             this.detailPercentage = detailPercentage;
-
-            this.dotGraph = dotGraph;
+            this.graph = graph;
 
             UpdateDetailPage();
         }
@@ -74,33 +75,22 @@ namespace AbilityStoneLoger
                             
                         }
 
-                        Graphics g = dotGraph.CreateGraphics();
-                        g.Clear(Color.White);
-                        g.Dispose();
+                        Mat grpImage = new Mat(new OpenCvSharp.Size(530,415), MatType.CV_8UC3);
+                        Cv2.Rectangle(grpImage, new Rect(0, 0, 530, 415), Scalar.White, -1, LineTypes.AntiAlias);
                         for (int i = 0; i < 6; ++i)
                         {
-                            form1.Invoke(new Action(delegate ()
-                            {
-                                Graphics g = dotGraph.CreateGraphics();
-                                Rectangle eGrp = new Rectangle(ePosition[i] - 56, 415 - heightEData[i], 20, heightEData[i]);
-                                g.FillRectangle(Brushes.CornflowerBlue, eGrp);
-
-                                Rectangle rGrp = new Rectangle(rPosition[i] - 56, 415 - heightRData[i], 20, heightRData[i]);
-                                g.FillRectangle(Brushes.Tomato, rGrp);
-
-                                Rectangle totalDotRect = new Rectangle(dotPosition[i], 415 - totalDot[i], 5, 5);
-                                g.FillRectangle(Brushes.MediumOrchid, totalDotRect);
-
-                                if (i < 5)
-                                {
-                                    Point s = new Point(dotPosition[i], 415 - totalDot[i]);
-                                    Point e = new Point(dotPosition[i + 1], 415 - totalDot[i + 1]);
-                                    g.DrawLine(Pens.MediumOrchid, s, e);
-                                }
-
-                                g.Dispose();
-                            }));
+                            Cv2.Rectangle(grpImage, new Rect(ePosition[i] - 56, 415 - heightEData[i], 20, heightEData[i]), Scalar.CornflowerBlue, -1, LineTypes.AntiAlias);
+                            Cv2.Rectangle(grpImage, new Rect(rPosition[i] - 56, 415 - heightRData[i], 20, heightRData[i]), Scalar.Tomato, -1, LineTypes.AntiAlias);
+                            Cv2.Rectangle(grpImage, new Rect(dotPosition[i], 415 - totalDot[i], 5, 5), Scalar.MediumOrchid, -1, LineTypes.AntiAlias);
+                            if (i < 5)
+                                Cv2.Line(grpImage, new OpenCvSharp.Point(dotPosition[i], 415 - totalDot[i]), new OpenCvSharp.Point(dotPosition[i + 1], 415 - totalDot[i + 1]), Scalar.MediumOrchid, 1);
                         }
+
+                        form1.Invoke(new Action(delegate ()
+                        {
+                            graph.Image = OpenCvSharp.Extensions.BitmapConverter.ToBitmap(grpImage);
+                        }));
+
                         Thread.Sleep(1000);
                     }
                     catch (Exception ex)
