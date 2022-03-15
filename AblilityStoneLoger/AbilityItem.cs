@@ -21,7 +21,7 @@ namespace AbilityStoneLoger
 
         public AbilityItem(int percentage, string engravingName, bool success, bool adjustment, int digit)
         {
-            string path = AppDomain.CurrentDomain.BaseDirectory + @"asl-project-80aca-firebase-adminsdk-5wshs-63c1bb844a.json";
+            string path = AppDomain.CurrentDomain.BaseDirectory + @"asl-project-80aca-7ea4b7df82f1.json";
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
             firestoreDb = FirestoreDb.Create("asl-project-80aca");
             this.database = new SQLite();

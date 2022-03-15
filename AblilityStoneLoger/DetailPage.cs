@@ -12,9 +12,10 @@ namespace AbilityStoneLoger
         private Form1 form1;
         private bool pageState = false;
         private DateTimePicker startDateTimePicker, endDateTimePicker;
-        PictureBox[] detailEnhanceGraph, detailReductionGraph;
+
+        Label[] detailPercentage;
         TransparentPanel dotGraph;
-        public DetailPage(Form1 form1, DateTimePicker startDateTimePicker, DateTimePicker endDateTimePicker, PictureBox[] detailEnhanceGraph, PictureBox[] detailReductionGraph, TransparentPanel dotGraph)
+        public DetailPage(Form1 form1, DateTimePicker startDateTimePicker, DateTimePicker endDateTimePicker, Label[] detailPercentage, TransparentPanel dotGraph)
         {
             this.form1 = form1;
             
@@ -22,8 +23,7 @@ namespace AbilityStoneLoger
             endDateTimePicker.Value = DateTime.Now;
             this.endDateTimePicker = endDateTimePicker;
 
-            this.detailEnhanceGraph = detailEnhanceGraph;
-            this.detailReductionGraph = detailReductionGraph;
+            this.detailPercentage = detailPercentage;
 
             this.dotGraph = dotGraph;
 
@@ -34,7 +34,7 @@ namespace AbilityStoneLoger
         {
             pageState = state;
         }
-        int[] percentageList = { 25, 35, 45, 55, 65, 75 };
+
         int[] dotPosition = { 475, 389, 305, 221, 137, 47 }, ePosition = { 505, 419, 335, 251, 167, 77 }, rPosition = { 537, 451, 367, 283, 199, 110 };
 
         public void UpdateDetailPage()
@@ -66,6 +66,12 @@ namespace AbilityStoneLoger
                             totalDot[i] = totalTryCount > 0 ? (400 * scsTCount / totalTryCount) : 0;
                             heightEData[i] = perECount > 0 ? (400 * scsECount / perECount) : 0;
                             heightRData[i] = perRCount > 0 ? (400 * scsRCount / perRCount) : 0;
+
+                            form1.Invoke(new Action(delegate ()
+                            {
+                                detailPercentage[i].Text = totalTryCount != 0 ? (100 * scsTCount / (double)totalTryCount).ToString("0.0") + "%" : "0%";
+                            }));
+                            
                         }
 
                         Graphics g = dotGraph.CreateGraphics();

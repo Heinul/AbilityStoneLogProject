@@ -10,7 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="asl-project-80aca-firebase-adminsdk-5wshs-63c1bb844a.json" />
     <None Remove="Resources\25p.png" />
     <None Remove="Resources\35p.png" />
     <None Remove="Resources\45p.png" />
@@ -64,12 +63,6 @@
     <None Remove="Resources\타격의대가.png" />
     <None Remove="Resources\탈출의명수.png" />
     <None Remove="Resources\폭팔물전문가.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="asl-project-80aca-firebase-adminsdk-5wshs-63c1bb844a.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -150,6 +143,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="asl-project-80aca-7ea4b7df82f1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="C:\Users\HeNull\.nuget\packages\tesseract\4.1.1\build\\..\x64\tesseract41.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
