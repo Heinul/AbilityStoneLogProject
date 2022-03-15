@@ -17,9 +17,9 @@
 # 사용법
 
 >## 설치
->Release 페이지에서 설치 가능합니다
->https://github.com/Heinul/AbilityStoneLogProject/releases
->.net 설치가 요구됩니다.
+>+ Release 페이지에서 설치 가능합니다
+>+ https://github.com/Heinul/AbilityStoneLogProject/releases
+>+ .net 설치가 요구됩니다.
 >
 >## 사용
 >프로그램을 실행 후 로스트아크 세공을 진행하시면 데이터가 자동으로 수집됩니다.
