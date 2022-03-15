@@ -1,4 +1,5 @@
 ﻿using AblilityStoneLoger;
+using Google.Cloud.Firestore;
 using OpenCvSharp;
 using System;
 using System.Collections.Generic;
@@ -21,13 +22,16 @@ namespace AbilityStoneLoger
         private string[] previousEngravingName = new string[3] { "", "", "" };
         private int[][] previousEngravingSuccessData = new int[3][];
 
-        public ImageAnalysis(Form1 form1, ResourceLoader resourceLoader)
+        private FirestoreDb firestoreDb;
+
+        public ImageAnalysis(Form1 form1, ResourceLoader resourceLoader, FirestoreDb firestoreDb)
         {
             Form1 = form1;
             this.resourceLoader = resourceLoader; 
             displayCapture = new DisplayCapture();
             for (int i = 0; i < 3; i++)
                 previousEngravingSuccessData[i] = new int[10];
+            this.firestoreDb = firestoreDb;
         }
 
         bool threadState = false;
@@ -224,7 +228,7 @@ namespace AbilityStoneLoger
         private void PushData(int percentage, string engravingName, bool success, bool adjustment, int digit)
         {
             //큐에 데이터 올리고 다른 스레드로 저장 작업 처리
-            AbilityItem data = new AbilityItem(percentage, engravingName, success, adjustment, digit);
+            AbilityItem data = new AbilityItem(percentage, engravingName, success, adjustment, digit, firestoreDb);
             queue.Enqueue(data);
         }
 

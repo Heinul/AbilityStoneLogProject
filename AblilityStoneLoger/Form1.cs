@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using Google.Cloud.Firestore;
 
 namespace AblilityStoneLoger
 {
@@ -14,6 +15,7 @@ namespace AblilityStoneLoger
             InitializeComponent();
             this.Load += LoadTrayIcon;
         }
+
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn(int nLeftRect
@@ -28,14 +30,14 @@ namespace AblilityStoneLoger
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, this.Width, this.Height, 20, 20));
             Init();
             StartLogger();
-            new Thread(MousePosition).Start();
+            //new Thread(MousePosition).Start();
         }
 
         DashBoardPage dashboard;
         ImageAnalysis imageAnalysis;
         ResourceLoader resourceLoader;
-
         DetailPage detailPage;
+        FirestoreDb firestoreDb;
 
         private void Init()
         {
@@ -49,8 +51,11 @@ namespace AblilityStoneLoger
             dashboard = new DashBoardPage(this, resourceLoader, dashboardEnhanceGraph, dashboardReductionGraph, TryLabel, SuccessLabel, FailLabel, CoinLabel, itemImages, imageNames, successText);
 
             Label[] successPercentage = { Detail25, Detail35, Detail45, Detail55, Detail65, Detail75 };
-            TransparentPanel dotGraph = DotGraphPanel;
-            detailPage = new DetailPage(this, StartDateTimePicker, EndDateTimePicker, successPercentage, dotGraph);
+            detailPage = new DetailPage(this, StartDateTimePicker, EndDateTimePicker, successPercentage, DetailGraphPictureBox);
+
+            string path = AppDomain.CurrentDomain.BaseDirectory + @"asl-project-80aca-7ea4b7df82f1.json";
+            Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", path);
+            firestoreDb = FirestoreDb.Create("asl-project-80aca");
         }
 
        
@@ -65,13 +70,13 @@ namespace AblilityStoneLoger
             {
                 try
                 {
-                    //imageAnalysis = new ImageAnalysis(this, resourceLoader);
-                    //ProcessDetector processDetector = new ProcessDetector(this);
-                    //processDetector.Run();
+                    imageAnalysis = new ImageAnalysis(this, resourceLoader, firestoreDb);
+                    ProcessDetector processDetector = new ProcessDetector(this);
+                    processDetector.Run();
 
-                    //Test ÄÚµå
-                    imageAnalysis = new ImageAnalysis(this, resourceLoader);
-                    imageAnalysis.Run();
+                    //Test
+                    //imageAnalysis = new ImageAnalysis(this, resourceLoader, firestoreDb);
+                    //imageAnalysis.Run();
 
                 }
                 catch (Exception ex)

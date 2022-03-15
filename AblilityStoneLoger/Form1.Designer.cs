@@ -92,8 +92,8 @@
             this.Detail55 = new System.Windows.Forms.Label();
             this.Detail65 = new System.Windows.Forms.Label();
             this.Detail75 = new System.Windows.Forms.Label();
-            this.DotGraphPanel = new AbilityStoneLoger.TransparentPanel();
             this.TimeBetweenLabel = new System.Windows.Forms.Label();
+            this.DetailGraphPictureBox = new System.Windows.Forms.PictureBox();
             this.EndDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.StartDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -134,6 +134,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ReductionGraph75)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph75)).BeginInit();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DetailGraphPictureBox)).BeginInit();
             this.TrayMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -213,6 +214,7 @@
             this.Tendency.Size = new System.Drawing.Size(55, 55);
             this.Tendency.TabIndex = 2;
             this.Tendency.UseVisualStyleBackColor = false;
+            this.Tendency.Visible = false;
             this.Tendency.Click += new System.EventHandler(this.Tendency_Click);
             // 
             // LogDetail
@@ -254,9 +256,11 @@
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(55, 50);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form_MouseDown);
@@ -768,8 +772,8 @@
             this.tabPage2.Controls.Add(this.Detail55);
             this.tabPage2.Controls.Add(this.Detail65);
             this.tabPage2.Controls.Add(this.Detail75);
-            this.tabPage2.Controls.Add(this.DotGraphPanel);
             this.tabPage2.Controls.Add(this.TimeBetweenLabel);
+            this.tabPage2.Controls.Add(this.DetailGraphPictureBox);
             this.tabPage2.Controls.Add(this.EndDateTimePicker);
             this.tabPage2.Controls.Add(this.StartDateTimePicker);
             this.tabPage2.Location = new System.Drawing.Point(4, 5);
@@ -846,13 +850,6 @@
             this.Detail75.Text = "0%";
             this.Detail75.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // DotGraphPanel
-            // 
-            this.DotGraphPanel.Location = new System.Drawing.Point(56, 64);
-            this.DotGraphPanel.Name = "DotGraphPanel";
-            this.DotGraphPanel.Size = new System.Drawing.Size(530, 415);
-            this.DotGraphPanel.TabIndex = 15;
-            // 
             // TimeBetweenLabel
             // 
             this.TimeBetweenLabel.AutoSize = true;
@@ -861,6 +858,15 @@
             this.TimeBetweenLabel.Size = new System.Drawing.Size(15, 15);
             this.TimeBetweenLabel.TabIndex = 2;
             this.TimeBetweenLabel.Text = "~";
+            // 
+            // DetailGraphPictureBox
+            // 
+            this.DetailGraphPictureBox.BackColor = System.Drawing.Color.White;
+            this.DetailGraphPictureBox.Location = new System.Drawing.Point(57, 63);
+            this.DetailGraphPictureBox.Name = "DetailGraphPictureBox";
+            this.DetailGraphPictureBox.Size = new System.Drawing.Size(530, 415);
+            this.DetailGraphPictureBox.TabIndex = 0;
+            this.DetailGraphPictureBox.TabStop = false;
             // 
             // EndDateTimePicker
             // 
@@ -907,7 +913,7 @@
             // TrayIcon
             // 
             this.TrayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("TrayIcon.Icon")));
-            this.TrayIcon.Text = "notifyIcon1";
+            this.TrayIcon.Text = "ASL";
             this.TrayIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.TrayIconMouseDoubleClick);
             // 
             // TrayMenu
@@ -983,6 +989,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph75)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DetailGraphPictureBox)).EndInit();
             this.TrayMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -1055,12 +1062,12 @@
         private DateTimePicker StartDateTimePicker;
         private Label TimeBetweenLabel;
         private DateTimePicker EndDateTimePicker;
-        private AbilityStoneLoger.TransparentPanel DotGraphPanel;
         private Label Detail25;
         private Label Detail35;
         private Label Detail45;
         private Label Detail55;
         private Label Detail65;
         private Label Detail75;
+        private PictureBox DetailGraphPictureBox;
     }
 }
