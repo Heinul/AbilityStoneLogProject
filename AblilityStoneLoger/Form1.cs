@@ -48,10 +48,9 @@ namespace AblilityStoneLoger
             PictureBox[] dashboardReductionGraph = { ReductionGraph25, ReductionGraph35, ReductionGraph45, ReductionGraph55, ReductionGraph65, ReductionGraph75 };
             dashboard = new DashBoardPage(this, resourceLoader, dashboardEnhanceGraph, dashboardReductionGraph, TryLabel, SuccessLabel, FailLabel, CoinLabel, itemImages, imageNames, successText);
 
-            PictureBox[] detailEnhanceGraph = { EnhanceGraph25_Detail, EnhanceGraph35_Detail, EnhanceGraph45_Detail, EnhanceGraph55_Detail, EnhanceGraph65_Detail, EnhanceGraph75_Detail };
-            PictureBox[] detailReductionGraph = { ReductionGraph25_Detail, ReductionGraph35_Detail, ReductionGraph45_Detail, ReductionGraph55_Detail, ReductionGraph65, ReductionGraph75_Detail };
+            Label[] successPercentage = { Detail25, Detail35, Detail45, Detail55, Detail65, Detail75 };
             TransparentPanel dotGraph = DotGraphPanel;
-            detailPage = new DetailPage(this, StartDateTimePicker, EndDateTimePicker, detailEnhanceGraph, detailReductionGraph, dotGraph);
+            detailPage = new DetailPage(this, StartDateTimePicker, EndDateTimePicker, successPercentage, dotGraph);
         }
 
        

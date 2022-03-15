@@ -86,19 +86,13 @@
             this.SuccessLabel = new System.Windows.Forms.Label();
             this.TryLabel = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.Detail25 = new System.Windows.Forms.Label();
+            this.Detail35 = new System.Windows.Forms.Label();
+            this.Detail45 = new System.Windows.Forms.Label();
+            this.Detail55 = new System.Windows.Forms.Label();
+            this.Detail65 = new System.Windows.Forms.Label();
+            this.Detail75 = new System.Windows.Forms.Label();
             this.DotGraphPanel = new AbilityStoneLoger.TransparentPanel();
-            this.ReductionGraph25_Detail = new System.Windows.Forms.PictureBox();
-            this.EnhanceGraph25_Detail = new System.Windows.Forms.PictureBox();
-            this.ReductionGraph35_Detail = new System.Windows.Forms.PictureBox();
-            this.EnhanceGraph35_Detail = new System.Windows.Forms.PictureBox();
-            this.ReductionGraph45_Detail = new System.Windows.Forms.PictureBox();
-            this.EnhanceGraph45_Detail = new System.Windows.Forms.PictureBox();
-            this.ReductionGraph55_Detail = new System.Windows.Forms.PictureBox();
-            this.EnhanceGraph55_Detail = new System.Windows.Forms.PictureBox();
-            this.ReductionGraph65_Detail = new System.Windows.Forms.PictureBox();
-            this.EnhanceGraph65_Detail = new System.Windows.Forms.PictureBox();
-            this.ReductionGraph75_Detail = new System.Windows.Forms.PictureBox();
-            this.EnhanceGraph75_Detail = new System.Windows.Forms.PictureBox();
             this.TimeBetweenLabel = new System.Windows.Forms.Label();
             this.EndDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.StartDateTimePicker = new System.Windows.Forms.DateTimePicker();
@@ -109,12 +103,6 @@
             this.TrayMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Detail75 = new System.Windows.Forms.Label();
-            this.Detail65 = new System.Windows.Forms.Label();
-            this.Detail55 = new System.Windows.Forms.Label();
-            this.Detail45 = new System.Windows.Forms.Label();
-            this.Detail35 = new System.Windows.Forms.Label();
-            this.Detail25 = new System.Windows.Forms.Label();
             this.SideMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -146,29 +134,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.ReductionGraph75)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph75)).BeginInit();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ReductionGraph25_Detail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph25_Detail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ReductionGraph35_Detail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph35_Detail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ReductionGraph45_Detail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph45_Detail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ReductionGraph55_Detail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph55_Detail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ReductionGraph65_Detail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph65_Detail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ReductionGraph75_Detail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph75_Detail)).BeginInit();
             this.TrayMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // MousePos
             // 
             this.MousePos.AutoSize = true;
-            this.MousePos.Location = new System.Drawing.Point(22, 24);
+            this.MousePos.Location = new System.Drawing.Point(546, 15);
             this.MousePos.Name = "MousePos";
             this.MousePos.Size = new System.Drawing.Size(71, 15);
             this.MousePos.TabIndex = 4;
             this.MousePos.Text = "마우스 좌표";
+            this.MousePos.Visible = false;
             // 
             // SideMenu
             // 
@@ -287,11 +264,12 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(173, 15);
+            this.label1.Location = new System.Drawing.Point(691, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(39, 15);
             this.label1.TabIndex = 2;
             this.label1.Text = "label1";
+            this.label1.Visible = false;
             // 
             // tabControl1
             // 
@@ -791,18 +769,6 @@
             this.tabPage2.Controls.Add(this.Detail65);
             this.tabPage2.Controls.Add(this.Detail75);
             this.tabPage2.Controls.Add(this.DotGraphPanel);
-            this.tabPage2.Controls.Add(this.ReductionGraph25_Detail);
-            this.tabPage2.Controls.Add(this.EnhanceGraph25_Detail);
-            this.tabPage2.Controls.Add(this.ReductionGraph35_Detail);
-            this.tabPage2.Controls.Add(this.EnhanceGraph35_Detail);
-            this.tabPage2.Controls.Add(this.ReductionGraph45_Detail);
-            this.tabPage2.Controls.Add(this.EnhanceGraph45_Detail);
-            this.tabPage2.Controls.Add(this.ReductionGraph55_Detail);
-            this.tabPage2.Controls.Add(this.EnhanceGraph55_Detail);
-            this.tabPage2.Controls.Add(this.ReductionGraph65_Detail);
-            this.tabPage2.Controls.Add(this.EnhanceGraph65_Detail);
-            this.tabPage2.Controls.Add(this.ReductionGraph75_Detail);
-            this.tabPage2.Controls.Add(this.EnhanceGraph75_Detail);
             this.tabPage2.Controls.Add(this.TimeBetweenLabel);
             this.tabPage2.Controls.Add(this.EndDateTimePicker);
             this.tabPage2.Controls.Add(this.StartDateTimePicker);
@@ -814,133 +780,78 @@
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form_MouseDown);
             // 
+            // Detail25
+            // 
+            this.Detail25.BackColor = System.Drawing.Color.Transparent;
+            this.Detail25.Font = new System.Drawing.Font("한컴 말랑말랑 Regular", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Detail25.Location = new System.Drawing.Point(636, 466);
+            this.Detail25.Name = "Detail25";
+            this.Detail25.Size = new System.Drawing.Size(111, 23);
+            this.Detail25.TabIndex = 17;
+            this.Detail25.Text = "0%";
+            this.Detail25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Detail35
+            // 
+            this.Detail35.BackColor = System.Drawing.Color.Transparent;
+            this.Detail35.Font = new System.Drawing.Font("한컴 말랑말랑 Regular", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Detail35.Location = new System.Drawing.Point(636, 399);
+            this.Detail35.Name = "Detail35";
+            this.Detail35.Size = new System.Drawing.Size(111, 23);
+            this.Detail35.TabIndex = 17;
+            this.Detail35.Text = "0%";
+            this.Detail35.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Detail45
+            // 
+            this.Detail45.BackColor = System.Drawing.Color.Transparent;
+            this.Detail45.Font = new System.Drawing.Font("한컴 말랑말랑 Regular", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Detail45.Location = new System.Drawing.Point(636, 333);
+            this.Detail45.Name = "Detail45";
+            this.Detail45.Size = new System.Drawing.Size(111, 23);
+            this.Detail45.TabIndex = 17;
+            this.Detail45.Text = "0%";
+            this.Detail45.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Detail55
+            // 
+            this.Detail55.BackColor = System.Drawing.Color.Transparent;
+            this.Detail55.Font = new System.Drawing.Font("한컴 말랑말랑 Regular", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Detail55.Location = new System.Drawing.Point(636, 266);
+            this.Detail55.Name = "Detail55";
+            this.Detail55.Size = new System.Drawing.Size(111, 23);
+            this.Detail55.TabIndex = 17;
+            this.Detail55.Text = "0%";
+            this.Detail55.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Detail65
+            // 
+            this.Detail65.BackColor = System.Drawing.Color.Transparent;
+            this.Detail65.Font = new System.Drawing.Font("한컴 말랑말랑 Regular", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Detail65.Location = new System.Drawing.Point(636, 198);
+            this.Detail65.Name = "Detail65";
+            this.Detail65.Size = new System.Drawing.Size(111, 23);
+            this.Detail65.TabIndex = 17;
+            this.Detail65.Text = "0%";
+            this.Detail65.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Detail75
+            // 
+            this.Detail75.BackColor = System.Drawing.Color.Transparent;
+            this.Detail75.Font = new System.Drawing.Font("한컴 말랑말랑 Regular", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Detail75.Location = new System.Drawing.Point(636, 132);
+            this.Detail75.Name = "Detail75";
+            this.Detail75.Size = new System.Drawing.Size(111, 23);
+            this.Detail75.TabIndex = 16;
+            this.Detail75.Text = "0%";
+            this.Detail75.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // DotGraphPanel
             // 
             this.DotGraphPanel.Location = new System.Drawing.Point(56, 64);
             this.DotGraphPanel.Name = "DotGraphPanel";
             this.DotGraphPanel.Size = new System.Drawing.Size(530, 415);
             this.DotGraphPanel.TabIndex = 15;
-            // 
-            // ReductionGraph25_Detail
-            // 
-            this.ReductionGraph25_Detail.Image = ((System.Drawing.Image)(resources.GetObject("ReductionGraph25_Detail.Image")));
-            this.ReductionGraph25_Detail.Location = new System.Drawing.Point(537, 477);
-            this.ReductionGraph25_Detail.Name = "ReductionGraph25_Detail";
-            this.ReductionGraph25_Detail.Size = new System.Drawing.Size(26, 0);
-            this.ReductionGraph25_Detail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ReductionGraph25_Detail.TabIndex = 3;
-            this.ReductionGraph25_Detail.TabStop = false;
-            // 
-            // EnhanceGraph25_Detail
-            // 
-            this.EnhanceGraph25_Detail.Image = ((System.Drawing.Image)(resources.GetObject("EnhanceGraph25_Detail.Image")));
-            this.EnhanceGraph25_Detail.Location = new System.Drawing.Point(505, 477);
-            this.EnhanceGraph25_Detail.Name = "EnhanceGraph25_Detail";
-            this.EnhanceGraph25_Detail.Size = new System.Drawing.Size(26, 0);
-            this.EnhanceGraph25_Detail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.EnhanceGraph25_Detail.TabIndex = 4;
-            this.EnhanceGraph25_Detail.TabStop = false;
-            // 
-            // ReductionGraph35_Detail
-            // 
-            this.ReductionGraph35_Detail.Image = ((System.Drawing.Image)(resources.GetObject("ReductionGraph35_Detail.Image")));
-            this.ReductionGraph35_Detail.Location = new System.Drawing.Point(451, 477);
-            this.ReductionGraph35_Detail.Name = "ReductionGraph35_Detail";
-            this.ReductionGraph35_Detail.Size = new System.Drawing.Size(26, 0);
-            this.ReductionGraph35_Detail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ReductionGraph35_Detail.TabIndex = 5;
-            this.ReductionGraph35_Detail.TabStop = false;
-            // 
-            // EnhanceGraph35_Detail
-            // 
-            this.EnhanceGraph35_Detail.Image = ((System.Drawing.Image)(resources.GetObject("EnhanceGraph35_Detail.Image")));
-            this.EnhanceGraph35_Detail.Location = new System.Drawing.Point(419, 477);
-            this.EnhanceGraph35_Detail.Name = "EnhanceGraph35_Detail";
-            this.EnhanceGraph35_Detail.Size = new System.Drawing.Size(26, 0);
-            this.EnhanceGraph35_Detail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.EnhanceGraph35_Detail.TabIndex = 6;
-            this.EnhanceGraph35_Detail.TabStop = false;
-            // 
-            // ReductionGraph45_Detail
-            // 
-            this.ReductionGraph45_Detail.Image = ((System.Drawing.Image)(resources.GetObject("ReductionGraph45_Detail.Image")));
-            this.ReductionGraph45_Detail.Location = new System.Drawing.Point(367, 477);
-            this.ReductionGraph45_Detail.Name = "ReductionGraph45_Detail";
-            this.ReductionGraph45_Detail.Size = new System.Drawing.Size(26, 0);
-            this.ReductionGraph45_Detail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ReductionGraph45_Detail.TabIndex = 7;
-            this.ReductionGraph45_Detail.TabStop = false;
-            // 
-            // EnhanceGraph45_Detail
-            // 
-            this.EnhanceGraph45_Detail.Image = ((System.Drawing.Image)(resources.GetObject("EnhanceGraph45_Detail.Image")));
-            this.EnhanceGraph45_Detail.Location = new System.Drawing.Point(335, 477);
-            this.EnhanceGraph45_Detail.Name = "EnhanceGraph45_Detail";
-            this.EnhanceGraph45_Detail.Size = new System.Drawing.Size(26, 0);
-            this.EnhanceGraph45_Detail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.EnhanceGraph45_Detail.TabIndex = 8;
-            this.EnhanceGraph45_Detail.TabStop = false;
-            // 
-            // ReductionGraph55_Detail
-            // 
-            this.ReductionGraph55_Detail.Image = ((System.Drawing.Image)(resources.GetObject("ReductionGraph55_Detail.Image")));
-            this.ReductionGraph55_Detail.Location = new System.Drawing.Point(283, 477);
-            this.ReductionGraph55_Detail.Name = "ReductionGraph55_Detail";
-            this.ReductionGraph55_Detail.Size = new System.Drawing.Size(26, 0);
-            this.ReductionGraph55_Detail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ReductionGraph55_Detail.TabIndex = 9;
-            this.ReductionGraph55_Detail.TabStop = false;
-            // 
-            // EnhanceGraph55_Detail
-            // 
-            this.EnhanceGraph55_Detail.Image = ((System.Drawing.Image)(resources.GetObject("EnhanceGraph55_Detail.Image")));
-            this.EnhanceGraph55_Detail.Location = new System.Drawing.Point(251, 477);
-            this.EnhanceGraph55_Detail.Name = "EnhanceGraph55_Detail";
-            this.EnhanceGraph55_Detail.Size = new System.Drawing.Size(26, 0);
-            this.EnhanceGraph55_Detail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.EnhanceGraph55_Detail.TabIndex = 10;
-            this.EnhanceGraph55_Detail.TabStop = false;
-            // 
-            // ReductionGraph65_Detail
-            // 
-            this.ReductionGraph65_Detail.Image = ((System.Drawing.Image)(resources.GetObject("ReductionGraph65_Detail.Image")));
-            this.ReductionGraph65_Detail.Location = new System.Drawing.Point(199, 477);
-            this.ReductionGraph65_Detail.Name = "ReductionGraph65_Detail";
-            this.ReductionGraph65_Detail.Size = new System.Drawing.Size(26, 0);
-            this.ReductionGraph65_Detail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ReductionGraph65_Detail.TabIndex = 11;
-            this.ReductionGraph65_Detail.TabStop = false;
-            // 
-            // EnhanceGraph65_Detail
-            // 
-            this.EnhanceGraph65_Detail.Image = ((System.Drawing.Image)(resources.GetObject("EnhanceGraph65_Detail.Image")));
-            this.EnhanceGraph65_Detail.Location = new System.Drawing.Point(167, 477);
-            this.EnhanceGraph65_Detail.Name = "EnhanceGraph65_Detail";
-            this.EnhanceGraph65_Detail.Size = new System.Drawing.Size(26, 0);
-            this.EnhanceGraph65_Detail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.EnhanceGraph65_Detail.TabIndex = 12;
-            this.EnhanceGraph65_Detail.TabStop = false;
-            // 
-            // ReductionGraph75_Detail
-            // 
-            this.ReductionGraph75_Detail.Image = ((System.Drawing.Image)(resources.GetObject("ReductionGraph75_Detail.Image")));
-            this.ReductionGraph75_Detail.Location = new System.Drawing.Point(110, 477);
-            this.ReductionGraph75_Detail.Name = "ReductionGraph75_Detail";
-            this.ReductionGraph75_Detail.Size = new System.Drawing.Size(26, 0);
-            this.ReductionGraph75_Detail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ReductionGraph75_Detail.TabIndex = 13;
-            this.ReductionGraph75_Detail.TabStop = false;
-            // 
-            // EnhanceGraph75_Detail
-            // 
-            this.EnhanceGraph75_Detail.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.EnhanceGraph75_Detail.Image = ((System.Drawing.Image)(resources.GetObject("EnhanceGraph75_Detail.Image")));
-            this.EnhanceGraph75_Detail.Location = new System.Drawing.Point(77, 477);
-            this.EnhanceGraph75_Detail.Name = "EnhanceGraph75_Detail";
-            this.EnhanceGraph75_Detail.Size = new System.Drawing.Size(26, 0);
-            this.EnhanceGraph75_Detail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.EnhanceGraph75_Detail.TabIndex = 14;
-            this.EnhanceGraph75_Detail.TabStop = false;
             // 
             // TimeBetweenLabel
             // 
@@ -1021,72 +932,6 @@
             this.exitToolStripMenuItem.Text = "종료";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
-            // Detail75
-            // 
-            this.Detail75.BackColor = System.Drawing.Color.Transparent;
-            this.Detail75.Font = new System.Drawing.Font("한컴 말랑말랑 Regular", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Detail75.Location = new System.Drawing.Point(636, 132);
-            this.Detail75.Name = "Detail75";
-            this.Detail75.Size = new System.Drawing.Size(111, 23);
-            this.Detail75.TabIndex = 16;
-            this.Detail75.Text = "0%";
-            this.Detail75.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // Detail65
-            // 
-            this.Detail65.BackColor = System.Drawing.Color.Transparent;
-            this.Detail65.Font = new System.Drawing.Font("한컴 말랑말랑 Regular", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Detail65.Location = new System.Drawing.Point(636, 198);
-            this.Detail65.Name = "Detail65";
-            this.Detail65.Size = new System.Drawing.Size(111, 23);
-            this.Detail65.TabIndex = 17;
-            this.Detail65.Text = "0%";
-            this.Detail65.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // Detail55
-            // 
-            this.Detail55.BackColor = System.Drawing.Color.Transparent;
-            this.Detail55.Font = new System.Drawing.Font("한컴 말랑말랑 Regular", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Detail55.Location = new System.Drawing.Point(636, 273);
-            this.Detail55.Name = "Detail55";
-            this.Detail55.Size = new System.Drawing.Size(111, 23);
-            this.Detail55.TabIndex = 17;
-            this.Detail55.Text = "0%";
-            this.Detail55.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // Detail45
-            // 
-            this.Detail45.BackColor = System.Drawing.Color.Transparent;
-            this.Detail45.Font = new System.Drawing.Font("한컴 말랑말랑 Regular", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Detail45.Location = new System.Drawing.Point(636, 339);
-            this.Detail45.Name = "Detail45";
-            this.Detail45.Size = new System.Drawing.Size(111, 23);
-            this.Detail45.TabIndex = 17;
-            this.Detail45.Text = "0%";
-            this.Detail45.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // Detail35
-            // 
-            this.Detail35.BackColor = System.Drawing.Color.Transparent;
-            this.Detail35.Font = new System.Drawing.Font("한컴 말랑말랑 Regular", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Detail35.Location = new System.Drawing.Point(636, 399);
-            this.Detail35.Name = "Detail35";
-            this.Detail35.Size = new System.Drawing.Size(111, 23);
-            this.Detail35.TabIndex = 17;
-            this.Detail35.Text = "0%";
-            this.Detail35.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // Detail25
-            // 
-            this.Detail25.BackColor = System.Drawing.Color.Transparent;
-            this.Detail25.Font = new System.Drawing.Font("한컴 말랑말랑 Regular", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Detail25.Location = new System.Drawing.Point(636, 466);
-            this.Detail25.Name = "Detail25";
-            this.Detail25.Size = new System.Drawing.Size(111, 23);
-            this.Detail25.TabIndex = 17;
-            this.Detail25.Text = "0%";
-            this.Detail25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1138,18 +983,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph75)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ReductionGraph25_Detail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph25_Detail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ReductionGraph35_Detail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph35_Detail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ReductionGraph45_Detail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph45_Detail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ReductionGraph55_Detail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph55_Detail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ReductionGraph65_Detail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph65_Detail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ReductionGraph75_Detail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EnhanceGraph75_Detail)).EndInit();
             this.TrayMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -1222,18 +1055,6 @@
         private DateTimePicker StartDateTimePicker;
         private Label TimeBetweenLabel;
         private DateTimePicker EndDateTimePicker;
-        private PictureBox ReductionGraph25_Detail;
-        private PictureBox EnhanceGraph25_Detail;
-        private PictureBox ReductionGraph35_Detail;
-        private PictureBox EnhanceGraph35_Detail;
-        private PictureBox ReductionGraph45_Detail;
-        private PictureBox EnhanceGraph45_Detail;
-        private PictureBox ReductionGraph55_Detail;
-        private PictureBox EnhanceGraph55_Detail;
-        private PictureBox ReductionGraph65_Detail;
-        private PictureBox EnhanceGraph65_Detail;
-        private PictureBox ReductionGraph75_Detail;
-        private PictureBox EnhanceGraph75_Detail;
         private AbilityStoneLoger.TransparentPanel DotGraphPanel;
         private Label Detail25;
         private Label Detail35;
