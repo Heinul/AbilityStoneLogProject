@@ -12,7 +12,7 @@
 + 프로세스 및 데이터에 접근하지 않기에 정확도가 떨어질 수 있습니다.
 
 # 최신버전
- 1.0버전이 최신입니다!
+ [1.0.1](https://github.com/Heinul/AbilityStoneLogProject/releases/tag/Ver.1.01)버전이 최신입니다!
 
 # 사용법
 
