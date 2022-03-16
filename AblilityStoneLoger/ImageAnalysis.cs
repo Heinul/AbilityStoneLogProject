@@ -63,6 +63,11 @@ namespace AbilityStoneLoger
                 if (abilityWindowState)
                 {
                     displayQueue.Enqueue(display);
+                    Form1.SetImageAnalysisStateText("어빌리티스톤 세공 기록중");
+                }
+                else
+                {
+                    Form1.SetImageAnalysisStateText("Error : 세공창 인식 불가");
                 }
                 Thread.Sleep(1);
             }

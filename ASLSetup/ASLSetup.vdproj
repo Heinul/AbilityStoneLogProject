@@ -172,8 +172,8 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ASLProject"
-        "ProductCode" = "8:{E122B6FF-BCDF-4CBF-9705-2116AF493D62}"
-        "PackageCode" = "8:{0D0533BC-B134-426F-ABD3-55875A671EB1}"
+        "ProductCode" = "8:{E1704430-5E86-43C4-A351-FA29D1FD46FA}"
+        "PackageCode" = "8:{BFC0F245-1E8B-40A3-8BA4-8F36B32AFBAC}"
         "UpgradeCode" = "8:{1352FBBB-168C-4CDC-ADE2-21F68C131291}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"

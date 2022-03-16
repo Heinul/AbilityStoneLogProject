@@ -11,6 +11,7 @@ namespace AbilityStoneLoger
     internal class ProcessDetector
     {
         Thread thread;
+        bool lostarkState = false;
         public ProcessDetector(Form1 form1)
         {
             Form1 = form1;
@@ -26,11 +27,22 @@ namespace AbilityStoneLoger
                 Process[] processList = Process.GetProcessesByName("LostArk");
                 if (processList.Length > 0)
                 {
-                    Form1.StartImageAnalysis();
+                    if (lostarkState == false)
+                    {
+                        lostarkState = true;
+                        Form1.SetImageAnalysisStateText("이미지탐지 대기중");
+                        Form1.StartImageAnalysis();
+                    }
+                    
                 }
                 else
                 {
-                    Form1.StopImageAnalysis();
+                    if (lostarkState == true)
+                    {
+                        lostarkState = false;
+                        Form1.SetImageAnalysisStateText("로스트아크 실행 대기중");
+                        Form1.StopImageAnalysis();
+                    }
                 }
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
