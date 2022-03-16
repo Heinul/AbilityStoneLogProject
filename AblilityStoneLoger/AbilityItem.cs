@@ -37,7 +37,7 @@ namespace AbilityStoneLoger
 
         public void SendData()
         {
-            CollectionReference coll = firestoreDb.Collection("EngravingDataBase");
+            CollectionReference coll = firestoreDb.Collection($"EngravingDataBase_{DateTime.Now.ToString("yyMMdd")}_{GetMacAddress()}");
             Dictionary<string, object> data = new Dictionary<string, object>()
             {
                 {"Percentage", percentage},

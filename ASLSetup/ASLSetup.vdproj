@@ -15,7 +15,7 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_1C741588310045D998C2FAE2319EF9D2"
+        "MsmKey" = "8:_490F74E6410341AB993FFCB1BFD11DAC"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -173,7 +173,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ASLProject"
         "ProductCode" = "8:{E122B6FF-BCDF-4CBF-9705-2116AF493D62}"
-        "PackageCode" = "8:{57128A85-51C2-4C56-B8DC-AAFD0A946EE8}"
+        "PackageCode" = "8:{0D0533BC-B134-426F-ABD3-55875A671EB1}"
         "UpgradeCode" = "8:{1352FBBB-168C-4CDC-ADE2-21F68C131291}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -293,34 +293,6 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_6D4A4C2E8D7C457BB8673DE1F93CA69C"
-            {
-            "Name" = "8:AbilityStoneLoger"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_1C741588310045D998C2FAE2319EF9D2"
-            "Folder" = "8:_38CFC785CE454D5C9976F8DA4874CB48"
-            "WorkingFolder" = "8:_74990EF62B3240B68862C0169D03B1F6"
-            "Icon" = "8:"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_9FB705A046384874BCE0FBCC7E2BACDB"
-            {
-            "Name" = "8:AbilityStoneLoger"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_1C741588310045D998C2FAE2319EF9D2"
-            "Folder" = "8:_14BE8EF5E167442D92C29841A7CD0DBD"
-            "WorkingFolder" = "8:_74990EF62B3240B68862C0169D03B1F6"
-            "Icon" = "8:"
-            "Feature" = "8:"
-            }
         }
         "UserInterface"
         {
@@ -720,7 +692,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_1C741588310045D998C2FAE2319EF9D2"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_490F74E6410341AB993FFCB1BFD11DAC"
             {
             "SourcePath" = "8:..\\AblilityStoneLoger\\obj\\Debug\\net6.0-windows\\apphost.exe"
             "TargetName" = "8:"
