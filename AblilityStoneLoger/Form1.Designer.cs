@@ -41,6 +41,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.ImageAnalysisState1 = new System.Windows.Forms.Label();
             this.AddedItem7 = new System.Windows.Forms.Panel();
             this.SuccessText7 = new System.Windows.Forms.Label();
             this.ImageName7 = new System.Windows.Forms.Label();
@@ -103,6 +104,7 @@
             this.TrayMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label2 = new System.Windows.Forms.Label();
             this.SideMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -296,6 +298,7 @@
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Transparent;
             this.tabPage1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPage1.BackgroundImage")));
+            this.tabPage1.Controls.Add(this.ImageAnalysisState1);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.AddedItem7);
             this.tabPage1.Controls.Add(this.MousePos);
@@ -327,6 +330,16 @@
             this.tabPage1.Size = new System.Drawing.Size(762, 531);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form_MouseDown);
+            // 
+            // ImageAnalysisState1
+            // 
+            this.ImageAnalysisState1.AutoSize = true;
+            this.ImageAnalysisState1.Font = new System.Drawing.Font("한컴 말랑말랑 Regular", 9.749998F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ImageAnalysisState1.Location = new System.Drawing.Point(629, 514);
+            this.ImageAnalysisState1.Name = "ImageAnalysisState1";
+            this.ImageAnalysisState1.Size = new System.Drawing.Size(127, 17);
+            this.ImageAnalysisState1.TabIndex = 8;
+            this.ImageAnalysisState1.Text = "로스트아크 실행 대기중";
             // 
             // AddedItem7
             // 
@@ -767,6 +780,7 @@
             // tabPage2
             // 
             this.tabPage2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPage2.BackgroundImage")));
+            this.tabPage2.Controls.Add(this.label2);
             this.tabPage2.Controls.Add(this.Detail25);
             this.tabPage2.Controls.Add(this.Detail35);
             this.tabPage2.Controls.Add(this.Detail45);
@@ -939,6 +953,16 @@
             this.exitToolStripMenuItem.Text = "종료";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("한컴 말랑말랑 Regular", 9.749998F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(629, 512);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(127, 17);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "로스트아크 실행 대기중";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1071,5 +1095,7 @@
         private Label Detail65;
         private Label Detail75;
         private PictureBox DetailGraphPictureBox;
+        private Label ImageAnalysisState1;
+        private Label label2;
     }
 }
