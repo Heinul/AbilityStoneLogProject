@@ -58,25 +58,44 @@ namespace AblilityStoneLoger
             firestoreDb = FirestoreDb.Create("asl-project-80aca");
         }
 
-       
-        private void StartLogger()
+        private async void StartLogger()
         {
-            //해상도 확인
-            if (Screen.PrimaryScreen.Bounds.Height != 1080 && Screen.PrimaryScreen.Bounds.Height != 1440 && Screen.PrimaryScreen.Bounds.Height != 2160)
+            // 버전 확인
+            var version = firestoreDb.Collection("Version").Document("VersionCheck");
+            var snap = await version.GetSnapshotAsync();
+
+            if (snap.Exists)
             {
-                MessageBox.Show("FHD 이상의 해상도만을 지원합니다.");
+                var systemVer = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+                var firebaseVersion = snap.ToDictionary();
+                var value = firebaseVersion.Values;
+                foreach (var item in value)
+                {
+                    
+                    if (!item.ToString().Equals(systemVer.ToString())) {
+                        MessageBox.Show("업데이트가 있습니다. 최신버전을 이용해주세요!");
+                        System.Diagnostics.Process.Start(new ProcessStartInfo("https://github.com/Heinul/AbilityStoneLogProject/releases") { UseShellExecute = true });
+                        return;
+                    }
+                }
+            }
+
+            //해상도 확인
+            if (Screen.PrimaryScreen.Bounds.Height != 1080 && Screen.PrimaryScreen.Bounds.Height != 1440 && Screen.PrimaryScreen.Bounds.Height != 2160 && Screen.PrimaryScreen.Bounds.Height != 2880)
+            {
+                MessageBox.Show($"모니터 해상도의 세로기준 1080, 1440, 2160, 2880의 해상도만 지원합니다..\n해당 모니터의 해상도는 세로 {Screen.PrimaryScreen.Bounds.Height} 입니다.");
             }
             else
             {
                 try
                 {
-                    imageAnalysis = new ImageAnalysis(this, resourceLoader, firestoreDb);
-                    ProcessDetector processDetector = new ProcessDetector(this);
-                    processDetector.Run();
+                    //imageAnalysis = new ImageAnalysis(this, resourceLoader, firestoreDb);
+                    //ProcessDetector processDetector = new ProcessDetector(this);
+                    //processDetector.Run();
 
                     //Test
-                    //imageAnalysis = new ImageAnalysis(this, resourceLoader, firestoreDb);
-                    //imageAnalysis.Run();
+                    imageAnalysis = new ImageAnalysis(this, resourceLoader, firestoreDb);
+                    imageAnalysis.Run();
 
                 }
                 catch (Exception ex)
@@ -190,9 +209,12 @@ namespace AblilityStoneLoger
 
         private void Exit_Click(object sender, EventArgs e)
         {
-            TrayIcon.Dispose();
-            System.Diagnostics.Process.GetCurrentProcess().Kill();
-            Application.Exit();
+            //TrayIcon.Dispose();
+            //System.Diagnostics.Process.GetCurrentProcess().Kill();
+            //Application.Exit();
+            this.WindowState = FormWindowState.Minimized;
+            this.ShowInTaskbar = false;
+            MessageBox.Show("트레이로 이동합니다.");
         }
 
         private void GraphMouseMove(object sender, EventArgs e)

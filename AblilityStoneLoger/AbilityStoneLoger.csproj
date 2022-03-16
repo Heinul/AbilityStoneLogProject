@@ -7,6 +7,10 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <StartupObject></StartupObject>
+    <PackageIcon>rocks.png</PackageIcon>
+    <ApplicationIcon>rocks.ico</ApplicationIcon>
+    <SignAssembly>False</SignAssembly>
+    <DelaySign>False</DelaySign>
   </PropertyGroup>
 
   <ItemGroup>
@@ -66,6 +70,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="rocks.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Include="Resources\25p.png" />
     <EmbeddedResource Include="Resources\35p.png" />
     <EmbeddedResource Include="Resources\45p.png" />
@@ -119,6 +127,13 @@
     <EmbeddedResource Include="Resources\타격의대가.png" />
     <EmbeddedResource Include="Resources\탈출의명수.png" />
     <EmbeddedResource Include="Resources\폭팔물전문가.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\..\Desktop\UI\rocks.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

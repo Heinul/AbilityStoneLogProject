@@ -180,6 +180,7 @@
             this.Option.Size = new System.Drawing.Size(55, 55);
             this.Option.TabIndex = 3;
             this.Option.UseVisualStyleBackColor = false;
+            this.Option.Visible = false;
             this.Option.Click += new System.EventHandler(this.Option_Click);
             // 
             // Exit
@@ -947,6 +948,7 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.SideMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.SideMenu.ResumeLayout(false);
