@@ -87,6 +87,7 @@
             this.SuccessLabel = new System.Windows.Forms.Label();
             this.TryLabel = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.ImageAnalysisState2 = new System.Windows.Forms.Label();
             this.Detail25 = new System.Windows.Forms.Label();
             this.Detail35 = new System.Windows.Forms.Label();
             this.Detail45 = new System.Windows.Forms.Label();
@@ -104,7 +105,6 @@
             this.TrayMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label2 = new System.Windows.Forms.Label();
             this.SideMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -780,7 +780,7 @@
             // tabPage2
             // 
             this.tabPage2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPage2.BackgroundImage")));
-            this.tabPage2.Controls.Add(this.label2);
+            this.tabPage2.Controls.Add(this.ImageAnalysisState2);
             this.tabPage2.Controls.Add(this.Detail25);
             this.tabPage2.Controls.Add(this.Detail35);
             this.tabPage2.Controls.Add(this.Detail45);
@@ -798,6 +798,16 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form_MouseDown);
+            // 
+            // ImageAnalysisState2
+            // 
+            this.ImageAnalysisState2.AutoSize = true;
+            this.ImageAnalysisState2.Font = new System.Drawing.Font("한컴 말랑말랑 Regular", 9.749998F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ImageAnalysisState2.Location = new System.Drawing.Point(629, 512);
+            this.ImageAnalysisState2.Name = "ImageAnalysisState2";
+            this.ImageAnalysisState2.Size = new System.Drawing.Size(127, 17);
+            this.ImageAnalysisState2.TabIndex = 9;
+            this.ImageAnalysisState2.Text = "로스트아크 실행 대기중";
             // 
             // Detail25
             // 
@@ -953,16 +963,6 @@
             this.exitToolStripMenuItem.Text = "종료";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("한컴 말랑말랑 Regular", 9.749998F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(629, 512);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(127, 17);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "로스트아크 실행 대기중";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1096,6 +1096,6 @@
         private Label Detail75;
         private PictureBox DetailGraphPictureBox;
         private Label ImageAnalysisState1;
-        private Label label2;
+        private Label ImageAnalysisState2;
     }
 }

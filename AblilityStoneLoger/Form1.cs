@@ -228,6 +228,7 @@ namespace AblilityStoneLoger
             this.Invoke(new Action(delegate ()
             {
                 ImageAnalysisState1.Text = str;
+                ImageAnalysisState2.Text = str;
             }));
         }
         #endregion
