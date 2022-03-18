@@ -12,7 +12,7 @@
     <SignAssembly>False</SignAssembly>
     <DelaySign>False</DelaySign>
     <AssemblyVersion>1.0.0.2</AssemblyVersion>
-    <FileVersion>1.0.0.1</FileVersion>
+    <FileVersion>1.0.0.2</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -54,7 +54,6 @@
     <None Remove="Resources\약자무시.png" />
     <None Remove="Resources\에테르포식자.png" />
     <None Remove="Resources\여신의가호.png" />
-    <None Remove="Resources\예리한둔기.png" />
     <None Remove="Resources\원한.png" />
     <None Remove="Resources\위기모면.png" />
     <None Remove="Resources\이동속도감소.png" />
@@ -114,7 +113,6 @@
     <EmbeddedResource Include="Resources\약자무시.png" />
     <EmbeddedResource Include="Resources\에테르포식자.png" />
     <EmbeddedResource Include="Resources\여신의가호.png" />
-    <EmbeddedResource Include="Resources\예리한둔기.png" />
     <EmbeddedResource Include="Resources\원한.png" />
     <EmbeddedResource Include="Resources\위기모면.png" />
     <EmbeddedResource Include="Resources\이동속도감소.png" />

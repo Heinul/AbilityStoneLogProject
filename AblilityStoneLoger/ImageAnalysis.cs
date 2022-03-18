@@ -287,7 +287,7 @@ namespace AbilityStoneLoger
         {
 
             Cv2.MatchTemplate(display, resourceLoader.GetSuccessTextImage(), result, TemplateMatchModes.CCoeffNormed);
-
+            
             OpenCvSharp.Point minloc, maxloc;
             double minval, maxval;
 

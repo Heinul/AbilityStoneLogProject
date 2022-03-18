@@ -58,9 +58,9 @@ namespace AbilityStoneLoger
                         var successCount = db.Select(true).Count;
                         form1.Invoke(new Action(delegate ()
                         {
-                            TryLabel.Text = (tryCount > 1000) ? String.Format("{0:#,0}", ((double)tryCount / 1000)) + "K" : String.Format("{0:#,0}", tryCount);
-                            SuccessLabel.Text = (successCount > 1000) ? String.Format("{0:#,0}", ((double)successCount / 1000)) + "K" : String.Format("{0:#,0}", successCount);
-                            FailLabel.Text = (tryCount - successCount > 1000) ? String.Format("{0:#,0}", ((double)tryCount - successCount / 1000)) : String.Format("{0:#,0}", (tryCount - successCount));
+                            TryLabel.Text = (tryCount > 1000) ? String.Format("{0:#,0.##}", ((double)tryCount / 1000)) + "K" : String.Format("{0:#,0}", tryCount);
+                            SuccessLabel.Text = (successCount > 1000) ? String.Format("{0:#,0.##}", ((double)successCount / 1000)) + "K" : String.Format("{0:#,0}", successCount);
+                            FailLabel.Text = (tryCount - successCount > 1000) ? String.Format("{0:#,0.##}", ((double)tryCount - successCount / 1000)) : String.Format("{0:#,0}", (tryCount - successCount));
                             CoinLabel.Text = (tryCount * 1.68 > 1000) ? String.Format("{0:##,##0}", tryCount * 1.68) + "K" : String.Format("{0:##,##0.00}", tryCount * 1.68) + "K";
                         }));
 
