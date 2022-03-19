@@ -95,13 +95,17 @@ namespace AbilityStoneLoger
                         engravingSuccessData[i] = EngravingSuccessCheck(display, i);
                     }
 
+                    bool errorCheck = false;
                     for(int i = 0; i < 10; i++)
                     {
                         if (engravingSuccessData[0][i] == 3 || engravingSuccessData[1][i] == 3 || engravingSuccessData[2][i] == 3)
-                            continue;
+                        {
+                            errorCheck = true;
+                            break;
+                        }
                     }
-
-                    ComparisonData(percentage, engravingName, engravingSuccessData);
+                    if(!errorCheck)
+                        ComparisonData(percentage, engravingName, engravingSuccessData);
                 }
                 else
                 {
@@ -287,7 +291,7 @@ namespace AbilityStoneLoger
         {
 
             Cv2.MatchTemplate(display, resourceLoader.GetSuccessTextImage(), result, TemplateMatchModes.CCoeffNormed);
-
+            
             OpenCvSharp.Point minloc, maxloc;
             double minval, maxval;
 
