@@ -12,7 +12,7 @@
 + 프로세스 및 데이터에 접근하지 않기에 정확도가 떨어질 수 있습니다.
 
 # 최신버전
- [1.0.1](https://github.com/Heinul/AbilityStoneLogProject/releases/tag/Ver.1.01)버전이 최신입니다!
+ [1.0.2](https://github.com/Heinul/AbilityStoneLogProject/releases/tag/Ver.1.0.2)버전이 최신입니다!
 
 # 사용법
 
@@ -20,7 +20,9 @@
 >+ Release 페이지에서 설치 가능합니다
 >+ https://github.com/Heinul/AbilityStoneLogProject/releases
 >+ .net 설치가 요구됩니다.
->
+>+ 프로그램 설치시 연결된 홈페이지의 버튼을 누르면 설치 가능합니다.
+>![화면 캡처 2022-03-19 180514](https://user-images.githubusercontent.com/100503773/159114996-2669655b-0c9d-40de-b35f-9d2ccfd4af39.png)
+
 >## 사용
 >프로그램을 실행 후 로스트아크 세공을 진행하시면 데이터가 자동으로 수집됩니다.
 
